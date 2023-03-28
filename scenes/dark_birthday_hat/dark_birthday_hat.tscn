@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbm611bfhf7h"]
+
+[ext_resource type="Texture2D" uid="uid://dlrrkhaeyjf7w" path="res://scenes/dark_birthday_hat/Dark Birthday Hat.png" id="3_gckyl"]
+
+[node name="CharacterHat" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_gckyl")
+offset = Vector2(0, -17)

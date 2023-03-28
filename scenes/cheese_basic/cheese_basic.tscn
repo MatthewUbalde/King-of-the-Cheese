@@ -1,0 +1,375 @@
+[gd_scene load_steps=15 format=3 uid="uid://v2xfvshiddfm"]
+
+[ext_resource type="Script" path="res://scenes/cheese_basic/cheese_basic.gd" id="1_br6e0"]
+[ext_resource type="Texture2D" uid="uid://cwg0xarye4pv3" path="res://scenes/cheese_basic/Cheese.png" id="3_og6j0"]
+[ext_resource type="PackedScene" uid="uid://dipnnctj6rjbo" path="res://scenes/component/hurtbox_component.tscn" id="3_ta7to"]
+[ext_resource type="AudioStream" uid="uid://wqdqnmo3mdiu" path="res://assets/sounds/Is_That_Okay.wav" id="4_8fa1a"]
+[ext_resource type="AudioStream" uid="uid://n4ftg3jw7b32" path="res://assets/sounds/CheeseStep.wav" id="5_gu3h1"]
+[ext_resource type="AudioStream" uid="uid://d2uy3gvemaqn0" path="res://assets/sounds/Okay.wav" id="5_w1vpp"]
+
+[sub_resource type="Animation" id="Animation_h8evm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visual/Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visual/Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visual/Sprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ridvj"]
+resource_name = "despawn"
+length = 0.55
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/Sprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-2, -2), Vector2(0, 0), Vector2(0, -21)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visual/Sprite2D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.214999, 0.0, 6.28319]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visual/Sprite2D:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.37305, 1.37305), Vector2(1, 1), Vector2(0.120001, 0.120001)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.55),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visual/Sprite2D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DespawnSound")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_w1vpp")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/5/use_blend = false
+
+[sub_resource type="Animation" id="Animation_vdbit"]
+resource_name = "idle"
+length = 3.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/Sprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.5, 0.7, 1, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 84.4485, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -3), Vector2(0, -3), Vector2(0, 1), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visual/Sprite2D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visual/Sprite2D:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.5, 0.7, 1, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 89.3607, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.634, 1.15), Vector2(0.634, 1.15), Vector2(1.2, 0.88), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("IdleSound")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_w1vpp")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = false
+
+[sub_resource type="Animation" id="Animation_y31w5"]
+resource_name = "spawn"
+length = 0.55
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/Sprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -21), Vector2(0, 0), Vector2(-2, -2), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visual/Sprite2D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [6.28319, 0.0, -0.214999, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visual/Sprite2D:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.120001, 0.120001), Vector2(1, 1), Vector2(1.37305, 1.37305), Vector2(1, 1)]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SpawnSound")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_8fa1a")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = false
+
+[sub_resource type="Animation" id="Animation_4rtkg"]
+resource_name = "walking"
+length = 0.5
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/Sprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.35, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-1, -4), Vector2(1, 2), Vector2(0, 1), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visual/Sprite2D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.35, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.1519, 0.0563065, -0.0204165, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visual/Sprite2D:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.325, 0.35, 0.45335, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.13072), Vector2(1.10032, 1), Vector2(1, 1), Vector2(0.8384, 1.11916), Vector2(0.908986, 1.06711), Vector2(1, 1)]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("StepSound")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_gu3h1")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = false
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e8270"]
+_data = {
+"RESET": SubResource("Animation_h8evm"),
+"despawn": SubResource("Animation_ridvj"),
+"idle": SubResource("Animation_vdbit"),
+"spawn": SubResource("Animation_y31w5"),
+"walking": SubResource("Animation_4rtkg")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qlwmc"]
+radius = 30.0167
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a3fo7"]
+radius = 22.0
+
+[node name="CheeseBasic" type="CharacterBody2D" node_paths=PackedStringArray("visual", "animation_player") groups=["cheese"]]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_br6e0")
+visual = NodePath("Visual")
+animation_player = NodePath("AnimationPlayer")
+speed_base = 30.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "spawn"
+libraries = {
+"": SubResource("AnimationLibrary_e8270")
+}
+
+[node name="hurtbox_component" parent="." instance=ExtResource("3_ta7to")]
+position = Vector2(0, -18)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox_component"]
+shape = SubResource("CircleShape2D_qlwmc")
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visual"]
+texture = ExtResource("3_og6j0")
+offset = Vector2(0, -22)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -18)
+shape = SubResource("CircleShape2D_a3fo7")
+
+[node name="NavigationTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="IdleTimer" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[node name="SpawnSound" type="AudioStreamPlayer2D" parent="."]
+volume_db = -13.096
+
+[node name="DespawnSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="IdleSound" type="AudioStreamPlayer2D" parent="."]
+volume_db = -9.244
+
+[node name="StepSound" type="AudioStreamPlayer2D" parent="."]
+volume_db = -10.785

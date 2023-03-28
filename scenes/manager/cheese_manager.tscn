@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0w5flbvwpgaf"]
+
+[ext_resource type="Script" path="res://scenes/manager/cheese_manager.gd" id="1_fvl1j"]
+[ext_resource type="PackedScene" uid="uid://v2xfvshiddfm" path="res://scenes/cheese_basic/cheese_basic.tscn" id="2_hagme"]
+
+[node name="CheeseManager" type="Node"]
+script = ExtResource("1_fvl1j")
+basic_cheese_scene = ExtResource("2_hagme")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.35
+one_shot = true

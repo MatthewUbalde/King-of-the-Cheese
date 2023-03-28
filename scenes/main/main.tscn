@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://cyem1hreh7dgu"]
+
+[ext_resource type="Script" path="res://scenes/main/main.gd" id="1_4wnnl"]
+[ext_resource type="PackedScene" uid="uid://c0w5flbvwpgaf" path="res://scenes/manager/cheese_manager.tscn" id="1_4803e"]
+[ext_resource type="PackedScene" uid="uid://c2lncx5ukglyk" path="res://scenes/dark_birthday/dark_birthday.tscn" id="2_2wfpe"]
+[ext_resource type="PackedScene" uid="uid://ogtkyqn84yn8" path="res://scenes/GUI/gui.tscn" id="3_pc55g"]
+[ext_resource type="Texture2D" uid="uid://bunkxwj3hlf3f" path="res://assets/backgrounds/Background Grid.png" id="4_58kss"]
+[ext_resource type="PackedScene" uid="uid://daacswkfn5a8n" path="res://scenes/GUI/parallax_background.tscn" id="5_d0aw6"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_4wnnl")
+
+[node name="CheeseManager" parent="." node_paths=PackedStringArray("center") instance=ExtResource("1_4803e")]
+center = NodePath("../Entities/DarkBirthday")
+
+[node name="Entities" type="Node2D" parent="." groups=["entities_layer"]]
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="DarkBirthday" parent="Entities" instance=ExtResource("2_2wfpe")]
+position = Vector2(303, 227)
+
+[node name="Camera2D" type="Camera2D" parent="Entities/DarkBirthday"]
+
+[node name="GUI" parent="." node_paths=PackedStringArray("cheese_manager") instance=ExtResource("3_pc55g")]
+cheese_manager = NodePath("../CheeseManager")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("5_d0aw6")]
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.945098, 0.776471, 0.45098, 1)
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_58kss")
