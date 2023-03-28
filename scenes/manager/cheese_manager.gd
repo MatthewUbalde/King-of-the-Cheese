@@ -69,14 +69,14 @@ func cheese_manage() -> void:
 		spawn_cheese()
 		spawn_timer.start() 
 	
-	print("timeout=")
+	#print("timeout=")
 	emit_amount_update()
 
 
 func _process(delta: float) -> void:
 	# Check for any changes to the cheese_amount
 	if cheese_amount != cheese_amount_old:
-		print("process==")
+		#print("process==")
 		emit_amount_update(get_cheese_amount_present(), true)
 
 
@@ -95,8 +95,8 @@ func on_game_events_update_day(current_day: int) -> void:
 func emit_amount_update(amount: int = get_cheese_amount_present(), keep_old: bool = false) -> void:
 	cheese_amount = amount
 	amount_update.emit(cheese_amount)
-	print("new: " + str(cheese_amount))
+	#print("new: " + str(cheese_amount))
 	
 	if keep_old:
 		cheese_amount_old = cheese_amount
-		print("old: " + str(cheese_amount_old))
+		#print("old: " + str(cheese_amount_old))

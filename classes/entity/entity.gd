@@ -22,3 +22,7 @@ func face_movement() -> void:
 
 func apply_speed(speed: float) -> void:
 	velocity = speed * move_direction
+
+
+func _despawn() -> void:
+	queue_free()

@@ -59,5 +59,7 @@ func on_animation_player_animation_finished(anim_name: StringName) -> void:
 	animation_player.play("idle") 
 
 
-func play_despawn() -> void:
+func _despawn() -> void:
+	$CollisionShape2D.disabled
+	$HurtboxComponent/CollisionShape2D.disabled
 	animation_player.play("despawn")

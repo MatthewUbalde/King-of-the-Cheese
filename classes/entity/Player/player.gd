@@ -1,9 +1,11 @@
 extends Entity
 class_name Player
 
+@onready var hitbox: HitboxComponent = $HitboxComponent
+
 
 func _ready() -> void:
-	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
+	hitbox.hit.connect(on_hitbox_hit)
 
 
 func _process(delta: float) -> void:
@@ -17,6 +19,8 @@ func _physics_process(delta: float) -> void:
 		clamp(global_position.x, -1000, 1000),
 		clamp(global_position.y, -1000, 1000),
 	)
+	
+	hitbox.active = Input.is_action_pressed("player_action") 
 
 
 func change_speed(type: speed_type = speed_type.WALK) -> void:
@@ -31,3 +35,8 @@ func change_speed(type: speed_type = speed_type.WALK) -> void:
 
 func get_movement_input() -> Vector2:
 	return Input.get_vector("move_left", "move_right", "move_up", "move_down")
+
+
+#Signals
+func on_hitbox_hit() -> void: 
+	$YumSound.play()

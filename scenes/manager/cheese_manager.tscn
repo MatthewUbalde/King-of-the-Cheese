@@ -9,4 +9,3 @@ basic_cheese_scene = ExtResource("2_hagme")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 0.35
-one_shot = true
