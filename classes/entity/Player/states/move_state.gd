@@ -19,6 +19,9 @@ func _physics_process_state(delta: float) -> BaseState:
 	if player.move_direction == Vector2.ZERO:
 		return idle_state
 	
+	if player.move_direction.y == 0 || player.move_direction.x != 0:
+		player.prev_direction = player.move_direction
+	
 	player.apply_speed(player.current_speed)
 	player.move_and_slide()
 	
@@ -33,5 +36,6 @@ func _show_properties() -> String:
 	var property_text = """
 	- velocity: %s
 	- move_direction: %s
+	- prev_direction: %s
 	- current_speed: %s"""
-	return super._show_properties() + property_text % [player.velocity, player.move_direction, player.current_speed]
+	return super._show_properties() + property_text % [player.velocity, player.move_direction, player.prev_direction, player.current_speed]

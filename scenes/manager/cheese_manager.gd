@@ -57,7 +57,7 @@ func despawn_cheese(quantity: int = 1) -> void:
 			var cheese_queue = cheese_group[i]
 			
 			if cheese_queue: 
-				cheese_queue.play_despawn()
+				cheese_queue._despawn()
 
 
 func cheese_manage() -> void:

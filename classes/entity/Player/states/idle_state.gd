@@ -16,15 +16,12 @@ extends PlayerState
 
 
 func _physics_process_state(delta : float) -> BaseState:
-	player.move_direction = player.get_movement_input()
+	player.move_direction = player.get_movement_input() 
 	
 	if player.move_direction != Vector2.ZERO:
 		if Input.is_action_pressed("move_run"):
 			return run_state
 		return walk_state
-	
-	player.apply_speed(player.current_speed)
-	player.move_and_slide()
 	
 	return null
 
@@ -35,5 +32,6 @@ func _to_string() -> String:
 
 func _show_properties() -> String:
 	var property_text = """
+	- global_position: %s
 	- move_direction: %s"""
-	return super._show_properties() + property_text % [player.move_direction] 
+	return super._show_properties() + property_text % [player.global_position, player.move_direction] 

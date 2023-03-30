@@ -17,6 +17,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -32,37 +36,37 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="MainGUI"]
+[node name="DayMarginContainer" type="MarginContainer" parent="MainGUI"]
 layout_mode = 1
 offset_right = 77.0
 offset_bottom = 71.0
 size_flags_horizontal = 0
 mouse_filter = 2
 
-[node name="DayPanelContainer" type="PanelContainer" parent="MainGUI/MarginContainer2"]
+[node name="DayPanelContainer" type="PanelContainer" parent="MainGUI/DayMarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainGUI/MarginContainer2/DayPanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainGUI/DayMarginContainer/DayPanelContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="DayLabel" type="Label" parent="MainGUI/MarginContainer2/DayPanelContainer/VBoxContainer"]
+[node name="DayLabel" type="Label" parent="MainGUI/DayMarginContainer/DayPanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Day: 0"
 horizontal_alignment = 1
 
-[node name="CurrentDateLabel" type="Label" parent="MainGUI/MarginContainer2/DayPanelContainer/VBoxContainer"]
+[node name="CurrentDateLabel" type="Label" parent="MainGUI/DayMarginContainer/DayPanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "March, 10, 2023"
 label_settings = SubResource("LabelSettings_4g40l")
 horizontal_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MainGUI"]
+[node name="CheeseMarginContainer" type="MarginContainer" parent="MainGUI"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -76,30 +80,30 @@ grow_vertical = 0
 size_flags_horizontal = 8
 mouse_filter = 2
 
-[node name="CounterPanelContainer" type="PanelContainer" parent="MainGUI/MarginContainer"]
+[node name="CounterPanelContainer" type="PanelContainer" parent="MainGUI/CheeseMarginContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainGUI/MarginContainer/CounterPanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainGUI/CheeseMarginContainer/CounterPanelContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="CheeseCounterLabel" type="Label" parent="MainGUI/MarginContainer/CounterPanelContainer/VBoxContainer"]
+[node name="CheeseCounterLabel" type="Label" parent="MainGUI/CheeseMarginContainer/CounterPanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Cheese: 0"
 horizontal_alignment = 1
 
-[node name="CurrentCheeseCurrentLabel" type="Label" parent="MainGUI/MarginContainer/CounterPanelContainer/VBoxContainer"]
+[node name="CurrentCheeseCurrentLabel" type="Label" parent="MainGUI/CheeseMarginContainer/CounterPanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Current Cheese: 0"
 label_settings = SubResource("LabelSettings_iakcg")
 horizontal_alignment = 1
 
-[node name="CheeseSlider" type="HSlider" parent="MainGUI/MarginContainer/CounterPanelContainer/VBoxContainer"]
+[node name="CheeseSlider" type="HSlider" parent="MainGUI/CheeseMarginContainer/CounterPanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -107,3 +111,25 @@ size_flags_horizontal = 4
 focus_mode = 0
 max_value = 1.0
 value = 1.0
+
+[node name="ScoreMarginContainer" type="MarginContainer" parent="MainGUI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -104.0
+offset_bottom = 36.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+mouse_filter = 2
+
+[node name="CounterPanelContainer" type="PanelContainer" parent="MainGUI/ScoreMarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+
+[node name="ScoreLabel" type="Label" parent="MainGUI/ScoreMarginContainer/CounterPanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Score: 0"
+horizontal_alignment = 1

@@ -46,7 +46,7 @@ func get_month_string(month_num: int, short_form: bool = false) -> String:
 
 # Trusting that it has the same keys
 func get_date_string_from_dict(date: Dictionary) -> String:
-	var date_string: String 
+	var date_string: String = ""
 	if date.month:
 		date_string += get_month_string(date.month) + " "
 	if date.day:

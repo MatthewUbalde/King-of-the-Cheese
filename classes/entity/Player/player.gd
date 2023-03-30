@@ -16,8 +16,8 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	#TODO: Temp fix for barrier
 	global_position = Vector2(
-		clamp(global_position.x, -1000, 1000),
-		clamp(global_position.y, -1000, 1000),
+		clamp(global_position.x, -1250, 1250),
+		clamp(global_position.y, -1250, 1250),
 	)
 	
 	hitbox.active = Input.is_action_pressed("player_action") 
