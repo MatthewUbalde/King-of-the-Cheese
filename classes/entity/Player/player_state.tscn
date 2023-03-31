@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dj400f0fc2wyo"]
+[gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://classes/entity/Player/player_state.gd" id="1_ravik"]
+[ext_resource type="Script" path="res://classes/entity/player/player_state.gd" id="1_ravik"]
 
 [node name="PlayerState" type="Node"]
 script = ExtResource("1_ravik")

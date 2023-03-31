@@ -16,13 +16,18 @@ func change_state(new_state: BaseState) -> void:
 
 
 func _ready() -> void:
+	# Assigning entities
 	if entity == null:
 		printerr("Entity not assigned to StateMachine via @export")
 	
 	# Trusting that the child are valid states
 	for child in get_children():
-		child.entity = entity
-		child._ready_state()
+		var state = child as BaseState
+		
+		state.entity = entity
+		state._ready_state()
+		state.force_change_state.connect(on_force_change_state)
+		
 	
 	change_state(get_node(starting_state))
 
@@ -42,5 +47,11 @@ func _input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	var new_state = current_state._process_state(delta)
+	if new_state:
+		change_state(new_state)
+
+
+func on_force_change_state(state: BaseState) -> void:
+	var new_state: BaseState = state
 	if new_state:
 		change_state(new_state)

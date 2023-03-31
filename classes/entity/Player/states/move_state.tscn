@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsin8yvgyxpgr"]
+[gd_scene load_steps=2 format=3 uid="uid://djq2nlymujvy0"]
 
-[ext_resource type="Script" path="res://classes/entity/Player/states/move_state.gd" id="1_orij6"]
+[ext_resource type="Script" path="res://classes/entity/player/states/move_state.gd" id="1_orij6"]
 
 [node name="MoveState" type="Node"]
 script = ExtResource("1_orij6")

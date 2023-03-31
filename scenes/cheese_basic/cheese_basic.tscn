@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://v2xfvshiddfm"]
+[gd_scene load_steps=20 format=3 uid="uid://v2xfvshiddfm"]
 
 [ext_resource type="Script" path="res://scenes/cheese_basic/cheese_basic.gd" id="1_br6e0"]
 [ext_resource type="Texture2D" uid="uid://cwg0xarye4pv3" path="res://scenes/cheese_basic/Cheese.png" id="3_og6j0"]
@@ -7,6 +7,9 @@
 [ext_resource type="AudioStream" uid="uid://n4ftg3jw7b32" path="res://assets/sounds/CheeseStep.wav" id="5_gu3h1"]
 [ext_resource type="AudioStream" uid="uid://7s6fom5qryua" path="res://assets/sounds/No.wav" id="5_ha2p4"]
 [ext_resource type="AudioStream" uid="uid://d2uy3gvemaqn0" path="res://assets/sounds/Okay.wav" id="5_w1vpp"]
+[ext_resource type="Script" path="res://classes/state_machine/state_machine.gd" id="8_ug1a0"]
+[ext_resource type="PackedScene" uid="uid://bro34f3kebd0u" path="res://classes/entity/cheese_basic/states/idle_state.tscn" id="9_y8mct"]
+[ext_resource type="PackedScene" uid="uid://b24tn7xdr6ao6" path="res://classes/entity/cheese_basic/states/move_state.tscn" id="10_ywgeu"]
 
 [sub_resource type="Animation" id="Animation_h8evm"]
 length = 0.001
@@ -456,7 +459,7 @@ tracks/5/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_4rtkg"]
-resource_name = "walking"
+resource_name = "move"
 length = 0.5
 loop_mode = 1
 step = 0.05
@@ -542,8 +545,8 @@ _data = {
 "despawn": SubResource("Animation_ridvj"),
 "eaten": SubResource("Animation_0eolh"),
 "idle": SubResource("Animation_vdbit"),
-"spawn": SubResource("Animation_y31w5"),
-"walking": SubResource("Animation_4rtkg")
+"move": SubResource("Animation_4rtkg"),
+"spawn": SubResource("Animation_y31w5")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qlwmc"]
@@ -566,6 +569,10 @@ libraries = {
 "": SubResource("AnimationLibrary_e8270")
 }
 
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("3_ta7to")]
 position = Vector2(0, -18)
 collision_layer = 0
@@ -585,12 +592,27 @@ offset = Vector2(0, -22)
 position = Vector2(0, -18)
 shape = SubResource("CircleShape2D_a3fo7")
 
-[node name="NavigationTimer" type="Timer" parent="."]
-wait_time = 4.0
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("entity")]
+script = ExtResource("8_ug1a0")
+entity = NodePath("..")
+starting_state = NodePath("IdleState")
+
+[node name="IdleState" parent="StateMachine" node_paths=PackedStringArray("idle_timer") instance=ExtResource("9_y8mct")]
+move_node = NodePath("../MoveState")
+idle_timer = NodePath("IdleTimer")
+anim_enter_name = &"idle"
+
+[node name="IdleTimer" type="Timer" parent="StateMachine/IdleState"]
+wait_time = 6.0
 one_shot = true
 
-[node name="IdleTimer" type="Timer" parent="."]
-wait_time = 6.0
+[node name="MoveState" parent="StateMachine" node_paths=PackedStringArray("move_timer") instance=ExtResource("10_ywgeu")]
+idle_node = NodePath("../IdleState")
+move_timer = NodePath("MoveTimer")
+anim_enter_name = &"move"
+
+[node name="MoveTimer" type="Timer" parent="StateMachine/MoveState"]
+wait_time = 4.0
 one_shot = true
 
 [node name="SpawnSound" type="AudioStreamPlayer2D" parent="."]

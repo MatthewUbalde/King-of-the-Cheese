@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bro34f3kebd0u"]
+
+[ext_resource type="Script" path="res://classes/entity/cheese_basic/states/idle_state.gd" id="1_4xgn6"]
+
+[node name="IdleState" type="Node" node_paths=PackedStringArray("idle_timer")]
+script = ExtResource("1_4xgn6")
+idle_timer = NodePath("")

@@ -1,23 +1,21 @@
-extends Node
-class_name BaseState
+extends BaseState
+class_name CheeseState
 
-signal force_change_state(new_state: BaseState)
+var cheese: CheeseBasic
 
-@export var anim_enter_name: StringName
-@export var anim_exit_name: StringName
-
-var entity: Entity
 
 func _ready_state() -> void:
-	pass
+	cheese = entity as CheeseBasic
 
 
 func _enter() -> void:
-	pass
+	if anim_enter_name:
+		cheese.animation_player.play(anim_enter_name) 
 
 
 func _exit() -> void:
-	pass
+	if anim_exit_name:
+		cheese.animation_player.play(anim_exit_name)
 
 
 func _input_state(event: InputEvent) -> BaseState:
@@ -32,12 +30,8 @@ func _physics_process_state(delta: float) -> BaseState:
 	return null
 
 
-func emit_force_change_state(new_state: BaseState) -> void:
-	force_change_state.emit(new_state)
-
-
 func _to_string() -> String:
-	return "BaseState"
+	return "CheeseState"
 
 
 func _show_properties() -> String:

@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://nhn4lao2j8sd"]
+[gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://classes/entity/Player/states/walk_state.gd" id="1_hhdlp"]
+[ext_resource type="Script" path="res://classes/entity/player/states/walk_state.gd" id="1_hhdlp"]
 
 [node name="WalkState" type="Node"]
 script = ExtResource("1_hhdlp")
