@@ -6,8 +6,9 @@
 [sub_resource type="LabelSettings" id="LabelSettings_4g40l"]
 font_size = 14
 
-[sub_resource type="LabelSettings" id="LabelSettings_iakcg"]
-font_size = 14
+[sub_resource type="LabelSettings" id="LabelSettings_f1skf"]
+line_spacing = 0.0
+font_size = 12
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource("1_8lj6m")
@@ -26,84 +27,103 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("2_i57eb")
 
-[node name="Panel" type="Panel" parent="MainGUI"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="DayMarginContainer" type="MarginContainer" parent="MainGUI"]
+[node name="TopLeftMarginContainer" type="MarginContainer" parent="MainGUI"]
 layout_mode = 1
 offset_right = 77.0
 offset_bottom = 71.0
 size_flags_horizontal = 0
 mouse_filter = 2
 
-[node name="DayPanelContainer" type="PanelContainer" parent="MainGUI/DayMarginContainer"]
+[node name="DayPanelContainer" type="PanelContainer" parent="MainGUI/TopLeftMarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainGUI/DayMarginContainer/DayPanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainGUI/TopLeftMarginContainer/DayPanelContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="DayLabel" type="Label" parent="MainGUI/DayMarginContainer/DayPanelContainer/VBoxContainer"]
+[node name="DayLabel" type="Label" parent="MainGUI/TopLeftMarginContainer/DayPanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Day: 0"
 horizontal_alignment = 1
 
-[node name="CurrentDateLabel" type="Label" parent="MainGUI/DayMarginContainer/DayPanelContainer/VBoxContainer"]
+[node name="CurrentDateLabel" type="Label" parent="MainGUI/TopLeftMarginContainer/DayPanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "March, 10, 2023"
 label_settings = SubResource("LabelSettings_4g40l")
 horizontal_alignment = 1
 
-[node name="CheeseMarginContainer" type="MarginContainer" parent="MainGUI"]
+[node name="TopRightMarginContainer" type="MarginContainer" parent="MainGUI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -105.0
+offset_bottom = 36.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+mouse_filter = 2
+
+[node name="CounterPanelContainer" type="PanelContainer" parent="MainGUI/TopRightMarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+
+[node name="EatenCounterLabel" type="Label" parent="MainGUI/TopRightMarginContainer/CounterPanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Eaten: 0"
+horizontal_alignment = 2
+
+[node name="BottomRightMarginContainer" type="MarginContainer" parent="MainGUI"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -118.0
-offset_top = -71.0
+offset_left = -175.0
+offset_top = -105.0
 grow_horizontal = 0
 grow_vertical = 0
-size_flags_horizontal = 8
-mouse_filter = 2
 
-[node name="CounterPanelContainer" type="PanelContainer" parent="MainGUI/CheeseMarginContainer"]
-custom_minimum_size = Vector2(150, 0)
+[node name="TabContainer" type="TabContainer" parent="MainGUI/BottomRightMarginContainer"]
+custom_minimum_size = Vector2(175, 125)
 layout_mode = 2
+tab_alignment = 2
+
+[node name="Cheese" type="TabBar" parent="MainGUI/BottomRightMarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="CounterPanelContainer" type="PanelContainer" parent="MainGUI/BottomRightMarginContainer/TabContainer/Cheese"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainGUI/CheeseMarginContainer/CounterPanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainGUI/BottomRightMarginContainer/TabContainer/Cheese/CounterPanelContainer"]
 layout_mode = 2
+size_flags_vertical = 4
 mouse_filter = 2
 
-[node name="CheeseCounterLabel" type="Label" parent="MainGUI/CheeseMarginContainer/CounterPanelContainer/VBoxContainer"]
+[node name="CheeseCounterLabel" type="Label" parent="MainGUI/BottomRightMarginContainer/TabContainer/Cheese/CounterPanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Cheese: 0"
 horizontal_alignment = 1
+vertical_alignment = 2
+text_overrun_behavior = 3
 
-[node name="CurrentCheeseCurrentLabel" type="Label" parent="MainGUI/CheeseMarginContainer/CounterPanelContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Current Cheese: 0"
-label_settings = SubResource("LabelSettings_iakcg")
-horizontal_alignment = 1
-
-[node name="CheeseSlider" type="HSlider" parent="MainGUI/CheeseMarginContainer/CounterPanelContainer/VBoxContainer"]
+[node name="CheeseSlider" type="HSlider" parent="MainGUI/BottomRightMarginContainer/TabContainer/Cheese/CounterPanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -112,24 +132,42 @@ focus_mode = 0
 max_value = 1.0
 value = 1.0
 
-[node name="ScoreMarginContainer" type="MarginContainer" parent="MainGUI"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -104.0
-offset_bottom = 36.0
-grow_horizontal = 0
-size_flags_horizontal = 8
-mouse_filter = 2
-
-[node name="CounterPanelContainer" type="PanelContainer" parent="MainGUI/ScoreMarginContainer"]
+[node name="CheeseLabel" type="Label" parent="MainGUI/BottomRightMarginContainer/TabContainer/Cheese/CounterPanelContainer/VBoxContainer"]
 layout_mode = 2
+text = "Adjust the amount of cheese on area!"
+label_settings = SubResource("LabelSettings_f1skf")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Settings" type="TabBar" parent="MainGUI/BottomRightMarginContainer/TabContainer"]
+layout_mode = 2
+
+[node name="SettingsPanelContainer" type="PanelContainer" parent="MainGUI/BottomRightMarginContainer/TabContainer/Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 
-[node name="ScoreLabel" type="Label" parent="MainGUI/ScoreMarginContainer/CounterPanelContainer"]
-unique_name_in_owner = true
+[node name="VBoxContainer" type="VBoxContainer" parent="MainGUI/BottomRightMarginContainer/TabContainer/Settings/SettingsPanelContainer"]
 layout_mode = 2
-text = "Score: 0"
+
+[node name="CheeseLabel2" type="Label" parent="MainGUI/BottomRightMarginContainer/TabContainer/Settings/SettingsPanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Useful Buttons..."
+label_settings = SubResource("LabelSettings_f1skf")
 horizontal_alignment = 1
+
+[node name="ScreenshotButton" type="Button" parent="MainGUI/BottomRightMarginContainer/TabContainer/Settings/SettingsPanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+text = "Screenshot"
+
+[node name="FullscreenButton" type="CheckButton" parent="MainGUI/BottomRightMarginContainer/TabContainer/Settings/SettingsPanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+text = "Fullscreen"
+alignment = 1
