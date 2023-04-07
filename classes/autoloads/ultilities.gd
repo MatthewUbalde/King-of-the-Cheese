@@ -73,4 +73,14 @@ func take_screenshot(file_name: String) -> void:
 	#image.flip_y() as Godot 4.0 does not use OpenGL
 	image.save_png(SCREENSHOT_DIR_PATH + file_name + ".png") 
 	print("Create screenshot at " + SCREENSHOT_DIR_PATH + file_name + ".png")
+	#TODO: Add a status if the screenshot is successful or not
 	print("Unknown if successful.")
+
+
+func set_fullscreen(is_fullscreen: bool) -> String:
+	if is_fullscreen:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		return "Set to fullscreen"
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		return "Set to windowed" 

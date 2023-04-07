@@ -2,7 +2,7 @@ extends Node
 
 signal update_day(current_day: int)
 
-const SECONDS_PER_DAY = 86_400
+const SECONDS_PER_DAY = 86_400.0
 
 var current_date: Dictionary
 var starting_date: Dictionary = { # Technically March 10, 2023, but it doesn't calculate the day right
