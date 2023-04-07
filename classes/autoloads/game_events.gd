@@ -17,6 +17,8 @@ var previous_day := 0
 
 
 func _ready() -> void:
+	Ultilities.create_data_folders()
+	
 	$Timer.timeout.connect(on_timer_timeout)
 	
 	current_date = Time.get_date_dict_from_system(false)

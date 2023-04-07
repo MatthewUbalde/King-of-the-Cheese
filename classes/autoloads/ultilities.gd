@@ -1,5 +1,6 @@
 extends Node
 
+const SCREENSHOT_DIR_PATH = "user://screenshots/"
 const INVALID_TEMP = "INVALID"
 
 const MONTH_LONG_FORM: Array[String] = [
@@ -34,6 +35,7 @@ const MONTH_SHORT_FORM: Array[String] = [
 	"DEC"
 ]
 
+
 func get_month_string(month_num: int, short_form: bool = false) -> String:
 	if month_num < 1 && month_num > 12: 
 		return INVALID_TEMP # Invalid
@@ -55,3 +57,20 @@ func get_date_string_from_dict(date: Dictionary) -> String:
 		date_string += ", " + str(date.year)
 	
 	return date_string
+
+
+func create_data_folders() -> void:
+	# Create empty folder
+	var directories = DirAccess.get_directories_at("user://")
+	
+	if directories.find("SCREENSHOT_DIR_PATH") == null:
+		DirAccess.make_dir_absolute(SCREENSHOT_DIR_PATH)
+		print("Created a new 'screenshot' folder")
+
+
+func take_screenshot(file_name: String) -> void:
+	var image = get_viewport().get_texture().get_image()
+	#image.flip_y() as Godot 4.0 does not use OpenGL
+	image.save_png(SCREENSHOT_DIR_PATH + file_name + ".png") 
+	print("Create screenshot at " + SCREENSHOT_DIR_PATH + file_name + ".png")
+	print("Unknown if successful.")
