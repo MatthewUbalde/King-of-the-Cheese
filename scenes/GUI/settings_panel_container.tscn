@@ -51,11 +51,13 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
+focus_mode = 0
 text = "Screenshot"
 
 [node name="FullscreenButton" type="CheckButton" parent="VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
+focus_mode = 0
 text = "Fullscreen"
 alignment = 1
