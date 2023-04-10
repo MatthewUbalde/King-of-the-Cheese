@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scenes/gui/gui.gd" id="1_8lj6m"]
 [ext_resource type="Theme" uid="uid://bx3rgbhg0k4eg" path="res://scenes/gui/main_gui.tres" id="2_5ifnt"]
-[ext_resource type="PackedScene" path="res://scenes/GUI/settings_panel_container.tscn" id="3_5fxiv"]
-[ext_resource type="PackedScene" path="res://scenes/gui/counter_container.tscn" id="3_q1ing"]
+[ext_resource type="PackedScene" uid="uid://b3wvduy77hk5t" path="res://scenes/GUI/settings_panel_container.tscn" id="3_5fxiv"]
+[ext_resource type="PackedScene" uid="uid://c2lg2741coag5" path="res://scenes/gui/counter_container.tscn" id="3_q1ing"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4g40l"]
 font_size = 14
@@ -109,9 +109,9 @@ tab_alignment = 2
 [node name="Cheese" type="TabBar" parent="MainGUI/BottomRightMarginContainer/VBoxContainer/TabContainer"]
 layout_mode = 2
 
-[node name="CounterContainer" parent="MainGUI/BottomRightMarginContainer/VBoxContainer/TabContainer/Cheese" node_paths=PackedStringArray("gui_root") instance=ExtResource("3_q1ing")]
+[node name="CounterContainer" parent="MainGUI/BottomRightMarginContainer/VBoxContainer/TabContainer/Cheese" node_paths=PackedStringArray("gui") instance=ExtResource("3_q1ing")]
 layout_mode = 1
-gui_root = NodePath("../../../../../..")
+gui = NodePath("../../../../../..")
 
 [node name="Settings" type="TabBar" parent="MainGUI/BottomRightMarginContainer/VBoxContainer/TabContainer"]
 visible = false

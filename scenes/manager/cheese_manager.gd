@@ -11,11 +11,11 @@ const SPAWN_MIN_RADIUS := 40.0
 
 @onready var spawn_timer := $SpawnTimer
 
-@onready var cheese_amount_max := GameEvents.current_day
 @onready var base_spawn_time: float = spawn_timer.wait_time 
 var spawn_time = base_spawn_time
 
-var cheese_amount := 0
+var cheese_amount_max: int = 0
+var cheese_amount: int = 0
 #var cheese_amount_old := cheese_amount
 
 
@@ -23,10 +23,16 @@ func get_cheese_amount_present() -> int:
 	return get_tree().get_nodes_in_group("cheese").size()
 
 
+func check_cheese_amount_max(amount: int) -> int:
+	return min(amount, Ultilities.CHEESE_AMOUNT_CAP[0])
+
+
 func _ready() -> void:
 	GameEvents.update_day.connect(on_game_events_update_day)
 	
 	spawn_timer.timeout.connect(on_spawn_timer_timeout) 
+	
+	cheese_amount_max = check_cheese_amount_max(GameEvents.current_day)
 
 
 func get_spawn_position() -> Vector2: 

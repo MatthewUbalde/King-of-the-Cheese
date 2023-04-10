@@ -12,6 +12,7 @@ func _ready() -> void:
 	face_movement()
 	current_speed = range_rand_value(speed_base, speed_rand_range)
 
+
 func _process(delta) -> void:
 	if $Label.visible:
 		$Label.text = $StateMachine.current_state._show_properties()

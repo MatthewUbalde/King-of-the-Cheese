@@ -11,13 +11,12 @@ func _ready():
 	area_exited.connect(on_area_exited)
 
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	if hitbox_component == null:
 		return
 	
 	if hitbox_component.active:
 		hitbox_component.hit.emit()
-		ScoreManager.increase_by_score(ScoreManager.score_type.DEFAULT)
 		entity._despawn(entity.death_type.EATEN) 
 
 

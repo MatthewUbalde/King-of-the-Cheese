@@ -40,3 +40,4 @@ func get_movement_input() -> Vector2:
 #Signals
 func on_hitbox_hit() -> void: 
 	$YumSound.play()
+	ScoreManager.increase_by_score(ScoreManager.score_type.DEFAULT)

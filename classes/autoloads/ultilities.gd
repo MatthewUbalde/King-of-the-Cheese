@@ -1,7 +1,7 @@
 extends Node
 
 # Game related data
-const CHEESE_AMOUNT_CAP: Array = [45, 55, 65]
+const CHEESE_AMOUNT_CAP: Array = [30, 50, 150]
 
 # Other data
 const SCREENSHOT_DIR_PATH: String = "user://screenshots/"
