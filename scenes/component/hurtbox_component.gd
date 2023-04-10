@@ -17,6 +17,7 @@ func _physics_process(delta: float) -> void:
 	
 	if hitbox_component.active:
 		hitbox_component.hit.emit()
+		ScoreManager.increase_by_score(ScoreManager.score_type.DEFAULT)
 		entity._despawn(entity.death_type.EATEN) 
 
 

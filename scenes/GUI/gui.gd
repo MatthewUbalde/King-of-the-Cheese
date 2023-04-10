@@ -15,6 +15,7 @@ class_name GUIRoot
 
 func _ready() -> void:
 	GameEvents.update_day.connect(on_game_events_update_day)
+	ScoreManager.score_update.connect(on_score_maanger_score_update)
 	
 	# Uses GameEvent's current day and date by default
 	update_day_label() 
@@ -27,3 +28,7 @@ func update_day_label(day: int = GameEvents.current_day, date: Dictionary = Game
 
 func on_game_events_update_day(current_day: int) -> void:
 	update_day_label(current_day)
+
+
+func on_score_maanger_score_update(score: int) -> void:
+	eaten_counter_label.text = "Eaten: " + str(score)

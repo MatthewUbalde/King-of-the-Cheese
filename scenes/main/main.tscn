@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_4wnnl"]
 [ext_resource type="PackedScene" uid="uid://c0w5flbvwpgaf" path="res://scenes/manager/cheese_manager.tscn" id="1_4803e"]
 [ext_resource type="PackedScene" uid="uid://bj86jnd573use" path="res://scenes/dark_birthday/dark_birthday.tscn" id="2_2wfpe"]
-[ext_resource type="PackedScene" path="res://scenes/gui/gui.tscn" id="3_pc55g"]
+[ext_resource type="PackedScene" uid="uid://b8atue5umih3t" path="res://scenes/gui/gui.tscn" id="3_pc55g"]
 [ext_resource type="AudioStream" uid="uid://bfs1u5ad7fogo" path="res://assets/music/Relaxing Cheese.wav" id="3_xif2m"]
 [ext_resource type="PackedScene" uid="uid://bjvbrk7l5g3we" path="res://scenes/background/fade_parallax_background.tscn" id="5_d0aw6"]
 [ext_resource type="PackedScene" uid="uid://dnyikpa3hb7d" path="res://scenes/background/cloud_parallax_background.tscn" id="7_jofek"]
