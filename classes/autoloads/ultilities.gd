@@ -1,7 +1,11 @@
 extends Node
 
-const SCREENSHOT_DIR_PATH = "user://screenshots/"
-const INVALID_TEMP = "INVALID"
+# Game related data
+const CHEESE_AMOUNT_CAP: Array = [45, 55, 65]
+
+# Other data
+const SCREENSHOT_DIR_PATH: String = "user://screenshots/"
+const INVALID_TEMP: String = "INVALID"
 
 const MONTH_LONG_FORM: Array[String] = [
 	INVALID_TEMP, # Unexpected value
@@ -63,7 +67,7 @@ func create_data_folders() -> void:
 	# Create empty folder
 	var directories = DirAccess.get_directories_at("user://")
 	
-	if directories.find("SCREENSHOT_DIR_PATH") == null:
+	if directories.find(SCREENSHOT_DIR_PATH) == null:
 		DirAccess.make_dir_absolute(SCREENSHOT_DIR_PATH)
 		print("Created a new 'screenshot' folder")
 

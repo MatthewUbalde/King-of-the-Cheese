@@ -52,8 +52,8 @@ func update_current_day() -> void:
 		previous_day = current_day 
 
 
-func calculate_day_difference_with_unix_time(lhs: float, rhs: float) -> float:
-	return roundf((lhs - rhs) / SECONDS_PER_DAY)
+func calculate_day_difference_with_unix_time(lhs: float, rhs: float) -> int:
+	return roundi((lhs - rhs) / SECONDS_PER_DAY)
 
 
 func on_timer_timeout() -> void:

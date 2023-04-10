@@ -106,6 +106,7 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id="Animation_el8hk"]
 resource_name = "idle"
+length = 0.833338
 step = 0.0416667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -174,10 +175,10 @@ tracks/5/path = NodePath("Visual/CharacterHat:position")
 tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.416667, 0.5, 0.708334, 0.833334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -60)]
+"values": [Vector2(0, -60), Vector2(3, -54), Vector2(-11, -66), Vector2(-9, -58), Vector2(14, -42), Vector2(-2, -59), Vector2(0, -60)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -186,10 +187,10 @@ tracks/6/path = NodePath("Visual/CharacterHat:rotation")
 tracks/6/interp = 2
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.416667, 0.5, 0.708334, 0.833334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0]
+"values": [0.0, 0.258687, -0.361509, -0.0236119, 0.444431, -0.167291, 0.0]
 }
 tracks/7/type = "audio"
 tracks/7/imported = false
@@ -209,7 +210,7 @@ tracks/7/use_blend = true
 
 [sub_resource type="Animation" id="Animation_0tbl3"]
 resource_name = "run"
-length = 0.333338
+length = 0.375004
 loop_mode = 1
 step = 0.0416667
 tracks/0/type = "value"
@@ -234,7 +235,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.0833333, 0.208333, 0.291667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.118036, -0.0634515, 0.0230806]
+"values": [0.0, 0.0436332, -0.0174533, 0.0230806]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -279,10 +280,10 @@ tracks/5/path = NodePath("Visual/CharacterHat:position")
 tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.0833334, 0.208334, 0.291667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0833334, 0.125, 0.208334, 0.25, 0.291667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -60), Vector2(15, -42), Vector2(-9, -62), Vector2(0, -60)]
+"values": [Vector2(0, -60), Vector2(-3, -52), Vector2(3, -47), Vector2(3, -50), Vector2(-4, -60), Vector2(0, -60)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -291,10 +292,10 @@ tracks/6/path = NodePath("Visual/CharacterHat:rotation")
 tracks/6/interp = 2
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.0833334, 0.208334, 0.291667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0833333, 0.125, 0.208334, 0.25, 0.291667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.463841, -0.656234, 0.0]
+"values": [0.0, -0.218166, 0.0, 0.1309, -0.174533, 0.0]
 }
 tracks/7/type = "audio"
 tracks/7/imported = false
@@ -388,10 +389,10 @@ tracks/5/path = NodePath("Visual/CharacterHat:position")
 tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0833333, 0.125, 0.25, 0.333334, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -60), Vector2(9, -47), Vector2(-5, -63), Vector2(0, -60)]
+"values": [Vector2(0, -60), Vector2(-4, -55), Vector2(5, -50), Vector2(4.76837e-07, -60), Vector2(-2, -62), Vector2(0, -60)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -400,10 +401,10 @@ tracks/6/path = NodePath("Visual/CharacterHat:rotation")
 tracks/6/interp = 2
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.0833334, 0.125, 0.25, 0.333334, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.160571, -0.0770377, 0.0]
+"values": [0.0, -0.130065, 0.108652, 0.150116, -0.178056, 0.0]
 }
 tracks/7/type = "audio"
 tracks/7/imported = false
@@ -513,12 +514,12 @@ shape = SubResource("CircleShape2D_by04p")
 
 [node name="Visual" type="Node2D" parent="."]
 
-[node name="CharacterHat" parent="Visual" instance=ExtResource("12_fbio6")]
-position = Vector2(0, -60)
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual"]
 sprite_frames = SubResource("SpriteFrames_ct177")
 offset = Vector2(0, -21)
+
+[node name="CharacterHat" parent="Visual" instance=ExtResource("12_fbio6")]
+position = Vector2(0, -60)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -22)
