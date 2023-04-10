@@ -10,15 +10,10 @@ extends PlayerState
 @onready var walk_state: BaseState = get_node(walk_node)
 @onready var run_state: BaseState = get_node(run_node)
  
-
 @export var idle_anim_timer: Timer
-
-#func _process_state(delta: float) -> BaseState: 
-#	return null
 
 func _ready_state() -> void:
 	super._ready_state()
-	
 	idle_anim_timer.timeout.connect(on_idle_anim_timer_timeout)
 
 

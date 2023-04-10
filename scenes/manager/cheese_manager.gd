@@ -1,7 +1,7 @@
 extends Node
 class_name CheeseManager
  
-signal amount_update(amount: int)
+#signal amount_update(amount: int)
 
 const SPAWN_MAX_RADIUS := 300.0
 const SPAWN_MIN_RADIUS := 40.0
@@ -12,9 +12,11 @@ const SPAWN_MIN_RADIUS := 40.0
 @onready var spawn_timer := $SpawnTimer
 
 @onready var cheese_amount_max := GameEvents.current_day
-@onready var base_spawn_time: float = spawn_timer.wait_time
+@onready var base_spawn_time: float = spawn_timer.wait_time 
+var spawn_time = base_spawn_time
+
 var cheese_amount := 0
-var cheese_amount_old := cheese_amount
+#var cheese_amount_old := cheese_amount
 
 
 func get_cheese_amount_present() -> int:
@@ -60,24 +62,35 @@ func despawn_cheese(quantity: int = 1) -> void:
 				cheese_queue._despawn()
 
 
+func start_time_exp(amount: int) -> void:
+	spawn_timer.start(base_spawn_time * (amount / cheese_amount_max)) 
+
+
 func cheese_manage() -> void:
 	#TODO: Unable to update the Current Cheese counter when queue_free-ing cheeses
 	if cheese_amount > cheese_amount_max:
 		var cheese_over_amount = abs(cheese_amount - cheese_amount_max)
 		despawn_cheese(cheese_over_amount)
+		
+		cheese_amount = get_cheese_amount_present()
 	elif cheese_amount < cheese_amount_max: # If not, spawn more!
 		spawn_cheese()
-		spawn_timer.start() 
+		
+		# Update the amount of cheese present and restart the timer
+		cheese_amount = get_cheese_amount_present()
+		start_time_exp(cheese_amount)
 	
 	#print("timeout=")
-	emit_amount_update()
+#	emit_amount_update()
+	
 
 
-func _process(delta: float) -> void:
-	# Check for any changes to the cheese_amount
-	if cheese_amount != cheese_amount_old:
-		#print("process==")
-		emit_amount_update(get_cheese_amount_present(), true)
+
+#func _process(delta: float) -> void:
+#	# Check for any changes to the cheese_amount
+#	if cheese_amount != cheese_amount_old:
+#		#print("process==")
+#		emit_amount_update(get_cheese_amount_present(), true)
 
 
 #Signals
@@ -92,11 +105,11 @@ func on_game_events_update_day(current_day: int) -> void:
 	spawn_timer.start()
 
 
-func emit_amount_update(amount: int = get_cheese_amount_present(), keep_old: bool = false) -> void:
-	cheese_amount = amount
-	amount_update.emit(cheese_amount)
-	#print("new: " + str(cheese_amount))
-	
-	if keep_old:
-		cheese_amount_old = cheese_amount
-		#print("old: " + str(cheese_amount_old))
+#func emit_amount_update(amount: int = get_cheese_amount_present(), keep_old: bool = false) -> void:
+#	cheese_amount = amount
+#	amount_update.emit(cheese_amount)
+#	#print("new: " + str(cheese_amount))
+#
+#	if keep_old:
+#		cheese_amount_old = cheese_amount
+#		#print("old: " + str(cheese_amount_old))
