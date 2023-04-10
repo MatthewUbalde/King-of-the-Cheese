@@ -63,7 +63,7 @@ func despawn_cheese(quantity: int = 1) -> void:
 
 
 func start_time_exp(amount: int) -> void:
-	spawn_timer.start(base_spawn_time * (amount / cheese_amount_max)) 
+	spawn_timer.start(base_spawn_time * (float(amount) / float(cheese_amount_max))) 
 
 
 func cheese_manage() -> void:
