@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://bx3rgbhg0k4eg"]
+[gd_resource type="Theme" load_steps=14 format=3 uid="uid://bx3rgbhg0k4eg"]
 
 [ext_resource type="FontFile" uid="uid://ct2ikkigupgvp" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="1_l255u"]
 
@@ -116,6 +116,18 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_edhxo"]
+bg_color = Color(0.945098, 0.776471, 0.45098, 1)
+border_width_left = 2
+border_width_right = 2
+border_color = Color(0.992157, 0.858824, 0.619608, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+expand_margin_top = 3.0
+expand_margin_bottom = 3.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0nf1k"]
 bg_color = Color(0.905882, 0.666667, 0.211765, 1)
 corner_radius_top_left = 2
@@ -133,6 +145,24 @@ corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjtj4"]
+bg_color = Color(0.905882, 0.666667, 0.211765, 1)
+border_width_top = 2
+border_color = Color(0.992157, 0.858824, 0.619608, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jpmc"]
+bg_color = Color(0.653812, 0.472696, 0.134113, 1)
+border_color = Color(0.945098, 0.776471, 0.45098, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+expand_margin_left = 2.0
+expand_margin_top = 6.0
+expand_margin_right = 2.0
 
 [resource]
 default_font = ExtResource("1_l255u")
@@ -161,7 +191,10 @@ Button/styles/normal = SubResource("StyleBoxFlat_5pc8d")
 Button/styles/pressed = SubResource("StyleBoxFlat_uvbkx")
 CheckButton/styles/disabled = SubResource("StyleBoxFlat_y056m")
 CheckButton/styles/hover_pressed = SubResource("StyleBoxFlat_xq4v3")
+HSlider/styles/slider = SubResource("StyleBoxFlat_edhxo")
 Label/font_sizes/font_size = 24
 Label/fonts/font = ExtResource("1_l255u")
 Panel/styles/panel = SubResource("StyleBoxFlat_0nf1k")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_gys4f")
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_bjtj4")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_3jpmc")

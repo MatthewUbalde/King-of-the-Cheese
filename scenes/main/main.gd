@@ -6,3 +6,5 @@ func _ready() -> void:
 	
 	$Entities/DarkBirthday.global_position = Vector2(640.0 / 2.0, 360.0 / 2.0)
 	$Entities/DarkBirthday.global_position.y += 60.0
+	
+	

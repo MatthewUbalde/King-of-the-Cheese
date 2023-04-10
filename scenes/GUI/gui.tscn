@@ -1,9 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ogtkyqn84yn8"]
+[gd_scene load_steps=7 format=3]
 
-[ext_resource type="Script" path="res://scenes/GUI/gui.gd" id="1_8lj6m"]
-[ext_resource type="Theme" uid="uid://bx3rgbhg0k4eg" path="res://scenes/GUI/main_gui.tres" id="2_i57eb"]
-[ext_resource type="PackedScene" uid="uid://dh48ceyh07m8n" path="res://scenes/GUI/settings_panel_container.tscn" id="3_5fxiv"]
-[ext_resource type="PackedScene" uid="uid://cre6jy13t8bpn" path="res://scenes/GUI/counter_container.tscn" id="3_q1ing"]
+[ext_resource type="Script" path="res://scenes/gui/gui.gd" id="1_8lj6m"]
+[ext_resource type="Theme" uid="uid://bx3rgbhg0k4eg" path="res://scenes/gui/main_gui.tres" id="2_5ifnt"]
+[ext_resource type="PackedScene" uid="uid://dh48ceyh07m8n" path="res://scenes/gui/settings_panel_container.tscn" id="3_5fxiv"]
+[ext_resource type="PackedScene" path="res://scenes/gui/counter_container.tscn" id="3_q1ing"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4g40l"]
 font_size = 14
@@ -25,7 +25,7 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("2_i57eb")
+theme = ExtResource("2_5ifnt")
 
 [node name="TopLeftMarginContainer" type="MarginContainer" parent="MainGUI"]
 layout_mode = 1
@@ -97,7 +97,6 @@ layout_mode = 2
 [node name="StatusLabel" type="Label" parent="MainGUI/BottomRightMarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
-text = "Status..."
 label_settings = SubResource("LabelSettings_6tt1i")
 horizontal_alignment = 1
 vertical_alignment = 2

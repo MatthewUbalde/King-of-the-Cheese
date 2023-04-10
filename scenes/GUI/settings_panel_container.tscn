@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dh48ceyh07m8n"]
+[gd_scene load_steps=4 format=3]
 
-[ext_resource type="Theme" uid="uid://bx3rgbhg0k4eg" path="res://scenes/GUI/main_gui.tres" id="1_f2ia1"]
-[ext_resource type="Script" path="res://scenes/GUI/settings_panel_container.gd" id="1_faat5"]
+[ext_resource type="Script" path="res://scenes/gui/settings_panel_container.gd" id="1_faat5"]
+[ext_resource type="Theme" uid="uid://bx3rgbhg0k4eg" path="res://scenes/gui/main_gui.tres" id="1_wasji"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_f1skf"]
 line_spacing = 0.0
@@ -16,7 +16,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 mouse_filter = 2
-theme = ExtResource("1_f2ia1")
+theme = ExtResource("1_wasji")
 script = ExtResource("1_faat5")
 
 [node name="Panel" type="Panel" parent="."]

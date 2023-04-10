@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cre6jy13t8bpn"]
+[gd_scene load_steps=4 format=3]
 
-[ext_resource type="Theme" uid="uid://bx3rgbhg0k4eg" path="res://scenes/GUI/main_gui.tres" id="1_8ccdg"]
-[ext_resource type="Script" path="res://scenes/GUI/counter_container.gd" id="2_vvwah"]
+[ext_resource type="Theme" uid="uid://bx3rgbhg0k4eg" path="res://scenes/gui/main_gui.tres" id="1_li7q5"]
+[ext_resource type="Script" path="res://scenes/gui/counter_container.gd" id="2_vvwah"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_f1skf"]
 line_spacing = 0.0
@@ -16,7 +16,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 mouse_filter = 2
-theme = ExtResource("1_8ccdg")
+theme = ExtResource("1_li7q5")
 script = ExtResource("2_vvwah")
 
 [node name="Panel" type="Panel" parent="."]
