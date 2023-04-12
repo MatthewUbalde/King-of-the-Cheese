@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bj86jnd573use"]
+[gd_scene load_steps=26 format=3 uid="uid://bj86jnd573use"]
 
 [ext_resource type="Script" path="res://classes/entity/player/player.gd" id="1_2lgcm"]
 [ext_resource type="AudioStream" uid="uid://kovts8ayepfw" path="res://assets/sounds/Oh_Yeah.wav" id="2_1y3xu"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://c83r0wc8q36dv" path="res://scenes/dark_birthday/sprites/dark_birthday_move0015.png" id="6_sid3e"]
 [ext_resource type="Texture2D" uid="uid://hec2c6k1irp" path="res://scenes/dark_birthday/sprites/dark_birthday_sit.png" id="7_wqeb4"]
 [ext_resource type="PackedScene" uid="uid://cbm611bfhf7h" path="res://scenes/dark_birthday_hat/dark_birthday_hat.tscn" id="12_fbio6"]
+[ext_resource type="Texture2D" uid="uid://cwg0xarye4pv3" path="res://scenes/cheese_basic/Cheese.png" id="12_jhpxq"]
 [ext_resource type="AudioStream" uid="uid://bx6hh0lje3bas" path="res://assets/sounds/Yum.wav" id="14_mru1n"]
 [ext_resource type="AudioStream" uid="uid://n4ftg3jw7b32" path="res://assets/sounds/CheeseStep.wav" id="16_4uhv3"]
 
@@ -521,6 +522,10 @@ offset = Vector2(0, -21)
 [node name="CharacterHat" parent="Visual" instance=ExtResource("12_fbio6")]
 position = Vector2(0, -60)
 
+[node name="CheeseSprite2D" type="Sprite2D" parent="Visual"]
+texture = ExtResource("12_jhpxq")
+offset = Vector2(0, -21)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -22)
 shape = SubResource("CapsuleShape2D_sa0ia")
@@ -552,7 +557,6 @@ run_node = NodePath(".")
 anim_enter_name = &"run"
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
-current = true
 
 [node name="YumSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("14_mru1n")

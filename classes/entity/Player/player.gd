@@ -6,6 +6,10 @@ class_name Player
 
 func _ready() -> void:
 	hitbox.hit.connect(on_hitbox_hit)
+	
+	var rng_result = (randi_range(1, 1000) / 1000.0) == 0.0
+	$Visual/CheeseSprite2D.visible = rng_result
+	$Visual/AnimatedSprite2D.visible = !rng_result
 
 
 func _process(delta: float) -> void:
