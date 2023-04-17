@@ -574,11 +574,12 @@ visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("3_ta7to")]
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("entity", "collision_shape") instance=ExtResource("3_ta7to")]
 position = Vector2(0, -18)
 collision_layer = 0
 collision_mask = 2
 entity = NodePath("..")
+collision_shape = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 shape = SubResource("CircleShape2D_qlwmc")

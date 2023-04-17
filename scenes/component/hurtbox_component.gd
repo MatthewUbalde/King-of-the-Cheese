@@ -2,6 +2,7 @@ extends Area2D
 class_name HurtboxComponent
 
 @export var entity: Entity
+@export var collision_shape: CollisionShape2D
 
 var hitbox_component: HitboxComponent
 
@@ -16,6 +17,7 @@ func _process(delta: float) -> void:
 		return
 	
 	if hitbox_component.active:
+		collision_shape.disabled = true
 		hitbox_component.hit.emit()
 		entity._despawn(entity.death_type.EATEN) 
 
