@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name Entity
 
+@export var state_machine: StateMachine
 @export var visual: Node2D
 @export var animation_player : AnimationPlayer
 
