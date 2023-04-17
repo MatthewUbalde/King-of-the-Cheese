@@ -4,8 +4,12 @@ extends Node
 
 
 func _ready() -> void:
+	# Randomize the randomizer seed
+	randomize()
+	
 	GameEvents.emit_update_day()
 	
+	# Set position
 	$Entities/DarkBirthday.global_position = Vector2(640.0 / 2.0, 360.0 / 2.0)
 	$Entities/DarkBirthday.global_position.y += 60.0
 	

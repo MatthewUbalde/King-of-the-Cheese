@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bj86jnd573use"]
+[gd_scene load_steps=26 format=3 uid="uid://bj86jnd573use"]
 
 [ext_resource type="Script" path="res://classes/entity/player/player.gd" id="1_2lgcm"]
 [ext_resource type="AudioStream" uid="uid://kovts8ayepfw" path="res://assets/sounds/Oh_Yeah.wav" id="2_1y3xu"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://c83r0wc8q36dv" path="res://scenes/dark_birthday/sprites/dark_birthday_move0015.png" id="6_sid3e"]
 [ext_resource type="Texture2D" uid="uid://hec2c6k1irp" path="res://scenes/dark_birthday/sprites/dark_birthday_sit.png" id="7_wqeb4"]
 [ext_resource type="PackedScene" uid="uid://cbm611bfhf7h" path="res://scenes/dark_birthday_hat/dark_birthday_hat.tscn" id="12_fbio6"]
+[ext_resource type="Texture2D" uid="uid://cwg0xarye4pv3" path="res://scenes/cheese_basic/Cheese.png" id="12_sg7py"]
 [ext_resource type="AudioStream" uid="uid://bx6hh0lje3bas" path="res://assets/sounds/Yum.wav" id="14_mru1n"]
 [ext_resource type="AudioStream" uid="uid://n4ftg3jw7b32" path="res://assets/sounds/CheeseStep.wav" id="16_4uhv3"]
 
@@ -485,9 +486,11 @@ animations = [{
 radius = 19.0
 height = 60.0
 
-[node name="DarkBirthday" type="CharacterBody2D" node_paths=PackedStringArray("visual", "animation_player")]
+[node name="DarkBirthday" type="CharacterBody2D" node_paths=PackedStringArray("anim_sprite", "cheese_sprite", "visual", "animation_player")]
 collision_mask = 4
 script = ExtResource("1_2lgcm")
+anim_sprite = NodePath("Visual/AnimatedSprite2D")
+cheese_sprite = NodePath("Visual/CheeseSprite")
 visual = NodePath("Visual")
 animation_player = NodePath("AnimationPlayer")
 speed_base = 130.0
@@ -520,6 +523,11 @@ offset = Vector2(0, -21)
 
 [node name="CharacterHat" parent="Visual" instance=ExtResource("12_fbio6")]
 position = Vector2(0, -60)
+
+[node name="CheeseSprite" type="Sprite2D" parent="Visual"]
+visible = false
+texture = ExtResource("12_sg7py")
+offset = Vector2(0, -14)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -22)
