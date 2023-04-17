@@ -1,17 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://b8atue5umih3t"]
+[gd_scene load_steps=7 format=3 uid="uid://dss6ihk74bphr"]
 
-[ext_resource type="Script" path="res://scenes/gui/gui.gd" id="1_8lj6m"]
-[ext_resource type="Theme" uid="uid://bx3rgbhg0k4eg" path="res://scenes/gui/main_gui.tres" id="2_5ifnt"]
-[ext_resource type="PackedScene" uid="uid://b3wvduy77hk5t" path="res://scenes/GUI/settings_panel_container.tscn" id="3_5fxiv"]
-[ext_resource type="PackedScene" uid="uid://c2lg2741coag5" path="res://scenes/gui/counter_container.tscn" id="3_q1ing"]
+[ext_resource type="Script" path="res://scenes/user_interface/user_interface.gd" id="1_7p11o"]
+[ext_resource type="Theme" uid="uid://bx3rgbhg0k4eg" path="res://scenes/user_interface/main_gui.tres" id="2_5ifnt"]
+[ext_resource type="PackedScene" uid="uid://b3wvduy77hk5t" path="res://scenes/user_interface/settings_panel_container.tscn" id="3_5fxiv"]
+[ext_resource type="PackedScene" uid="uid://c2lg2741coag5" path="res://scenes/user_interface/counter_container.tscn" id="3_q1ing"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4g40l"]
 font_size = 14
 
 [sub_resource type="LabelSettings" id="LabelSettings_6tt1i"]
+line_spacing = 0.0
+font_size = 12
 
-[node name="GUI" type="CanvasLayer"]
-script = ExtResource("1_8lj6m")
+[node name="UserInterface" type="CanvasLayer"]
+script = ExtResource("1_7p11o")
 
 [node name="MainGUI" type="Control" parent="."]
 layout_mode = 3
@@ -97,25 +99,29 @@ layout_mode = 2
 [node name="StatusLabel" type="Label" parent="MainGUI/BottomRightMarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
+text = "Waiting something to happen?
+"
 label_settings = SubResource("LabelSettings_6tt1i")
 horizontal_alignment = 1
-vertical_alignment = 2
+autowrap_mode = 3
 
 [node name="TabContainer" type="TabContainer" parent="MainGUI/BottomRightMarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(175, 125)
+custom_minimum_size = Vector2(200, 125)
 layout_mode = 2
 tab_alignment = 2
 
 [node name="Cheese" type="TabBar" parent="MainGUI/BottomRightMarginContainer/VBoxContainer/TabContainer"]
 layout_mode = 2
 
-[node name="CounterContainer" parent="MainGUI/BottomRightMarginContainer/VBoxContainer/TabContainer/Cheese" node_paths=PackedStringArray("gui") instance=ExtResource("3_q1ing")]
+[node name="CounterContainer" parent="MainGUI/BottomRightMarginContainer/VBoxContainer/TabContainer/Cheese" node_paths=PackedStringArray("gui", "status_label") instance=ExtResource("3_q1ing")]
 layout_mode = 1
 gui = NodePath("../../../../../..")
+status_label = NodePath("../../../StatusLabel")
 
 [node name="Settings" type="TabBar" parent="MainGUI/BottomRightMarginContainer/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="SettingsContainer" parent="MainGUI/BottomRightMarginContainer/VBoxContainer/TabContainer/Settings" instance=ExtResource("3_5fxiv")]
+[node name="SettingsPanelContainer" parent="MainGUI/BottomRightMarginContainer/VBoxContainer/TabContainer/Settings" node_paths=PackedStringArray("status_label") instance=ExtResource("3_5fxiv")]
 layout_mode = 1
+status_label = NodePath("../../../StatusLabel")

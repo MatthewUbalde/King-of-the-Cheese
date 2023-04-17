@@ -1,5 +1,5 @@
 extends CanvasLayer
-class_name GUI
+class_name UserInterface
 
 @export var cheese_manager: CheeseManager
 

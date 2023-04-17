@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_4wnnl"]
 [ext_resource type="PackedScene" uid="uid://c0w5flbvwpgaf" path="res://scenes/manager/cheese_manager.tscn" id="1_4803e"]
 [ext_resource type="PackedScene" uid="uid://bj86jnd573use" path="res://scenes/dark_birthday/dark_birthday.tscn" id="2_2wfpe"]
-[ext_resource type="PackedScene" uid="uid://b8atue5umih3t" path="res://scenes/gui/gui.tscn" id="3_pc55g"]
 [ext_resource type="AudioStream" uid="uid://bfs1u5ad7fogo" path="res://assets/music/Relaxing Cheese.wav" id="3_xif2m"]
+[ext_resource type="PackedScene" uid="uid://dss6ihk74bphr" path="res://scenes/user_interface/user_interface.tscn" id="4_463pj"]
 [ext_resource type="PackedScene" uid="uid://bjvbrk7l5g3we" path="res://scenes/background/fade_parallax_background.tscn" id="5_d0aw6"]
 [ext_resource type="PackedScene" uid="uid://dnyikpa3hb7d" path="res://scenes/background/cloud_parallax_background.tscn" id="7_jofek"]
 [ext_resource type="Texture2D" uid="uid://cuvcf184xqjml" path="res://resources/rock.png" id="7_yc6w5"]
@@ -18,9 +18,6 @@ center = NodePath("../Entities/DarkBirthday")
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_xif2m")
 autoplay = true
-
-[node name="GUI" parent="." node_paths=PackedStringArray("cheese_manager") instance=ExtResource("3_pc55g")]
-cheese_manager = NodePath("../CheeseManager")
 
 [node name="Entities" type="Node2D" parent="." groups=["entities_layer"]]
 y_sort_enabled = true
@@ -37,187 +34,191 @@ limit_bottom = 1350
 drag_vertical_enabled = true
 editor_draw_limits = true
 
-[node name="Rocks" type="Node2D" parent="."]
+[node name="Rocks" type="Node2D" parent="Entities"]
+y_sort_enabled = true
 
-[node name="Rock" type="Sprite2D" parent="Rocks"]
+[node name="Rock" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(106, 232)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock2" type="Sprite2D" parent="Rocks"]
+[node name="Rock2" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(1119, 220)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock3" type="Sprite2D" parent="Rocks"]
+[node name="Rock3" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(726, 646)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock4" type="Sprite2D" parent="Rocks"]
+[node name="Rock4" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-287, 880)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock5" type="Sprite2D" parent="Rocks"]
+[node name="Rock5" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-536, 383)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock6" type="Sprite2D" parent="Rocks"]
+[node name="Rock6" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-167, -69)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock7" type="Sprite2D" parent="Rocks"]
+[node name="Rock7" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(501, -318)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock8" type="Sprite2D" parent="Rocks"]
+[node name="Rock8" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(744, 111)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock9" type="Sprite2D" parent="Rocks"]
+[node name="Rock9" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(327, 707)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock10" type="Sprite2D" parent="Rocks"]
+[node name="Rock10" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(390, 258)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock11" type="Sprite2D" parent="Rocks"]
+[node name="Rock11" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(995, 935)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock12" type="Sprite2D" parent="Rocks"]
+[node name="Rock12" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-15, 575)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock13" type="Sprite2D" parent="Rocks"]
+[node name="Rock13" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-701, 968)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock14" type="Sprite2D" parent="Rocks"]
+[node name="Rock14" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-803, 120)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock15" type="Sprite2D" parent="Rocks"]
+[node name="Rock15" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-605, -368)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock16" type="Sprite2D" parent="Rocks"]
+[node name="Rock16" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(1103, -293)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock17" type="Sprite2D" parent="Rocks"]
+[node name="Rock17" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-915, 621)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock18" type="Sprite2D" parent="Rocks"]
+[node name="Rock18" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-240, 1278)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock20" type="Sprite2D" parent="Rocks"]
+[node name="Rock20" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-1223, 1260)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock21" type="Sprite2D" parent="Rocks"]
+[node name="Rock21" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(1114, 1231)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock22" type="Sprite2D" parent="Rocks"]
+[node name="Rock22" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(499, 1258)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock23" type="Sprite2D" parent="Rocks"]
+[node name="Rock23" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-1102, 328)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock24" type="Sprite2D" parent="Rocks"]
+[node name="Rock24" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-1077, -415)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock25" type="Sprite2D" parent="Rocks"]
+[node name="Rock25" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-702, -615)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock26" type="Sprite2D" parent="Rocks"]
+[node name="Rock26" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(75, -575)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock27" type="Sprite2D" parent="Rocks"]
+[node name="Rock27" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(1123, -716)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock28" type="Sprite2D" parent="Rocks"]
+[node name="Rock28" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(762, -588)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock29" type="Sprite2D" parent="Rocks"]
+[node name="Rock29" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(432, -940)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock30" type="Sprite2D" parent="Rocks"]
+[node name="Rock30" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-273, -859)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock31" type="Sprite2D" parent="Rocks"]
+[node name="Rock31" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-931, -1061)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock32" type="Sprite2D" parent="Rocks"]
+[node name="Rock32" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-931, -1061)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock33" type="Sprite2D" parent="Rocks"]
+[node name="Rock33" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-1092, -827)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock34" type="Sprite2D" parent="Rocks"]
+[node name="Rock34" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-1074, -1207)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock35" type="Sprite2D" parent="Rocks"]
+[node name="Rock35" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-542, -1242)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock36" type="Sprite2D" parent="Rocks"]
+[node name="Rock36" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-539, -1053)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock37" type="Sprite2D" parent="Rocks"]
+[node name="Rock37" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(202, -1053)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock38" type="Sprite2D" parent="Rocks"]
+[node name="Rock38" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(1031, -1212)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock39" type="Sprite2D" parent="Rocks"]
+[node name="Rock39" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(1177, -1015)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock40" type="Sprite2D" parent="Rocks"]
+[node name="Rock40" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(854, -851)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock41" type="Sprite2D" parent="Rocks"]
+[node name="Rock41" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(670, -1179)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock42" type="Sprite2D" parent="Rocks"]
+[node name="Rock42" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-146, -1098)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock43" type="Sprite2D" parent="Rocks"]
+[node name="Rock43" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-136, -360)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock44" type="Sprite2D" parent="Rocks"]
+[node name="Rock44" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-196, 243)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock45" type="Sprite2D" parent="Rocks"]
+[node name="Rock45" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(1217, 513)
 texture = ExtResource("7_yc6w5")
 
-[node name="Rock19" type="Sprite2D" parent="Rocks"]
+[node name="Rock19" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(479, 993)
 texture = ExtResource("7_yc6w5")
+
+[node name="UserInterface" parent="." node_paths=PackedStringArray("cheese_manager") instance=ExtResource("4_463pj")]
+cheese_manager = NodePath("../CheeseManager")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

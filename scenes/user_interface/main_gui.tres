@@ -148,11 +148,12 @@ corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjtj4"]
 bg_color = Color(0.905882, 0.666667, 0.211765, 1)
-border_width_top = 2
+border_width_top = 4
 border_color = Color(0.992157, 0.858824, 0.619608, 1)
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 expand_margin_left = 2.0
+expand_margin_top = 2.0
 expand_margin_right = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jpmc"]
