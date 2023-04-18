@@ -3,8 +3,8 @@ class_name CheeseManager
  
 #signal amount_update(amount: int)
 
-const SPAWN_MAX_RADIUS := 300.0
-const SPAWN_MIN_RADIUS := 40.0
+const SPAWN_MAX_RADIUS := 500.0
+const SPAWN_MIN_RADIUS := 100.0
 
 @export var basic_cheese_scene: PackedScene
 @export var center: Node2D

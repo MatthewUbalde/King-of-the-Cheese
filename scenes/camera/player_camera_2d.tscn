@@ -3,7 +3,18 @@
 [ext_resource type="Script" path="res://scenes/camera/player_camera_2d.gd" id="1_0yh6p"]
 
 [node name="PlayerCamera2D" type="Camera2D"]
+limit_smoothed = true
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_vertical_offset = -0.4
+drag_left_margin = 0.05
+drag_top_margin = 0.3
+drag_right_margin = 0.05
+drag_bottom_margin = 0.25
+editor_draw_drag_margin = true
 script = ExtResource("1_0yh6p")
 
-[node name="IdleTimer" type="Timer" parent="."]
-wait_time = 3.0
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0

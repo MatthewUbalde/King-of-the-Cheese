@@ -27,12 +27,7 @@ metadata/_edit_lock_ = true
 [node name="DarkBirthday" parent="Entities" instance=ExtResource("2_2wfpe")]
 position = Vector2(303, 227)
 
-[node name="PlayerCamera2D" parent="Entities/DarkBirthday" node_paths=PackedStringArray("player") instance=ExtResource("5_jd4r4")]
-limit_left = -1250
-limit_top = -1250
-limit_right = -1250
-limit_bottom = -1250
-player = NodePath("..")
+[node name="PlayerCamera2D" parent="Entities/DarkBirthday" instance=ExtResource("5_jd4r4")]
 
 [node name="Rocks" type="Node2D" parent="Entities"]
 y_sort_enabled = true
