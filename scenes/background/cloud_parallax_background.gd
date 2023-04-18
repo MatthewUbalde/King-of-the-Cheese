@@ -1,6 +1,6 @@
 extends ParallaxBackground
 
-@export var clouds_speed := 100.0
+@export var clouds_speed := 25.0
 
 @onready var clouds_layer := %CloudsLayer
 
