@@ -14,7 +14,3 @@ drag_right_margin = 0.05
 drag_bottom_margin = 0.25
 editor_draw_drag_margin = true
 script = ExtResource("1_0yh6p")
-
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
