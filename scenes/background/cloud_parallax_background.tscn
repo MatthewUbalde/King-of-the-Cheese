@@ -15,13 +15,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.976471, 0.8, 0.431373, 1)
+metadata/_edit_lock_ = true
+
+[node name="CloudsLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.6, 0.2)
+motion_mirroring = Vector2(800, 400)
+
+[node name="Clouds" type="Sprite2D" parent="CloudsLayer2"]
+modulate = Color(0.992157, 0.858824, 0.619608, 1)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("1_2qoe7")
+centered = false
+flip_h = true
 
 [node name="CloudsLayer" type="ParallaxLayer" parent="."]
-unique_name_in_owner = true
-motion_scale = Vector2(0.5, 0.2)
+motion_scale = Vector2(0.5, 0.1)
 motion_mirroring = Vector2(640, 360)
 
 [node name="Clouds" type="Sprite2D" parent="CloudsLayer"]
-modulate = Color(0.992157, 0.858824, 0.619608, 1)
+modulate = Color(0.997073, 0.940977, 0.842562, 1)
 texture = ExtResource("1_2qoe7")
 centered = false

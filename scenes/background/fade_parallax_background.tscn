@@ -9,7 +9,7 @@ script = ExtResource("1_0mhcv")
 
 [node name="FadeLayer" type="ParallaxLayer" parent="."]
 unique_name_in_owner = true
-motion_scale = Vector2(0.8, 0.1)
+motion_scale = Vector2(0.8, 0.05)
 motion_mirroring = Vector2(704, 0)
 
 [node name="TopFade" type="Sprite2D" parent="FadeLayer"]
