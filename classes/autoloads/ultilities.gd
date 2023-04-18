@@ -81,6 +81,13 @@ func take_screenshot(file_name: String) -> void:
 	print("Unknown if successful.")
 
 
+func create_screenshot() -> String:
+	var date = Time.get_datetime_dict_from_system()
+	var screenshot_name = "cheese_%s.%s.%s.%s%s%s" % [date.month, date.day, date.year, date.hour, date.minute, date.second]
+	take_screenshot(screenshot_name)
+	return "Cheese~! '" + screenshot_name + "' Screenshot is taken."
+
+
 func set_fullscreen(is_fullscreen: bool) -> String:
 	if is_fullscreen:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)

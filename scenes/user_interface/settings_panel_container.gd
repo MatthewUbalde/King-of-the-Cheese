@@ -13,15 +13,8 @@ func _ready() -> void:
 	setting_update.connect(on_self_setting_update)
 
 
-func create_screenshot() -> String:
-	var date = Time.get_datetime_dict_from_system()
-	var screenshot_name = "cheese_%s.%s.%s.%s%s%s" % [date.month, date.day, date.year, date.hour, date.minute, date.second]
-	Ultilities.take_screenshot(screenshot_name)
-	return "Cheese~! '" + screenshot_name + "' Screenshot is taken."
-
-
 func on_screenshot_button_pressed() -> void:
-	setting_update.emit(create_screenshot())
+	setting_update.emit(Ultilities.create_screenshot())
 
 
 func on_fullscreen_button_pressed(button_pressed: bool) -> void:
