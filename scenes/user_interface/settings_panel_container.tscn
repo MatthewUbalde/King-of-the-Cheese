@@ -82,6 +82,7 @@ icon_alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
+focus_mode = 0
 theme_override_icons/checked = ExtResource("5_mnpun")
 theme_override_icons/unchecked = ExtResource("6_jd640")
 icon_alignment = 1
@@ -96,7 +97,7 @@ layout_mode = 2
 size_flags_vertical = 4
 focus_mode = 0
 min_value = -30.0
-max_value = 0.0
+max_value = 10.0
 
 [node name="MusicVolumeSlider" type="HSlider" parent="HSplitContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -105,4 +106,9 @@ layout_mode = 2
 size_flags_vertical = 4
 focus_mode = 0
 min_value = -30.0
-max_value = 0.0
+max_value = 10.0
+
+[node name="IdleTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 6.0
+one_shot = true

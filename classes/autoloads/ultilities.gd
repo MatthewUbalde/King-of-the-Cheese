@@ -118,9 +118,11 @@ func set_master_sound_bus_mute(is_mute: bool) -> String:
 
 func set_sound_bus_volume(value: float, type: SOUND_BUS_TYPE = SOUND_BUS_TYPE.MASTER) -> String:
 	const message = "Adjust %s to %%%s"
-	var readable_value = roundf(((value + 30) / 30) * 100) #TODO: lol
+	#TODO: Make it not hardcoded
+	# The 30 and 40 values is found in the sliders
+	var readable_value = roundf(((value + 30) / 40) * 100) #30 is the min and the 40 is (abs(-30) + 10) with 10 the maximum
 	
-	print_debug("V: " + str(value) + "MV: " + str(AudioServer.get_bus_volume_db(music_sound_bus)))
+	#print_debug("V: " + str(value) + "MV: " + str(AudioServer.get_bus_volume_db(music_sound_bus)))
 	match type:
 		SOUND_BUS_TYPE.MUSIC:
 			AudioServer.set_bus_volume_db(music_sound_bus, value)
