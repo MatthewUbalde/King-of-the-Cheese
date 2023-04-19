@@ -124,12 +124,12 @@ func set_sound_bus_volume(value: float, type: SOUND_BUS_TYPE = SOUND_BUS_TYPE.MA
 	match type:
 		SOUND_BUS_TYPE.MUSIC:
 			AudioServer.set_bus_volume_db(music_sound_bus, value)
-			#AudioServer.set_bus_mute(music_sound_bus, linear_to_db(value) < -30)
+			AudioServer.set_bus_mute(music_sound_bus, value <= -30)
 			
 			return message % ["Music", readable_value]
 		SOUND_BUS_TYPE.EFFECTS:
 			AudioServer.set_bus_volume_db(sound_fx_sound_bus, value)
-			#AudioServer.set_bus_mute(sound_fx_sound_bus, linear_to_db(value) < -30)
+			AudioServer.set_bus_mute(sound_fx_sound_bus, value <= -30)
 			
 			return message % ["Effects", readable_value]
 	return "Invalid bus"
