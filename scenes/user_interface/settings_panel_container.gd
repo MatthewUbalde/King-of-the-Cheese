@@ -29,7 +29,7 @@ func _ready() -> void:
 
 
 func randomize_status_default_text() -> void:
-	var rand_value = randi_range(1, 5000)
+	var rand_value = randi_range(1, 10_000)
 	
 	# I know this is easy to see if you have access to the
 	# the source code, but it's fun isn't?
@@ -41,23 +41,29 @@ func randomize_status_default_text() -> void:
 		help_label.text = "Oyasumi... Oyasumi! Close your eyes..."
 	elif rand_value <= 4:
 		help_label.text = "Onward and upward!"
-	elif rand_value <= 143:
-		help_label.text = "Play Omori!"
+	elif rand_value <= 5:
+		help_label.text = "\"Hold on a minute, we're missing something...\""
 	elif rand_value <= 222:
 		help_label.text = "Thank you Hat Games for making the game!"
-	elif rand_value <= 413:
-		help_label.text = "Putting the irons in the fire. lol"
+	elif rand_value <= 405:
+		help_label.text = "nyan nyan nyan~!"
+	elif rand_value <= 406:
+		help_label.text = "Imagine making a story of your dreams about dream yourself about dreaming yourself..." 
+	elif rand_value <= 516:
+		help_label.text = "\"No little faith is meaningless, but without action is.\" - Cecilia"
 	elif rand_value <= 1021:
 		help_label.text = "Play King of the Hat!"
+	elif rand_value <= 1720:
+		help_label.text = "Mustard"
 	elif rand_value <= 1817:
-		help_label.text = "\"mad hatter, joxy'd\" - Abook"
+		help_label.text = "mad hatter, joxy'd" # Thanks Abook!
 	elif rand_value <= 1831:
-		help_label.text = "i'd hat to say no"
+		help_label.text = "i'd hat to say no" # Thanks spudle
 	elif rand_value <= 1839:
-		help_label.text = "ok"
+		help_label.text = "ok" # Thanks killer kirb!
 	elif rand_value <= 1843:
-		help_label.text = "I hat your IP hatdress"
-	elif rand_value <= 3500:
+		help_label.text = "I hat your IP hatdress" # Thanks Redinp
+	elif rand_value <= 6000:
 		help_label.text = "Waiting for something to happen?"
 	else:
 		help_label.text = "Status Message!"
