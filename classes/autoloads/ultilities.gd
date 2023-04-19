@@ -117,13 +117,28 @@ func set_master_sound_mute(is_mute: bool) -> String:
 
 
 func set_sound_bus_volume(value: float, type: SOUND_BUS_TYPE = SOUND_BUS_TYPE.MASTER) -> String:
-	const message = "Adjust %s to %s"
+	const message = "Adjust %s to %%%s"
+	var readable_value = roundf(((value + 60) / 60) * 100) #TODO: lol
 	
+	print_debug(value)
 	match type:
 		SOUND_BUS_TYPE.MUSIC:
+			AudioServer.set_bus_volume_db(music_sound_bus, linear_to_db(value))
+			#AudioServer.set_bus_mute(music_sound_bus, linear_to_db(value) < -30)
 			
-			return message % ["Music", value]
+			return message % ["Music", readable_value]
 		SOUND_BUS_TYPE.EFFECTS:
+			AudioServer.set_bus_volume_db(sound_fx_sound_bus, linear_to_db(value))
+			#AudioServer.set_bus_mute(sound_fx_sound_bus, linear_to_db(value) < -30)
 			
-			return message % ["Music", value]
+			return message % ["Effects", readable_value]
 	return "Invalid bus"
+
+
+func get_sound_bus_volume_in_db(type: SOUND_BUS_TYPE = SOUND_BUS_TYPE.MASTER) -> float:
+	match type:
+		SOUND_BUS_TYPE.MUSIC:
+			return AudioServer.get_bus_volume_db(music_sound_bus)
+		SOUND_BUS_TYPE.EFFECTS:
+			return AudioServer.get_bus_volume_db(sound_fx_sound_bus)
+	return 0.0

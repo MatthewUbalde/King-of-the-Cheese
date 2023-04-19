@@ -94,9 +94,13 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 4
+min_value = -30.0
+max_value = 0.0
 
 [node name="MusicVolumeSlider" type="HSlider" parent="HSplitContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 4
+min_value = -60.0
+max_value = 0.0
