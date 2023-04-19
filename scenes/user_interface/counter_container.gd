@@ -1,7 +1,6 @@
 extends Control
 
 @export var gui: UserInterface
-@export var status_label: Label
 
 var cheese_manager: CheeseManager
 

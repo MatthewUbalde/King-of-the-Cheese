@@ -39,6 +39,15 @@ const MONTH_SHORT_FORM: Array[String] = [
 	"DEC"
 ]
 
+enum SOUND_BUS_TYPE {
+	MASTER = 0,
+	MUSIC = 1,
+	EFFECTS = 2
+}
+
+@onready var music_sound_bus = AudioServer.get_bus_index("Music")
+@onready var sound_fx_sound_bus = AudioServer.get_bus_index("Effects")
+
 
 func get_month_string(month_num: int, short_form: bool = false) -> String:
 	if month_num < 1 && month_num > 12: 
@@ -95,3 +104,26 @@ func set_fullscreen(is_fullscreen: bool) -> String:
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		return "Set to windowed" 
+
+
+func set_master_sound_mute(is_mute: bool) -> String:
+	var master_sound = AudioServer.get_bus_index("Master")
+	if is_mute:
+		AudioServer.set_bus_mute(master_sound, true)
+		return "All sound mute"
+	else:
+		AudioServer.set_bus_mute(master_sound, false)
+		return "All sound unmute"
+
+
+func set_sound_bus_volume(value: float, type: SOUND_BUS_TYPE = SOUND_BUS_TYPE.MASTER) -> String:
+	const message = "Adjust %s to %s"
+	
+	match type:
+		SOUND_BUS_TYPE.MUSIC:
+			
+			return message % ["Music", value]
+		SOUND_BUS_TYPE.EFFECTS:
+			
+			return message % ["Music", value]
+	return "Invalid bus"

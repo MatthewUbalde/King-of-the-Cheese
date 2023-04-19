@@ -50,10 +50,14 @@ layout_mode = 2
 size_flags_horizontal = 0
 
 [node name="HelpLabel" type="Label" parent="HSplitContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
-text = "Useful Buttons..."
+text = "Waiting for something to happen?"
 label_settings = SubResource("LabelSettings_f1skf")
 horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="ScreenshotButton" type="Button" parent="HSplitContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -75,13 +79,24 @@ theme_override_icons/unchecked = ExtResource("4_0aatb")
 icon_alignment = 1
 
 [node name="MuteButton" type="CheckButton" parent="HSplitContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_icons/checked = ExtResource("5_mnpun")
 theme_override_icons/unchecked = ExtResource("6_jd640")
 icon_alignment = 1
 
-[node name="HSlider" type="HSlider" parent="HSplitContainer/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="SoundFXVolumeSlider" type="HSlider" parent="HSplitContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="MusicVolumeSlider" type="HSlider" parent="HSplitContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 4

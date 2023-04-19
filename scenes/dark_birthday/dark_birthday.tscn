@@ -567,10 +567,13 @@ current = true
 stream = ExtResource("14_mru1n")
 volume_db = -8.914
 max_distance = 100.0
+bus = &"Effects"
 
 [node name="StepSound" type="AudioStreamPlayer2D" parent="."]
 max_distance = 100.0
+bus = &"Effects"
 
 [node name="OhYeahSound" type="AudioStreamPlayer2D" parent="."]
 volume_db = -2.0
 max_distance = 100.0
+bus = &"Effects"
