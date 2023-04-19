@@ -32,7 +32,7 @@ func on_fullscreen_button_toggled(button_pressed: bool) -> void:
 
 
 func on_mute_button_toggled(button_pressed: bool) -> void:
-	setting_update.emit(Ultilities.set_master_sound_mute(button_pressed))
+	setting_update.emit(Ultilities.set_master_sound_bus_mute(button_pressed))
 
 
 func on_sound_fx_volume_slider_value_changed(value: float) -> void:

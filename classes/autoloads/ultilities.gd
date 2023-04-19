@@ -47,6 +47,7 @@ enum SOUND_BUS_TYPE {
 
 @onready var music_sound_bus = AudioServer.get_bus_index("Music")
 @onready var sound_fx_sound_bus = AudioServer.get_bus_index("Effects")
+@onready var master_sound_bus = AudioServer.get_bus_index("Master")
 
 
 func get_month_string(month_num: int, short_form: bool = false) -> String:
@@ -106,29 +107,28 @@ func set_fullscreen(is_fullscreen: bool) -> String:
 		return "Set to windowed" 
 
 
-func set_master_sound_mute(is_mute: bool) -> String:
-	var master_sound = AudioServer.get_bus_index("Master")
+func set_master_sound_bus_mute(is_mute: bool) -> String:
 	if is_mute:
-		AudioServer.set_bus_mute(master_sound, true)
+		AudioServer.set_bus_mute(master_sound_bus, true)
 		return "All sound mute"
 	else:
-		AudioServer.set_bus_mute(master_sound, false)
+		AudioServer.set_bus_mute(master_sound_bus, false)
 		return "All sound unmute"
 
 
 func set_sound_bus_volume(value: float, type: SOUND_BUS_TYPE = SOUND_BUS_TYPE.MASTER) -> String:
 	const message = "Adjust %s to %%%s"
-	var readable_value = roundf(((value + 60) / 60) * 100) #TODO: lol
+	var readable_value = roundf(((value + 30) / 30) * 100) #TODO: lol
 	
-	print_debug(value)
+	print_debug("V: " + str(value) + "MV: " + str(AudioServer.get_bus_volume_db(music_sound_bus)))
 	match type:
 		SOUND_BUS_TYPE.MUSIC:
-			AudioServer.set_bus_volume_db(music_sound_bus, linear_to_db(value))
+			AudioServer.set_bus_volume_db(music_sound_bus, value)
 			#AudioServer.set_bus_mute(music_sound_bus, linear_to_db(value) < -30)
 			
 			return message % ["Music", readable_value]
 		SOUND_BUS_TYPE.EFFECTS:
-			AudioServer.set_bus_volume_db(sound_fx_sound_bus, linear_to_db(value))
+			AudioServer.set_bus_volume_db(sound_fx_sound_bus, value)
 			#AudioServer.set_bus_mute(sound_fx_sound_bus, linear_to_db(value) < -30)
 			
 			return message % ["Effects", readable_value]
