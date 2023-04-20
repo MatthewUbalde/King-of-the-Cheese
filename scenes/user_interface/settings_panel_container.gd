@@ -113,4 +113,6 @@ func on_self_setting_update(status: String) -> void:
 
 
 func on_idle_timer_timeout() -> void:
-	randomize_status_default_text()
+#	randomize_status_default_text()
+	help_label.text = SecretMessage.get_random_message()
+

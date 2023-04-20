@@ -53,7 +53,8 @@ size_flags_horizontal = 0
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
-text = "Waiting for something to happen?"
+text = "Waiting for something to happen?
+Are you sure?"
 label_settings = SubResource("LabelSettings_f1skf")
 horizontal_alignment = 1
 vertical_alignment = 1
