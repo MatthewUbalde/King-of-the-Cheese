@@ -25,6 +25,7 @@ buses/default_bus_layout="res://resources/audio_bus/default_bus_layout.tres"
 GameEvents="*res://classes/autoloads/game_events.tscn"
 Ultilities="*res://classes/autoloads/ultilities.tscn"
 ScoreManager="*res://classes/autoloads/score_manager.gd"
+SecretMessage="*res://classes/autoloads/secret_message.tscn"
 
 [display]
 

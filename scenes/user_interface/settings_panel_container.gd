@@ -50,7 +50,7 @@ func randomize_status_default_text() -> void:
 	elif rand_value <= 406:
 		help_label.text = "Imagine making a story of your dreams about dream yourself about dreaming yourself..." 
 	elif rand_value <= 516:
-		help_label.text = "\"No little faith is meaningless, but without action is.\" - Cecilia"
+		help_label.text = "\"No little faith is meaningless, but without action is.\" - C."
 	elif rand_value <= 1021:
 		help_label.text = "Play King of the Hat!"
 	elif rand_value <= 1720:
@@ -63,6 +63,24 @@ func randomize_status_default_text() -> void:
 		help_label.text = "ok" # Thanks killer kirb!
 	elif rand_value <= 1843:
 		help_label.text = "I hat your IP hatdress" # Thanks Redinp
+	elif rand_value <= 2121:
+		help_label.text = "goro majima from the hit game yakuza" # Thanks Tarot!
+	elif rand_value <= 2123:
+		help_label.text = "bozo" # Thanks Salaso!
+	elif rand_value <= 2124:
+		help_label.text = "Stardew Valley Gaming" # Thanks Trianthania!
+	elif rand_value <= 2125:
+		help_label.text = "Splosh" # Thanks Tango!
+	elif rand_value <= 2132:
+		help_label.text = "cat dreaming world on fireahhhhhhh" # Thanks Fi!
+	elif rand_value <= 2138:
+		help_label.text = "Don't step the rock-alikes or something I guess?" # Thanks POOPATRON
+	elif rand_value <= 2141:
+		help_label.text = "Something (said in funny voice)" # Thanks Hunter!
+	elif rand_value <= 2152:
+		help_label.text = "This game is way ahat of its time" # Thanks Pig master!
+	elif rand_value <= 2153:
+		help_label.text = "WHAT DO YOU CALL A HAT THAT CAN CUT A TREE? A HAT-CHET" # Thanks Pig master's closest friend!
 	elif rand_value <= 6000:
 		help_label.text = "Waiting for something to happen?"
 	else:
