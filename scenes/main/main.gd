@@ -5,7 +5,8 @@ extends Node
 
 func _ready() -> void:
 	# Randomize the randomizer seed
-	randomize()
+	Ultilities.rng.randomize()
+	print_debug("RNG Seed: " + str(Ultilities.rng.seed))
 	
 	GameEvents.emit_update_day()
 	

@@ -49,6 +49,8 @@ enum SOUND_BUS_TYPE {
 @onready var sound_fx_sound_bus = AudioServer.get_bus_index("Effects")
 @onready var master_sound_bus = AudioServer.get_bus_index("Master")
 
+@onready var rng := RandomNumberGenerator.new()
+
 
 func get_month_string(month_num: int, short_form: bool = false) -> String:
 	if month_num < 1 && month_num > 12: 

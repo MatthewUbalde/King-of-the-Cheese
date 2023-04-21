@@ -181,7 +181,7 @@ func calculate_total_chance() -> int:
 	return total_chance
 
 
-func _ready():
+func _ready(): 
 	# Make the status messages read only
 	status_messages.make_read_only()
 	
@@ -214,7 +214,11 @@ func _ready():
 
 # Thanks miV for the help on this one!
 func get_random_message_set() -> Array:
-	var rand_chance: int = randi_range(0, total_message_chance)
+	# TODO: Godot bug. randi_range would go negative. temp fix: clamp and randomize the seed again
+	Ultilities.rng.randomize()
+	var rand_chance: int = Ultilities.rng.randi_range(0, total_message_chance) #clampi(Ultilities.rng.randi_range(0, total_message_chance), 0, total_message_chance)
+	
+	print_debug(rand_chance)
 	var picked: int = 0
 	
 	# Subtract from the total for each loop,
@@ -227,12 +231,14 @@ func get_random_message_set() -> Array:
 			picked = status_message_rng.size() - 1
 			break
 	
+	#print_debug(status_message_rng[picked][1])
 	return status_message_rng[picked][1]
 
 
 func get_random_message() -> String:
 	var message_set_arr = get_random_message_set()
-	return message_set_arr[randi_range(0, message_set_arr.size() - 1)]
+	#print_debug(message_set_arr)
+	return message_set_arr[Ultilities.rng.randi_range(0, message_set_arr.size() - 1)]
 
 
 func array_message_to_string(message_arr: Array) -> String:
