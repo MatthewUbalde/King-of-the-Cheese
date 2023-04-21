@@ -73,7 +73,8 @@ also works!"
 focus_mode = 0
 text = "Screenshot"
 
-[node name="NextMessageButton" type="Button" parent="HSplitContainer/VBoxContainer/HSplitContainer"]
+[node name="HintButton" type="Button" parent="HSplitContainer/VBoxContainer/HSplitContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Gives out Hints"
 text = "Hints"
@@ -126,5 +127,5 @@ max_value = 10.0
 
 [node name="IdleTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 10.0
+wait_time = 8.0
 autostart = true

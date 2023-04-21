@@ -4,6 +4,7 @@ signal setting_update(status: String)
 
 @onready var help_label = %HelpLabel
 @onready var screenshot_button = %ScreenshotButton
+@onready var hint_button = %HintButton
 @onready var fullscreen_button = %FullscreenButton
 @onready var mute_button = %MuteButton
 @onready var sound_fx_volume_slider = %SoundFXVolumeSlider
@@ -12,6 +13,7 @@ signal setting_update(status: String)
 
 func _ready() -> void:
 	screenshot_button.pressed.connect(on_screenshot_button_pressed)
+	hint_button.pressed.connect(on_hint_button_pressed)
 	fullscreen_button.toggled.connect(on_fullscreen_button_toggled)
 	mute_button.toggled.connect(on_mute_button_toggled)
 	
@@ -90,6 +92,11 @@ func _ready() -> void:
 
 func on_screenshot_button_pressed() -> void:
 	setting_update.emit(Ultilities.create_screenshot())
+
+
+func on_hint_button_pressed() -> void:
+	help_label.text = SecretMessage.get_random_message()
+	idle_timer.start()
 
 
 func on_fullscreen_button_toggled(button_pressed: bool) -> void:

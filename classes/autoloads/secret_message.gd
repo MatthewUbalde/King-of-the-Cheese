@@ -14,7 +14,7 @@ const status_messages: Dictionary = {
 		"eeverrryythiinngg wwasss paaiinnnffuulll...",
 		"eeverrryythiinngg iss... peaceful.",
 		],
-	"personal": [
+	"personal": [ # I made these ha.
 		"Onward and upward!",
 		"\"Hold on a minute, we're missing something...\"",
 		"Thank you Hat Games for making the game! Good job Hat Team!",
@@ -24,7 +24,18 @@ const status_messages: Dictionary = {
 		"The game is pretty buggy, but I'm lazy to fix it!",
 		"Oyasumi! Oyasumi! Close your eyes...",
 		"mewo~",
-		"nyan nyan nyan~!"
+		"nyan nyan nyan~!",
+		"Let's ride into the sunset together...",
+		"Big gun on his hip. Big gun on hiss hiippp...",
+		"The dev is a fish and loves eating fish",
+		"Hotdog",
+		"Do an Kickflip!",
+		"The birds are singing and the flowers are blooming...",
+		"Pata pata pata pon!",
+		"FEVER!!",
+		"Booyah!",
+		"Why did the bike fell over? Because it was two-tired. Hahahah...",
+		"The Hat Team are cool people",
 		],
 	"gamershift_jokes": [ # These ones are fire, so I'm adding multiple ones LOL
 		"WHAT DO YOU CALL A HAT THAT CAN CUT A TREE? A HAT-CHET", # Thanks Pig master's closest friend! (Gamershift)
@@ -56,13 +67,13 @@ const status_messages: Dictionary = {
 		"MANDKIND IS STONED. WEED IS FUEL. GAS STATION IS FULL.", # Thanks Minisuper!
 		],
 	"hints": [
-		"This is status message!",
+		"This is a hint!",
 		"Hold \"Shift\" to run!",
 		"Hold \"X\" to eat cheese while near them!",
+		"Hold \"E\" to eat cheese while near them!",
+		"Hold \"Space Bar\" to eat cheese while near them!",
 		"Move around using arrow keys!",
 		"Cheese adds on every day!",
-		"Made by Fish with Headphones",
-		"Made in Godot!",
 		"You can zoom using \"Ctrl +/-\".",
 		"Use your mouse wheel with \"Ctrl and Shift\" to zoom as well.",
 		"\"Ctrl and Spacebar\" resets the zoom!",
