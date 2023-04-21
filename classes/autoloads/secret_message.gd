@@ -83,12 +83,12 @@ const status_messages: Dictionary = {
 }
 
 const status_message_rng: Array = [
-	[175, status_messages.hints],
+	[75, status_messages.hints],
 	[50, status_messages.gamershift_jokes],
 	[35, status_messages.koth_community],
 	[35, status_messages.misc_community],
 	[20, status_messages.personal],
-	[1, status_messages.hidden]
+	[5, status_messages.hidden]
 ]
 
 var total_message_chance: int = 0
@@ -214,9 +214,8 @@ func _ready():
 
 # Thanks miV for the help on this one!
 func get_random_message_set() -> Array:
-	# TODO: Godot bug. randi_range would go negative. temp fix: clamp and randomize the seed again
-	Ultilities.rng.randomize()
-	var rand_chance: int = Ultilities.rng.randi_range(0, total_message_chance) #clampi(Ultilities.rng.randi_range(0, total_message_chance), 0, total_message_chance)
+	# TODO: Godot bug. randi_range would go negative. 
+	var rand_chance: int = absi(Ultilities.rng.randi_range(0, total_message_chance)) / (status_message_rng.size() / 2)
 	
 	print_debug(rand_chance)
 	var picked: int = 0
