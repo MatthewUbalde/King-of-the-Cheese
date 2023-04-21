@@ -12,10 +12,14 @@ class_name UserInterface
 @onready var eaten_counter_label := %EatenCounterLabel
 #@onready var cheese_slider := %CheeseSlider
 
+@onready var hide_button := %HideButton
+@onready var tab_container := %TabContainer
 
 func _ready() -> void:
 	GameEvents.update_day.connect(on_game_events_update_day)
 	ScoreManager.score_update.connect(on_score_maanger_score_update)
+	
+	hide_button.toggled.connect(on_hide_button_toggled)
 	
 	# Uses GameEvent's current day and date by default
 	update_day_label() 
@@ -28,6 +32,10 @@ func update_day_label(day: int = GameEvents.current_day, date: Dictionary = Game
 
 func on_game_events_update_day(current_day: int) -> void:
 	update_day_label(current_day)
+
+
+func on_hide_button_toggled(button_pressed: bool) -> void:
+	tab_container.visible = !button_pressed
 
 
 func on_score_maanger_score_update(score: int) -> void:

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=14 format=3 uid="uid://bx3rgbhg0k4eg"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://bx3rgbhg0k4eg"]
 
 [ext_resource type="FontFile" uid="uid://ct2ikkigupgvp" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="1_l255u"]
 
@@ -165,6 +165,18 @@ expand_margin_left = 2.0
 expand_margin_top = 6.0
 expand_margin_right = 2.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kg87g"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+bg_color = Color(0.945098, 0.776471, 0.45098, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.905882, 0.666667, 0.211765, 1)
+anti_aliasing = false
+
 [resource]
 default_font = ExtResource("1_l255u")
 default_font_size = 16
@@ -199,3 +211,6 @@ Panel/styles/panel = SubResource("StyleBoxFlat_0nf1k")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_gys4f")
 TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_bjtj4")
 TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_3jpmc")
+TooltipLabel/colors/font_color = Color(1, 1, 1, 1)
+TooltipLabel/font_sizes/font_size = 12
+TooltipPanel/styles/panel = SubResource("StyleBoxFlat_kg87g")

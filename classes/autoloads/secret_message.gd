@@ -9,6 +9,10 @@ const status_messages: Dictionary = {
 		"iss ittt myyy birttthdaaayyy?",
 		"kiiaarraa? wheeerree aarreee yoouu...",
 		"wheereee aaammm I?...",
+		"sooo maannyyyy cheeesseeee...",
+		"i waaanttt tooo gooo hoomeeeeee...",
+		"eeverrryythiinngg wwasss paaiinnnffuulll...",
+		"eeverrryythiinngg iss... peaceful.",
 		],
 	"personal": [
 		"Onward and upward!",
@@ -16,7 +20,7 @@ const status_messages: Dictionary = {
 		"Thank you Hat Games for making the game! Good job Hat Team!",
 		"Imagine writing a story about your escapism... Can't be me!",
 		"\"No little faith is meaningless, but without action is.\" - C.",
-		"Mustard Seed",
+		"Mustard mustard mustard mustard mustard mustard mustard",
 		"The game is pretty buggy, but I'm lazy to fix it!",
 		"Oyasumi! Oyasumi! Close your eyes...",
 		"mewo~",
@@ -30,16 +34,20 @@ const status_messages: Dictionary = {
 		],
 	"koth_community": [
 		"mad hatter, joxy'd", # Thanks Abook!
-		"i'd hat to say no", # Thanks spudle
+		"i'd hat to say no", # Thanks spudle!
 		"ok", # Thanks killer kirb!
-		"I hat your IP hatdress", # Thanks Redino
+		"I hat your IP hatdress", # Thanks Redino!
 		"bozo", # Thanks Salaso!
 		"Splosh", # Thanks Tango!
 		"Don't step the rock-alikes or something I guess?", # Thanks POOPATRON (Not really a direct quote. Just a hint...)
 		"Something (said in funny voice)", # Thanks Hunter!
 		"This game is way ahat of its time", # Thanks Pig master!
-		"ITs cheesing time", #Thanks PoggerPenguin
-		"Hat's on for cheese", #Thanks Sir Obisdian
+		"ITs cheesing time", #Thanks PoggerPenguin!
+		"Hat's on for cheese", #Thanks Sir Obisdian!
+		"I heard there’s a hidden ending if you play for long enough", # Thanks Tr4shJ4ck!
+		"Hat to throw out my cheese when it started growing mould", # Thanks R2D2Vader!
+		"Ever since I ended my greek fast, yogurt is my new chicken nuggets", # Thanks Socrates!
+		"The other Hat Team didn't respond... D:",
 		],
 	"misc_community": [
 		"goro majima from the hit game yakuza", # Thanks Tarot!
@@ -52,21 +60,23 @@ const status_messages: Dictionary = {
 		"Hold \"Shift\" to run!",
 		"Hold \"X\" to eat cheese while near them!",
 		"Move around using arrow keys!",
-		"Cheese adds on every day! Make sure you come back every now and then!",
+		"Cheese adds on every day!",
 		"Made by Fish with Headphones",
 		"Made in Godot!",
-		"You can zoom using \"Ctrl +/-\". Even \"Ctrl and Mouse Scroll\" works!",
+		"You can zoom using \"Ctrl +/-\".",
+		"Use your mouse wheel with \"Ctrl and Shift\" to zoom as well.",
 		"\"Ctrl and Spacebar\" resets the zoom!",
 		"Play King of the Hat!",
+		"Screenshots are in \"AppData/Roaming/Godot/app_userdata/King of The Hat Cheese\"",
 		]
 }
 
 const status_message_rng: Array = [
-	[750, status_messages.hints],
-	[110, status_messages.gamershift_jokes],
-	[100, status_messages.koth_community],
-	[75, status_messages.misc_community],
-	[25, status_messages.personal],
+	[175, status_messages.hints],
+	[50, status_messages.gamershift_jokes],
+	[35, status_messages.koth_community],
+	[35, status_messages.misc_community],
+	[20, status_messages.personal],
 	[1, status_messages.hidden]
 ]
 
@@ -166,6 +176,7 @@ func _ready():
 	
 	# Get the total chance to be used later in get_random_message_set()
 	total_message_chance = calculate_total_chance()
+	print_debug("Total message chance: " + str(total_message_chance))
 	
 #	Used for testing
 #	print(get_random_message())
@@ -201,7 +212,7 @@ func get_random_message_set() -> Array:
 		total_message_chance -= rand_chance 
 		picked += 1
 		
-		if picked > status_message_rng.size():
+		if picked > status_message_rng.size() - 1:
 			picked = status_message_rng.size() - 1
 			break
 	

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dss6ihk74bphr"]
+[gd_scene load_steps=7 format=3 uid="uid://dss6ihk74bphr"]
 
 [ext_resource type="Script" path="res://scenes/user_interface/user_interface.gd" id="1_7p11o"]
 [ext_resource type="Theme" uid="uid://bx3rgbhg0k4eg" path="res://scenes/user_interface/main_gui.tres" id="2_5ifnt"]
 [ext_resource type="PackedScene" uid="uid://b3wvduy77hk5t" path="res://scenes/user_interface/settings_panel_container.tscn" id="3_5fxiv"]
+[ext_resource type="Texture2D" uid="uid://eoupg0d587el" path="res://icon.png" id="3_mw1cy"]
 [ext_resource type="PackedScene" uid="uid://c2lg2741coag5" path="res://scenes/user_interface/counter_container.tscn" id="3_q1ing"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4g40l"]
@@ -77,6 +78,30 @@ layout_mode = 2
 text = "Eaten: 0"
 horizontal_alignment = 2
 
+[node name="BottomLeftMarginContainer" type="MarginContainer" parent="MainGUI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -36.0
+offset_right = 105.0
+grow_vertical = 0
+size_flags_horizontal = 8
+mouse_filter = 2
+
+[node name="CounterPanelContainer" type="PanelContainer" parent="MainGUI/BottomLeftMarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Button" type="Button" parent="MainGUI/BottomLeftMarginContainer/CounterPanelContainer"]
+layout_mode = 2
+tooltip_text = "Credits"
+focus_mode = 0
+icon = ExtResource("3_mw1cy")
+icon_alignment = 1
+
 [node name="BottomRightMarginContainer" type="MarginContainer" parent="MainGUI"]
 layout_mode = 1
 anchors_preset = 3
@@ -89,21 +114,43 @@ offset_top = -142.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="TabContainer" type="TabContainer" parent="MainGUI/BottomRightMarginContainer"]
-custom_minimum_size = Vector2(225, 150)
+[node name="VBoxContainer" type="VBoxContainer" parent="MainGUI/BottomRightMarginContainer"]
 layout_mode = 2
+alignment = 2
+
+[node name="HideButton" type="CheckButton" parent="MainGUI/BottomRightMarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+focus_mode = 0
+theme_override_colors/font_color = Color(0.905882, 0.666667, 0.211765, 1)
+theme_override_colors/font_pressed_color = Color(0.905882, 0.666667, 0.211765, 1)
+theme_override_colors/font_hover_color = Color(0.905882, 0.666667, 0.211765, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.905882, 0.666667, 0.211765, 1)
+theme_override_colors/font_focus_color = Color(0.905882, 0.666667, 0.211765, 1)
+theme_override_colors/font_outline_color = Color(0.905882, 0.666667, 0.211765, 1)
+theme_override_font_sizes/font_size = 24
+text = "Hide?"
+flat = true
+alignment = 2
+
+[node name="TabContainer" type="TabContainer" parent="MainGUI/BottomRightMarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 160)
+layout_mode = 2
+size_flags_vertical = 8
 tab_alignment = 2
 
-[node name="Cheese" type="TabBar" parent="MainGUI/BottomRightMarginContainer/TabContainer"]
+[node name="Cheese" type="TabBar" parent="MainGUI/BottomRightMarginContainer/VBoxContainer/TabContainer"]
 layout_mode = 2
 
-[node name="CounterContainer" parent="MainGUI/BottomRightMarginContainer/TabContainer/Cheese" node_paths=PackedStringArray("gui") instance=ExtResource("3_q1ing")]
+[node name="CounterContainer" parent="MainGUI/BottomRightMarginContainer/VBoxContainer/TabContainer/Cheese" node_paths=PackedStringArray("gui") instance=ExtResource("3_q1ing")]
 layout_mode = 1
-gui = NodePath("../../../../..")
+gui = NodePath("../../../../../..")
 
-[node name="Settings" type="TabBar" parent="MainGUI/BottomRightMarginContainer/TabContainer"]
+[node name="Settings" type="TabBar" parent="MainGUI/BottomRightMarginContainer/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="SettingsPanelContainer" parent="MainGUI/BottomRightMarginContainer/TabContainer/Settings" instance=ExtResource("3_5fxiv")]
+[node name="SettingsPanelContainer" parent="MainGUI/BottomRightMarginContainer/VBoxContainer/TabContainer/Settings" instance=ExtResource("3_5fxiv")]
 layout_mode = 1
