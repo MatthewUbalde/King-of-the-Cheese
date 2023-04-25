@@ -495,7 +495,7 @@ state_machine = NodePath("StateMachine")
 visual = NodePath("Visual")
 animation_player = NodePath("AnimationPlayer")
 speed_base = 130.0
-speed_running = 225.0
+speed_running = 250.0
 
 [node name="Label" type="Label" parent="."]
 visible = false

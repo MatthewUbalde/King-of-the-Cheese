@@ -15,7 +15,7 @@ texture = ExtResource("1_2705y")
 offset = Vector2(0, -16)
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(0, -12)
+position = Vector2(0, -15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_oswop")
