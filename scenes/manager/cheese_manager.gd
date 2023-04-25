@@ -19,7 +19,12 @@ var cheese_amount: int = 0
 
 
 func get_cheese_amount_present() -> int:
-	return get_tree().get_nodes_in_group("cheese").size()
+	var cheese_nodes = get_tree().get_nodes_in_group("cheese")
+	
+	if cheese_nodes:
+		return cheese_nodes.size()
+	
+	return 0
 
 
 func check_cheese_amount_max(amount: int) -> int:
