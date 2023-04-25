@@ -43,10 +43,9 @@ func fill_credits_container(max_length_word: int = -1) -> void:
 				break
 			
 			message += message_credits_arr[pointer] 
-			if word < max_length_word - 1:
-				message += ", "
-			
 			pointer += 1
+			if word < max_length_word - 1 && pointer < message_credits_arr.size():
+				message += ", "
 		
 		# Inserts the text after looping for max_length_words in here
 		#print(message)
