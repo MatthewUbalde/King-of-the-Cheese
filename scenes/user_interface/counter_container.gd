@@ -23,9 +23,6 @@ func _ready() -> void:
 		cheese_slider.value = cheese_manager.check_cheese_amount()
 	else:
 		cheese_slider.value = cheese_manager.cheese_amount_max
-	
-	# Update the label
-	bypass_limit_button.text = "Bypass Limit " + str(Ultilities.CHEESE_AMOUNT_CAP[4]) + "?"
 
 
 func on_game_events_update_day(current_day: int) -> void:
