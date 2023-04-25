@@ -41,7 +41,10 @@ func get_spawn_position() -> Vector2:
 	return center.global_position + (random_direction.normalized() * random_radius)
 
 
-func update_cheese(amount: int) -> void:
+func update_cheese(amount: int = -1) -> void:
+	if amount == -1:
+		amount = get_cheese_amount_present()
+	
 	cheese_amount_max = amount
 	spawn_timer.start() 
 
@@ -100,6 +103,10 @@ func cheese_manage() -> void:
 
 
 #Signals
+func on_cheese_death_update() -> void:
+	cheese_manage()
+
+
 func on_spawn_timer_timeout() -> void:
 	cheese_manage()
 
