@@ -23,9 +23,6 @@ func _ready() -> void:
 	
 	hide_button.toggled.connect(on_hide_button_toggled)
 	credits_button.pressed.connect(on_credits_button_pressed)
-	
-	# Uses GameEvent's current day and date by default
-	update_day_label() 
 
 
 func update_day_label(day: int = GameEvents.current_day, date: Dictionary = GameEvents.current_date) -> void:
