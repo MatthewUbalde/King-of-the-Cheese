@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bcwoa043elpcp"]
+[gd_scene load_steps=12 format=3 uid="uid://bcwoa043elpcp"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_4wnnl"]
 [ext_resource type="PackedScene" uid="uid://c0w5flbvwpgaf" path="res://scenes/manager/cheese_manager.tscn" id="1_4803e"]
@@ -7,8 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://dss6ihk74bphr" path="res://scenes/user_interface/user_interface.tscn" id="4_463pj"]
 [ext_resource type="PackedScene" uid="uid://bjvbrk7l5g3we" path="res://scenes/background/fade_parallax_background.tscn" id="5_d0aw6"]
 [ext_resource type="PackedScene" uid="uid://2c4qhtk3qneh" path="res://scenes/camera/player_camera_2d.tscn" id="5_jd4r4"]
+[ext_resource type="PackedScene" uid="uid://deb2dx77n5hoc" path="res://scenes/easter_eggs/p-rock.tscn" id="7_75v7p"]
 [ext_resource type="PackedScene" uid="uid://dnyikpa3hb7d" path="res://scenes/background/cloud_parallax_background.tscn" id="7_jofek"]
 [ext_resource type="Texture2D" uid="uid://cuvcf184xqjml" path="res://resources/rock.png" id="7_yc6w5"]
+[ext_resource type="Texture2D" uid="uid://d0n5mfh3mjn81" path="res://assets/fun_pictures/Screenshot 2023-04-24 212011.png" id="8_7of8a"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_4wnnl")
@@ -173,6 +175,9 @@ texture = ExtResource("7_yc6w5")
 position = Vector2(-539, -1053)
 texture = ExtResource("7_yc6w5")
 
+[node name="Rocks37" parent="Entities/Rocks" instance=ExtResource("7_75v7p")]
+position = Vector2(-979, 1247)
+
 [node name="Rock37" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(202, -1053)
 texture = ExtResource("7_yc6w5")
@@ -210,8 +215,12 @@ position = Vector2(1217, 513)
 texture = ExtResource("7_yc6w5")
 
 [node name="Rock19" type="Sprite2D" parent="Entities/Rocks"]
-position = Vector2(479, 993)
+position = Vector2(400, 997)
 texture = ExtResource("7_yc6w5")
+
+[node name="Screenshot2023-04-24212011" type="Sprite2D" parent="Entities/Rocks"]
+position = Vector2(2342, 1640)
+texture = ExtResource("8_7of8a")
 
 [node name="UserInterface" parent="." node_paths=PackedStringArray("cheese_manager") instance=ExtResource("4_463pj")]
 cheese_manager = NodePath("../CheeseManager")
