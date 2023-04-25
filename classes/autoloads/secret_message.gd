@@ -220,7 +220,7 @@ func get_random_message_set() -> Array:
 	# Uses the Hint's rng chance as the base
 	var rand_chance: int = absi(Ultilities.rng.randi_range(0, total_message_chance)) 
 	
-	print_debug(rand_chance)
+	#print_debug(rand_chance)
 	for message_set in status_message_rng:
 		if message_set[0] < rand_chance:
 			return message_set[1]
