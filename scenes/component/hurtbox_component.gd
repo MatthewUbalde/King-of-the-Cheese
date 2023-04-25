@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 		return
 	
 	if hitbox_component.active:
-		collision_shape.disabled = true
+		collision_shape.disabled = true 
 		hitbox_component.hit.emit()
 		entity._despawn(entity.death_type.EATEN) 
 

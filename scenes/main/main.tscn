@@ -176,7 +176,7 @@ position = Vector2(-539, -1053)
 texture = ExtResource("7_yc6w5")
 
 [node name="Rocks37" parent="Entities/Rocks" instance=ExtResource("7_75v7p")]
-position = Vector2(-1044, -1126)
+position = Vector2(1039, -873)
 
 [node name="Rock37" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(202, -1053)
