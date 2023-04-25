@@ -65,6 +65,7 @@ const status_messages: Dictionary = {
 		"Stardew Valley Gaming", # Thanks Trianthania!
 		"cat dreaming world on fireahhhhhhh", # Thanks Fi!
 		"MANDKIND IS STONED. WEED IS FUEL. GAS STATION IS FULL.", # Thanks Minisuper!
+		"I AM SEARCHING FOR THE STRONGHOLD!!", # Thanks decendium!
 		],
 	"hints": [
 		"This is a hint!",
@@ -168,6 +169,7 @@ const message_credits: Array = [
 	"Trianthania",
 	"Minisuper",
 	"Gamershift", # His jokes are mad funny
+	"decendium",
 ]
 
 
