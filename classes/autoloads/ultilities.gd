@@ -77,25 +77,24 @@ func get_date_string_from_dict(date: Dictionary) -> String:
 
 func create_data_folders() -> void:
 	# Create empty folder
-	var directories = DirAccess.get_directories_at("user://")
-	
-	if directories.find(SCREENSHOT_DIR_PATH) == null:
-		DirAccess.make_dir_absolute(SCREENSHOT_DIR_PATH)
-		print("Created a new 'screenshot' folder")
+	var directories = DirAccess.open("user://") 
+	directories.make_dir("screenshots") 
 
 
-func take_screenshot(file_name: String) -> void:
+func take_screenshot(file_name: String) -> Error:
 	var image = get_viewport().get_texture().get_image()
 	#image.flip_y() as Godot 4.0 does not use OpenGL
-	image.save_png(SCREENSHOT_DIR_PATH + file_name + ".png") 
-	print("Create screenshot at " + SCREENSHOT_DIR_PATH + file_name + ".png")
-	#TODO: Add a status if the screenshot is successful or not
-	print("Unknown if successful.")
+	var error: Error = image.save_png(SCREENSHOT_DIR_PATH + file_name + ".png")
+	
+	if error != OK:
+		print("Unable to create screenshot at " + SCREENSHOT_DIR_PATH + file_name + ".png") 
+	
+	return error
 
 
 func create_screenshot() -> String:
 	var date = Time.get_datetime_dict_from_system()
-	var screenshot_name = "cheese_%s.%s.%s.%s%s%s" % [date.month, date.day, date.year, date.hour, date.minute, date.second]
+	var screenshot_name = "cheese_%s%s%s.%s%s%s" % [date.month, date.day, date.year, date.hour, date.minute, date.second]
 	
 	var test_path = SCREENSHOT_DIR_PATH + screenshot_name + ".png"
 	if FileAccess.file_exists(test_path):
@@ -107,7 +106,11 @@ func create_screenshot() -> String:
 		screenshot_name += "_" + str(increment)
 	print_debug(test_path)
 	
-	take_screenshot(screenshot_name)
+	var error = take_screenshot(screenshot_name)
+	
+	if error != OK:
+		return "Unable to save screenshot"
+	
 	return "Cheese~! '" + screenshot_name + "' Screenshot is taken."
 
 

@@ -7,6 +7,8 @@ func _ready() -> void:
 	# Randomize the randomizer seed
 	Ultilities.rng.randomize()
 	print_debug("RNG Seed: " + str(Ultilities.rng.seed))
+	Ultilities.create_data_folders()
+	
 	
 	GameEvents.emit_update_day()
 	
