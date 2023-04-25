@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="King of The Hat Cheese"
-config/description="Watch as many cheeses would grow around Dark Birthday each day! "
+config/name="King of the Cheese"
+config/description="Watch as many cheeses grow around Dark Birthday each day in this fan-game of King of the Hat! RUN, EAT, and take PICTURES! As you go around in this very small and limited confined space eating cheese."
 run/main_scene="res://scenes/main/main.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.png"
@@ -136,8 +136,20 @@ fullscreen={
 2d_physics/layer_3="environment"
 2d_physics/layer_4="interactables"
 
+[physics]
+
+common/enable_object_picking=false
+
 [rendering]
 
+occlusion_culling/bvh_build_quality=0
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
+camera/depth_of_field/depth_of_field_bokeh_shape=0
+camera/depth_of_field/depth_of_field_bokeh_quality=0
+environment/ssao/quality=1
+environment/ssil/quality=1
+anti_aliasing/screen_space_roughness_limiter/enabled=false
+environment/screen_space_reflection/roughness_quality=0
+environment/subsurface_scattering/subsurface_scattering_quality=0
 2d/snap/snap_2d_transforms_to_pixel=true

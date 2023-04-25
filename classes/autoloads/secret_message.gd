@@ -58,6 +58,9 @@ const status_messages: Dictionary = {
 		"I heard there’s a hidden ending if you play for long enough", # Thanks Tr4shJ4ck!
 		"Hat to throw out my cheese when it started growing mould", # Thanks R2D2Vader!
 		"Ever since I ended my greek fast, yogurt is my new chicken nuggets", # Thanks Socrates!
+		"if you cant beat em, cheese em", # Thanks Jaruz!
+		"champagne for my real friends, real pain for my sham friends", # Thanks nu11!
+		"King of the Hat's imaginary future sequel is called Queen of the Shoe", # Thanks melbatoast!
 		"The other Hat Team didn't respond... D:",
 		],
 	"misc_community": [
@@ -154,6 +157,12 @@ var total_message_chance: int = 0
 #	]
 
 const message_credits: Array = [
+	"Socrates",
+	"Jaruz",
+	"nu11",
+	#"Melbatoast",
+	#"Alexis",
+	#"Alexis",
 	"Abook",
 	"spudle",
 	"killer kirb",
