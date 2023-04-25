@@ -21,16 +21,14 @@ func _process(delta: float) -> void:
 		$Label.text = $StateMachine.current_state._show_properties()
 
 
-func _input(event: InputEvent) -> void:
-	hitbox.active = event.is_action_pressed("player_action") 
-
-
 func _physics_process(delta: float) -> void:
 	#TODO: Temp fix for barrier
 	global_position = Vector2(
 		clamp(global_position.x, -1250, 1250),
 		clamp(global_position.y, -1250, 1250),
 	)
+	
+	hitbox.active = Input.is_action_pressed("player_action") 
 
 func change_speed(type: speed_type = speed_type.WALK) -> void:
 	match type:
