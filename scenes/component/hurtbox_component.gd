@@ -29,10 +29,7 @@ func on_area_entered(other_area: Area2D):
 	if entity == null:
 		return
 	
-	hitbox_component = other_area as HitboxComponent
-#	if hitbox_component.active:
-#		hitbox_component.hit.emit()
-#		entity._despawn(entity.death_type.DEFAULT) 
+	hitbox_component = other_area
 
 
 func on_area_exited(other_area: Area2D): 

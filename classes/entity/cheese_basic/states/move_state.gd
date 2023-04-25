@@ -8,7 +8,7 @@ extends CheeseState
 #@onready var panic_state: BaseState = get_node(panic_node)
 #@onready var relax_state: BaseState = get_node(relax_node)
 
-@export var move_wait_time_range := 2.0
+@export var move_wait_time_range: float = 2.0
 @export var move_timer: Timer
 @onready var move_wait_time_base: float = move_timer.wait_time
 

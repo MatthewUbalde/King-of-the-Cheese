@@ -170,6 +170,7 @@ layout_mode = 1
 
 [node name="Credits" parent="MainGUI" node_paths=PackedStringArray("gui") instance=ExtResource("6_nn11o")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0
