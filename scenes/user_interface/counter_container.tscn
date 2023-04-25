@@ -66,3 +66,8 @@ text = "Adjust the amount of cheese on area!"
 label_settings = SubResource("LabelSettings_f1skf")
 horizontal_alignment = 1
 autowrap_mode = 2
+
+[node name="BypassLimitButton" type="CheckButton" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Bypass Limit (50)"

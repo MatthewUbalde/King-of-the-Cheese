@@ -16,6 +16,8 @@ var spawn_time = base_spawn_time
 var cheese_amount_max: int = 0
 var cheese_amount: int = 0
 
+var bypass_limit: bool = false
+
 
 func get_cheese_amount_present() -> int:
 	var cheese_nodes = get_tree().get_nodes_in_group("cheese")
@@ -26,7 +28,8 @@ func get_cheese_amount_present() -> int:
 		return 0
 
 
-func check_cheese_amount_max(amount: int) -> int:
+func check_cheese_amount(amount: int = cheese_amount_max) -> int:
+	# This is used to prevent having 100 cheese on start up when day 100 is reached.
 	return min(amount, Ultilities.CHEESE_AMOUNT_CAP[0])
 
 
@@ -115,7 +118,7 @@ func on_spawn_timer_timeout() -> void:
 
 
 func on_game_events_update_day(current_day: int) -> void:
-	cheese_amount_max = check_cheese_amount_max(current_day)
+	cheese_amount_max = current_day
 	cheese_manage()
 	
-	start_time_log(cheese_amount) 
+	#start_time_log(cheese_amount) 
