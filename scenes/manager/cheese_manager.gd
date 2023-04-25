@@ -23,8 +23,8 @@ func get_cheese_amount_present() -> int:
 	
 	if cheese_nodes:
 		return cheese_nodes.size()
-	
-	return 0
+	else:
+		return 0
 
 
 func check_cheese_amount_max(amount: int) -> int:
@@ -83,8 +83,8 @@ func despawn_cheese(quantity: int = 1) -> void:
 
 
 func start_time_exp(amount: int) -> void:
-	#spawn_timer.start(base_spawn_time * (float(amount) / float(cheese_amount_max))) 
-	spawn_timer.start(base_spawn_time)
+	spawn_timer.start(base_spawn_time * (float(amount) / float(cheese_amount_max))) 
+	#spawn_timer.start(base_spawn_time)
 
 
 func cheese_manage() -> void:
@@ -112,10 +112,10 @@ func on_spawn_timer_timeout() -> void:
 
 
 func on_game_events_update_day(current_day: int) -> void:
-	cheese_amount_max = current_day
+	cheese_amount_max = check_cheese_amount_max(current_day)
 	cheese_manage()
 	
-	spawn_timer.start()
+	start_time_exp(cheese_amount)
 
 
 #func emit_amount_update(amount: int = get_cheese_amount_present(), keep_old: bool = false) -> void:
