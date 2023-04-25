@@ -11,15 +11,18 @@ func _ready() -> void:
 	hitbox.hit.connect(on_hitbox_hit)
 	
 	# A 1 in a 1000 chance of becoming cheese
-	var rand_chance: bool = (randi_range(1, 1000)) == 1
-	if rand_chance:
-		anim_sprite.visible = false
-		cheese_sprite.visible = true
+	var rand_chance: bool = (absi(Ultilities.rng.randi_range(1, 1000))) == 1
+	cheese_sprite.visible = rand_chance
+	anim_sprite.visible = !rand_chance
 
 
 func _process(delta: float) -> void:
 	if $Label.visible:
 		$Label.text = $StateMachine.current_state._show_properties()
+
+
+func _input(event: InputEvent) -> void:
+	hitbox.active = event.is_action_pressed("player_action") 
 
 
 func _physics_process(delta: float) -> void:
@@ -28,9 +31,6 @@ func _physics_process(delta: float) -> void:
 		clamp(global_position.x, -1250, 1250),
 		clamp(global_position.y, -1250, 1250),
 	)
-	
-	hitbox.active = Input.is_action_pressed("player_action") 
-
 
 func change_speed(type: speed_type = speed_type.WALK) -> void:
 	match type:

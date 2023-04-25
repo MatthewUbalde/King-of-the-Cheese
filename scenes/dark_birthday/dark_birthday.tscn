@@ -488,14 +488,15 @@ height = 60.0
 
 [node name="DarkBirthday" type="CharacterBody2D" node_paths=PackedStringArray("anim_sprite", "cheese_sprite", "state_machine", "visual", "animation_player")]
 collision_mask = 4
+motion_mode = 1
 script = ExtResource("1_2lgcm")
 anim_sprite = NodePath("Visual/AnimatedSprite2D")
 cheese_sprite = NodePath("Visual/CheeseSprite")
 state_machine = NodePath("StateMachine")
 visual = NodePath("Visual")
 animation_player = NodePath("AnimationPlayer")
-speed_base = 130.0
-speed_running = 250.0
+speed_base = 135.0
+speed_running = 255.0
 
 [node name="Label" type="Label" parent="."]
 visible = false

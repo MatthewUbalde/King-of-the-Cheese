@@ -2,7 +2,7 @@ extends PlayerState
 class_name MoveState
 
 @export var idle_node: NodePath
-@export var sit_node: NodePath
+#@export var sit_node: NodePath
 @export var walk_node: NodePath
 @export var run_node: NodePath
 
