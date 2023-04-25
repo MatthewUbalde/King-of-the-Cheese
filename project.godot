@@ -14,7 +14,8 @@ config/name="King of the Cheese"
 config/description="Watch as many cheeses grow around Dark Birthday each day in this fan-game of King of the Hat! RUN, EAT, and take PICTURES! As you go around in this very small and limited confined space eating cheese."
 run/main_scene="res://scenes/main/main.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
-config/icon="res://icon.png"
+config/icon="res://Cheese_logo.png"
+config/windows_native_icon="res://Cheese_logo.ico"
 
 [audio]
 
