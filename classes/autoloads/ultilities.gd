@@ -109,6 +109,9 @@ func set_fullscreen(is_fullscreen: bool) -> String:
 		return "Set to windowed" 
 
 
+
+
+
 func set_master_sound_bus_mute(is_mute: bool) -> String:
 	if is_mute:
 		AudioServer.set_bus_mute(master_sound_bus, true)
