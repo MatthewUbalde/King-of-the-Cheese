@@ -68,7 +68,7 @@ dragger_visibility = 1
 [node name="ScreenshotButton" type="Button" parent="HSplitContainer/VBoxContainer/HSplitContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-tooltip_text = "\"Ctrl + F4\" 
+tooltip_text = "\"Ctrl + F3\" 
 also works!"
 focus_mode = 0
 text = "Screenshot"
