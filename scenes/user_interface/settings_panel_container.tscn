@@ -127,5 +127,5 @@ max_value = 10.0
 
 [node name="IdleTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 0.5
+wait_time = 8.0
 autostart = true
