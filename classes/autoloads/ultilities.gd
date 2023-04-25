@@ -96,6 +96,17 @@ func take_screenshot(file_name: String) -> void:
 func create_screenshot() -> String:
 	var date = Time.get_datetime_dict_from_system()
 	var screenshot_name = "cheese_%s.%s.%s.%s%s%s" % [date.month, date.day, date.year, date.hour, date.minute, date.second]
+	
+	var test_path = SCREENSHOT_DIR_PATH + screenshot_name + ".png"
+	if FileAccess.file_exists(test_path):
+		var increment = 0
+		
+		while FileAccess.file_exists(SCREENSHOT_DIR_PATH + screenshot_name + "_" + str(increment) + ".png"):
+			increment += 1
+		
+		screenshot_name += "_" + str(increment)
+	print_debug(test_path)
+	
 	take_screenshot(screenshot_name)
 	return "Cheese~! '" + screenshot_name + "' Screenshot is taken."
 
@@ -109,9 +120,7 @@ func set_fullscreen(is_fullscreen: bool) -> String:
 		return "Set to windowed" 
 
 
-
-
-
+ 
 func set_master_sound_bus_mute(is_mute: bool) -> String:
 	if is_mute:
 		AudioServer.set_bus_mute(master_sound_bus, true)

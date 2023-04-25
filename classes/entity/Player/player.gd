@@ -30,6 +30,7 @@ func _physics_process(delta: float) -> void:
 	
 	hitbox.active = Input.is_action_pressed("player_action") 
 
+
 func change_speed(type: speed_type = speed_type.WALK) -> void:
 	match type:
 		speed_type.WALK:
