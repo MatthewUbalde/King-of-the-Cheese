@@ -16,17 +16,17 @@ func _ready() -> void:
 	
 	GameEvents.update_day.connect(on_game_events_update_day)
 	cheese_slider.value_changed.connect(on_cheese_slider_value_changed)
-	bypass_limit_button.toggled.connect(on_bypass_limit_button_toggled)
+	bypass_limit_button.toggled.connect(on_bypass_limit_button_toggled) 
+
+
+func on_game_events_update_day(current_day: int) -> void:
+	cheese_slider.max_value = current_day
 	
 	# If none of the range hits, just stay here
 	if !bypass_limit:
 		cheese_slider.value = cheese_manager.check_cheese_amount()
 	else:
 		cheese_slider.value = cheese_manager.cheese_amount_max
-
-
-func on_game_events_update_day(current_day: int) -> void:
-	cheese_slider.max_value = current_day 
 
 
 func on_cheese_slider_value_changed(value: float) -> void:
