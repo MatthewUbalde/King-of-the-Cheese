@@ -63,7 +63,7 @@ func spawn_cheese(quantity: int = 1) -> void:
 	var entities_layer = get_tree().get_first_node_in_group("entities_layer")
 	for i in quantity:
 		var cheese = basic_cheese_scene.instantiate() as CheeseBasic
-		cheese.tree_exited.connect(on_cheese_tree_exited)
+		cheese.tree_exiting.connect(on_cheese_tree_exiting)
 		
 		entities_layer.add_child(cheese)
 		cheese.global_position = get_spawn_position()
@@ -103,7 +103,7 @@ func cheese_manage() -> void:
 
 
 #Signals
-func on_cheese_tree_exited() -> void:
+func on_cheese_tree_exiting() -> void:
 	cheese_amount = get_cheese_amount_present()
 
 
