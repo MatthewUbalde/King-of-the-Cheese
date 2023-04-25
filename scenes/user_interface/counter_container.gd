@@ -23,6 +23,9 @@ func _ready() -> void:
 		cheese_slider.value = cheese_manager.check_cheese_amount()
 	else:
 		cheese_slider.value = cheese_manager.cheese_amount_max
+	
+	# Update the label
+	bypass_limit_button.text = "Bypass Limit " + str(Ultilities.CHEESE_AMOUNT_CAP[4]) + "?"
 
 
 func on_game_events_update_day(current_day: int) -> void:
@@ -53,7 +56,7 @@ func on_cheese_slider_value_changed(value: float) -> void:
 		cheese_label.text = "Nice computer you got there!"
 	else: # At the very limit!
 		cheese_counter_label.text = "Too much!"
-		cheese_label.text = "Limiting the cheese to " + str(Ultilities.CHEESE_AMOUNT_CAP[4]) + ". May not handle this much " + str(value) + " cheese at this much!"
+		cheese_label.text = "May not handle this much " + str(value) + " cheese at this point!"
 		cheese_manager.update_cheese(Ultilities.CHEESE_AMOUNT_CAP[4])
 
 
@@ -61,4 +64,6 @@ func on_bypass_limit_button_toggled(button_pressed: bool) -> void:
 	bypass_limit = button_pressed
 	
 	if bypass_limit:
-		cheese_label.text = "Be careful! The hard " + str(Ultilities.CHEESE_AMOUNT_CAP[3]) + " limit is gone!"
+		cheese_label.text = "The hard " + str(Ultilities.CHEESE_AMOUNT_CAP[4]) + " limit is gone!"
+	else:
+		cheese_label.text = "Well now it's gone..."
