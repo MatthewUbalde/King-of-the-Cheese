@@ -16,7 +16,6 @@ var spawn_time = base_spawn_time
 
 var cheese_amount_max: int = 0
 var cheese_amount: int = 0
-#var cheese_amount_old := cheese_amount
 
 
 func get_cheese_amount_present() -> int:
@@ -51,7 +50,8 @@ func update_cheese(amount: int = -1) -> void:
 
 func spawn_cheese(quantity: int = 1) -> void:
 	for i in quantity:
-		var cheese = basic_cheese_scene.instantiate() as Node2D
+		var cheese = basic_cheese_scene.instantiate() as CheeseBasic
+		cheese.death_update.connect(on_cheese_death_update)
 		
 		var entities_layer = get_tree().get_first_node_in_group("entities_layer")
 		entities_layer.add_child(cheese)
@@ -68,7 +68,7 @@ func despawn_cheese(quantity: int = 1) -> void:
 			var cheese_queue = cheese_group[i]
 			
 			if cheese_queue: 
-				cheese_queue._despawn()
+				cheese_queue._despawn(Entity.death_type.DELETE)
 
 
 func start_time_exp(amount: int) -> void:
@@ -88,18 +88,6 @@ func cheese_manage() -> void:
 		# Update the amount of cheese present and restart the timer
 		cheese_amount = get_cheese_amount_present()
 		start_time_exp(cheese_amount)
-	
-	#print("timeout=")
-#	emit_amount_update()
-	
-
-
-
-#func _process(delta: float) -> void:
-#	# Check for any changes to the cheese_amount
-#	if cheese_amount != cheese_amount_old:
-#		#print("process==")
-#		emit_amount_update(get_cheese_amount_present(), true)
 
 
 #Signals

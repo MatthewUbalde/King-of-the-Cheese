@@ -11,7 +11,7 @@ enum speed_type { WALK, RUN, ALTERNATE }
 @export var speed_base := 64.0
 @export var speed_running: float = 120.0
 
-enum death_type { DEFAULT, EATEN }
+enum death_type { DEFAULT, EATEN, DELETE }
 
 var move_direction: Vector2 = Vector2.ZERO
 var prev_direction: Vector2 = move_direction
@@ -37,15 +37,18 @@ func apply_speed(speed: float) -> void:
 	velocity = speed * move_direction
 
 
-func _despawn(type: death_type = death_type.DEFAULT) -> void: 
-	death_update.emit()
-	
+func _despawn(type: death_type = death_type.DEFAULT) -> void:  
 	match type:
 		death_type.DEFAULT:
+			death_update.emit()
 			if animation_player.has_animation("despawn"):
 				animation_player.play("despawn")
+		death_type.DELETE:
+			if animation_player.has_animation("despawn"):
+				animation_player.play("despawn") 
 		death_type.EATEN:
+			death_update.emit()
 			if animation_player.has_animation("eaten"):
-				animation_player.play("eaten") 
+				animation_player.play("eaten")
 		_:
 			queue_free()
