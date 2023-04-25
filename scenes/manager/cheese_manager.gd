@@ -34,9 +34,13 @@ func _ready() -> void:
 	cheese_amount_max = check_cheese_amount_max(GameEvents.current_day)
 
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("cheat_dev") && event.is_action_pressed("ui_select"):
+func _input(event: InputEvent) -> void: 
+	if !event.is_action_pressed("cheat_dev"):
+		return
+	
+	if event.is_action_pressed("ui_select"):
 		spawn_cheese(1)
+		print_debug("testing!")
 
 
 func get_spawn_position() -> Vector2: 
@@ -45,10 +49,7 @@ func get_spawn_position() -> Vector2:
 	return center.global_position + (random_direction.normalized() * random_radius)
 
 
-func update_cheese(amount: int = -1) -> void:
-	if amount == -1:
-		amount = get_cheese_amount_present()
-	
+func update_cheese(amount: int) -> void:
 	cheese_amount_max = amount
 	spawn_timer.start() 
 
@@ -57,7 +58,7 @@ func spawn_cheese(quantity: int = 1) -> void:
 	var entities_layer = get_tree().get_first_node_in_group("entities_layer")
 	for i in quantity:
 		var cheese = basic_cheese_scene.instantiate() as CheeseBasic
-		cheese.death_update.connect(on_cheese_death_update)
+		cheese.tree_exited.connect(on_cheese_tree_exited)
 		
 		entities_layer.add_child(cheese)
 		cheese.global_position = get_spawn_position()
@@ -73,7 +74,7 @@ func despawn_cheese(quantity: int = 1) -> void:
 			var cheese_queue = cheese_group[i]
 			
 			if cheese_queue: 
-				cheese_queue._despawn(Entity.death_type.DELETE)
+				cheese_queue._despawn(Entity.death_type.DEFAULT)
 
 
 func start_time_exp(amount: int) -> void:
@@ -97,8 +98,8 @@ func cheese_manage() -> void:
 
 
 #Signals
-func on_cheese_death_update() -> void:
-	cheese_manage()
+func on_cheese_tree_exited() -> void:
+	cheese_amount = get_cheese_amount_present()
 
 
 func on_spawn_timer_timeout() -> void:

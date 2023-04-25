@@ -31,14 +31,13 @@ func _input(input: InputEvent) -> void:
 	
 	if input.is_action_pressed("ui_page_down"):
 		current_day -= 1
+		$Timer.stop()
+		emit_update_day()
 	
 	if input.is_action_pressed("ui_page_up"):
 		current_day += 1
-	
-	# Debugging purposes
-	$Timer.stop()
-	#update_current_day()
-	emit_update_day()
+		$Timer.stop()
+		emit_update_day()
 
 
 func update_current_day() -> void:

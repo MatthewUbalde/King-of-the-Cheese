@@ -1,8 +1,6 @@
 extends CharacterBody2D
 class_name Entity
 
-signal death_update
-
 @export var state_machine: StateMachine
 @export var visual: Node2D
 @export var animation_player : AnimationPlayer
@@ -39,15 +37,13 @@ func apply_speed(speed: float) -> void:
 
 func _despawn(type: death_type = death_type.DEFAULT) -> void:  
 	match type:
-		death_type.DEFAULT:
-			death_update.emit()
+		death_type.DEFAULT: 
 			if animation_player.has_animation("despawn"):
 				animation_player.play("despawn")
 		death_type.DELETE:
 			if animation_player.has_animation("despawn"):
 				animation_player.play("despawn") 
-		death_type.EATEN:
-			death_update.emit()
+		death_type.EATEN: 
 			if animation_player.has_animation("eaten"):
 				animation_player.play("eaten")
 		_:
