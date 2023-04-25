@@ -34,6 +34,11 @@ func _ready() -> void:
 	cheese_amount_max = check_cheese_amount_max(GameEvents.current_day)
 
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("cheat_dev") && event.is_action_pressed("ui_select"):
+		spawn_cheese(1)
+
+
 func get_spawn_position() -> Vector2: 
 	var random_direction: Vector2 = Vector2.RIGHT.rotated(randf_range(0, TAU))
 	var random_radius: float = randf_range(SPAWN_MIN_RADIUS, SPAWN_MAX_RADIUS)
@@ -49,11 +54,11 @@ func update_cheese(amount: int = -1) -> void:
 
 
 func spawn_cheese(quantity: int = 1) -> void:
+	var entities_layer = get_tree().get_first_node_in_group("entities_layer")
 	for i in quantity:
 		var cheese = basic_cheese_scene.instantiate() as CheeseBasic
 		cheese.death_update.connect(on_cheese_death_update)
 		
-		var entities_layer = get_tree().get_first_node_in_group("entities_layer")
 		entities_layer.add_child(cheese)
 		cheese.global_position = get_spawn_position()
 
@@ -72,7 +77,8 @@ func despawn_cheese(quantity: int = 1) -> void:
 
 
 func start_time_exp(amount: int) -> void:
-	spawn_timer.start(base_spawn_time * (float(amount) / float(cheese_amount_max))) 
+	#spawn_timer.start(base_spawn_time * (float(amount) / float(cheese_amount_max))) 
+	spawn_timer.start(base_spawn_time)
 
 
 func cheese_manage() -> void:
