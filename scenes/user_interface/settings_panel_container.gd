@@ -39,8 +39,8 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("fullscreen"):
 		setting_update.emit(
-			Ultilities.set_fullscreen(DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN)
-			)
+			Ultilities.set_fullscreen(DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_FULLSCREEN)
+			) 
 
 
 func on_screenshot_button_pressed() -> void:
