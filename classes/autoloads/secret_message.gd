@@ -83,12 +83,12 @@ const status_messages: Dictionary = {
 }
 
 const status_message_rng: Array = [
-	[75, status_messages.hints],
-	[50, status_messages.gamershift_jokes],
-	[35, status_messages.koth_community],
-	[35, status_messages.misc_community],
-	[20, status_messages.personal],
-	[5, status_messages.hidden]
+	[150, status_messages.hints],
+	[35, status_messages.gamershift_jokes],
+	[32, status_messages.koth_community],
+	[27, status_messages.misc_community],
+	[5, status_messages.personal],
+	[1, status_messages.hidden]
 ]
 
 var total_message_chance: int = 0
@@ -151,24 +151,24 @@ var total_message_chance: int = 0
 #	"Ctrl and Spacebar resets the zoom!",
 #	"Play King of the Hat!",
 #	]
-#
-#const message_credits: Array = [
-#	"Abook",
-#	"spudle",
-#	"killer kirb",
-#	"Redino",
-#	"Salaso",
-#	"Tango",
-#	"POOPATRON",
-#	"Hunter",
-#	"Pig master",
-#	"PoggerPengiun",
-#	"Sir Obsidian",
-#	"Tarot",
-#	"Trianthania",
-#	"Minisuper",
-#	"Pig master's closest friend, Gamershift", # His jokes are mad funny
-#]
+
+const message_credits: Array = [
+	"Abook",
+	"spudle",
+	"killer kirb",
+	"Redino",
+	"Salaso",
+	"Tango",
+	"POOPATRON",
+	"Hunter",
+	"Pig master",
+	"PoggerPengiun",
+	"Sir Obsidian",
+	"Tarot",
+	"Trianthania",
+	"Minisuper",
+	"Gamershift", # His jokes are mad funny
+]
 
 
 # Thanks miV for the help on this one!
@@ -186,7 +186,8 @@ func _ready():
 	status_messages.make_read_only()
 	
 	# Get the total chance to be used later in get_random_message_set()
-	total_message_chance = calculate_total_chance()
+	# Get the total chance from the hint's rng chance
+	total_message_chance = calculate_total_chance()#status_message_rng[0][0]
 	print_debug("Total message chance: " + str(total_message_chance))
 	
 #	Used for testing
@@ -212,26 +213,36 @@ func _ready():
 #			return []
 
 
-# Thanks miV for the help on this one!
+
 func get_random_message_set() -> Array:
-	# TODO: Godot bug. randi_range would go negative. 
-	var rand_chance: int = absi(Ultilities.rng.randi_range(0, total_message_chance)) / (status_message_rng.size() / 2)
+	# Uses the Hint's rng chance as the base
+	var rand_chance: int = absi(Ultilities.rng.randi_range(0, total_message_chance)) 
 	
 	print_debug(rand_chance)
-	var picked: int = 0
+	for message_set in status_message_rng:
+		if message_set[0] < rand_chance:
+			return message_set[1]
 	
-	# Subtract from the total for each loop,
-	# and when total is 0 or less, that's the one to pick
-	while total_message_chance > 0:
-		total_message_chance -= rand_chance 
-		picked += 1
-		
-		if picked > status_message_rng.size() - 1:
-			picked = status_message_rng.size() - 1
-			break
+	return status_message_rng[0][1]
 	
-	#print_debug(status_message_rng[picked][1])
-	return status_message_rng[picked][1]
+#	Decided to go against this as it's biased at the beginning and the end of the set.
+#	miV's fixed solution
+#	var rand_chance: int = absi(Ultilities.rng.randi_range(0, total_message_chance)) 
+#
+#	var picked: int = 0
+#
+#	# Subtract from the total for each loop,
+#	# and when total is 0 or less, that's the one to pick
+#	while total_message_chance > 0:
+#		total_message_chance -= rand_chance 
+#		picked += 1
+#
+#		if picked > status_message_rng.size() - 1:
+#			picked = status_message_rng.size() - 1
+#			break
+#
+#	#print_debug(status_message_rng[picked][1])
+#	return status_message_rng[picked][1]
 
 
 func get_random_message() -> String:

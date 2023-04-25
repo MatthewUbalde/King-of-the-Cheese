@@ -17,6 +17,13 @@ func _ready() -> void:
 	music_player.finished.connect(on_music_player_finished)
 
 
+# Would have putten the screenshot shortcut here if there was easy access
+# to the settings_panel_container's signal
+#func _input(event: InputEvent) -> void:
+#	if event.is_action_pressed("screenshot"):
+#		Ultilities.create_screenshot()
+
+
 # Go to an ongoing loop
 func on_music_player_finished() -> void:
 	music_player.play() 

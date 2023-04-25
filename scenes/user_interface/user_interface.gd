@@ -13,6 +13,8 @@ class_name UserInterface
 #@onready var cheese_slider := %CheeseSlider
 
 @onready var hide_button := %HideButton
+@onready var credits_button := %CreditsButton
+@onready var credits_node := %Credits
 @onready var tab_container := %TabContainer
 
 func _ready() -> void:
@@ -20,6 +22,7 @@ func _ready() -> void:
 	ScoreManager.score_update.connect(on_score_maanger_score_update)
 	
 	hide_button.toggled.connect(on_hide_button_toggled)
+	credits_button.pressed.connect(on_credits_button_pressed)
 	
 	# Uses GameEvent's current day and date by default
 	update_day_label() 
@@ -34,9 +37,13 @@ func on_game_events_update_day(current_day: int) -> void:
 	update_day_label(current_day)
 
 
+func on_score_maanger_score_update(score: int) -> void:
+	eaten_counter_label.text = "Eaten: " + str(score)
+
+
 func on_hide_button_toggled(button_pressed: bool) -> void:
 	tab_container.visible = !button_pressed
 
 
-func on_score_maanger_score_update(score: int) -> void:
-	eaten_counter_label.text = "Eaten: " + str(score)
+func on_credits_button_pressed() -> void:
+	credits_node.visible = !credits_node.visible

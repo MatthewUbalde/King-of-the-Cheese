@@ -1,0 +1,90 @@
+[gd_scene load_steps=4 format=3 uid="uid://b62lhg1okvmgn"]
+
+[ext_resource type="Theme" uid="uid://bx3rgbhg0k4eg" path="res://scenes/user_interface/main_gui.tres" id="1_qrdax"]
+[ext_resource type="Script" path="res://scenes/user_interface/credits.gd" id="2_864os"]
+[ext_resource type="LabelSettings" uid="uid://dqkmtytrdx3j8" path="res://scenes/user_interface/credits_body_label_settings.tres" id="3_vjjdv"]
+
+[node name="Credits" type="Control"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_qrdax")
+theme_type_variation = &"Credits"
+script = ExtResource("2_864os")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Credits"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="AuthorLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Creator:
+Fish With Headphones"
+label_settings = ExtResource("3_vjjdv")
+horizontal_alignment = 1
+
+[node name="GameEngineLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Game Engine:
+Godot"
+label_settings = ExtResource("3_vjjdv")
+horizontal_alignment = 1
+
+[node name="SpecialThanksLabel" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Special Thanks:
+Socrates, Jaruz, Melbatoast, Null, Petravita, Alexis"
+label_settings = ExtResource("3_vjjdv")
+horizontal_alignment = 1
+
+[node name="ForStartingTheThingLabel" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "The guy that started it all:
+Redino! "
+label_settings = ExtResource("3_vjjdv")
+horizontal_alignment = 1
+
+[node name="MessageCreditsLabel" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Hiden Secret Easter Eggs By:"
+
+[node name="MessageCreditsContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="HideButton" type="Button" parent="PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+text = "X"
