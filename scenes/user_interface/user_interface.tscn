@@ -26,75 +26,83 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("2_5ifnt")
 
-[node name="TopLeftMarginContainer" type="MarginContainer" parent="MainGUI"]
+[node name="GUI" type="Control" parent="MainGUI"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TopLeftMarginContainer" type="MarginContainer" parent="MainGUI/GUI"]
 layout_mode = 1
-offset_right = 77.0
+offset_right = 111.0
 offset_bottom = 71.0
 size_flags_horizontal = 0
 mouse_filter = 2
 
-[node name="DayPanelContainer" type="PanelContainer" parent="MainGUI/TopLeftMarginContainer"]
+[node name="DayPanelContainer" type="PanelContainer" parent="MainGUI/GUI/TopLeftMarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainGUI/TopLeftMarginContainer/DayPanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainGUI/GUI/TopLeftMarginContainer/DayPanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
 
-[node name="DayLabel" type="Label" parent="MainGUI/TopLeftMarginContainer/DayPanelContainer/VBoxContainer"]
+[node name="DayLabel" type="Label" parent="MainGUI/GUI/TopLeftMarginContainer/DayPanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Day: 0"
 horizontal_alignment = 1
 
-[node name="CurrentDateLabel" type="Label" parent="MainGUI/TopLeftMarginContainer/DayPanelContainer/VBoxContainer"]
+[node name="CurrentDateLabel" type="Label" parent="MainGUI/GUI/TopLeftMarginContainer/DayPanelContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "March, 10, 2023"
 label_settings = SubResource("LabelSettings_4g40l")
 horizontal_alignment = 1
 
-[node name="TopRightMarginContainer" type="MarginContainer" parent="MainGUI"]
+[node name="TopRightMarginContainer" type="MarginContainer" parent="MainGUI/GUI"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -105.0
+offset_left = 495.0
+offset_right = 600.0
 offset_bottom = 36.0
 grow_horizontal = 0
 size_flags_horizontal = 8
 mouse_filter = 2
 
-[node name="CounterPanelContainer" type="PanelContainer" parent="MainGUI/TopRightMarginContainer"]
+[node name="CounterPanelContainer" type="PanelContainer" parent="MainGUI/GUI/TopRightMarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 
-[node name="EatenCounterLabel" type="Label" parent="MainGUI/TopRightMarginContainer/CounterPanelContainer"]
+[node name="EatenCounterLabel" type="Label" parent="MainGUI/GUI/TopRightMarginContainer/CounterPanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Eaten: 0"
 horizontal_alignment = 2
 
-[node name="BottomLeftMarginContainer" type="MarginContainer" parent="MainGUI"]
+[node name="BottomLeftMarginContainer" type="MarginContainer" parent="MainGUI/GUI"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -36.0
+offset_top = 284.0
 offset_right = 105.0
+offset_bottom = 320.0
 grow_vertical = 0
 size_flags_horizontal = 8
 mouse_filter = 2
 
-[node name="Panel" type="Panel" parent="MainGUI/BottomLeftMarginContainer"]
+[node name="Panel" type="Panel" parent="MainGUI/GUI/BottomLeftMarginContainer"]
 layout_mode = 2
 
-[node name="CreditsButton" type="Button" parent="MainGUI/BottomLeftMarginContainer"]
+[node name="CreditsButton" type="Button" parent="MainGUI/GUI/BottomLeftMarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
@@ -104,23 +112,25 @@ text = "Credits"
 flat = true
 icon_alignment = 1
 
-[node name="BottomRightMarginContainer" type="MarginContainer" parent="MainGUI"]
+[node name="BottomRightMarginContainer" type="MarginContainer" parent="MainGUI/GUI"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -175.0
-offset_top = -142.0
+offset_left = 425.0
+offset_top = 178.0
+offset_right = 600.0
+offset_bottom = 320.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainGUI/BottomRightMarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainGUI/GUI/BottomRightMarginContainer"]
 layout_mode = 2
 alignment = 2
 
-[node name="MenuButton" type="CheckButton" parent="MainGUI/BottomRightMarginContainer/VBoxContainer"]
+[node name="MenuButton" type="CheckButton" parent="MainGUI/GUI/BottomRightMarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
@@ -136,7 +146,7 @@ text = "Menu"
 flat = true
 alignment = 2
 
-[node name="TabContainer" type="TabContainer" parent="MainGUI/BottomRightMarginContainer/VBoxContainer"]
+[node name="TabContainer" type="TabContainer" parent="MainGUI/GUI/BottomRightMarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(200, 160)
@@ -144,33 +154,28 @@ layout_mode = 2
 size_flags_vertical = 8
 tab_alignment = 2
 
-[node name="Cheese" type="TabBar" parent="MainGUI/BottomRightMarginContainer/VBoxContainer/TabContainer"]
+[node name="Cheese" type="TabBar" parent="MainGUI/GUI/BottomRightMarginContainer/VBoxContainer/TabContainer"]
 layout_mode = 2
 
-[node name="CounterContainer" parent="MainGUI/BottomRightMarginContainer/VBoxContainer/TabContainer/Cheese" node_paths=PackedStringArray("gui") instance=ExtResource("3_q1ing")]
+[node name="CounterContainer" parent="MainGUI/GUI/BottomRightMarginContainer/VBoxContainer/TabContainer/Cheese" node_paths=PackedStringArray("gui") instance=ExtResource("3_q1ing")]
 layout_mode = 1
-gui = NodePath("../../../../../..")
+gui = NodePath("../../../../../../..")
 
-[node name="Settings" type="TabBar" parent="MainGUI/BottomRightMarginContainer/VBoxContainer/TabContainer"]
+[node name="Settings" type="TabBar" parent="MainGUI/GUI/BottomRightMarginContainer/VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="SettingsPanelContainer" parent="MainGUI/BottomRightMarginContainer/VBoxContainer/TabContainer/Settings" instance=ExtResource("3_5fxiv")]
+[node name="SettingsPanelContainer" parent="MainGUI/GUI/BottomRightMarginContainer/VBoxContainer/TabContainer/Settings" instance=ExtResource("3_5fxiv")]
 layout_mode = 1
 
-[node name="CenterMarginContainer" type="MarginContainer" parent="MainGUI"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -250.0
-offset_right = 250.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Credits" parent="MainGUI/CenterMarginContainer" instance=ExtResource("6_nn11o")]
+[node name="Credits" parent="MainGUI" node_paths=PackedStringArray("gui") instance=ExtResource("6_nn11o")]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 70.0
+offset_top = 180.0
+offset_right = 570.0
+offset_bottom = 180.0
+gui = NodePath("../GUI")

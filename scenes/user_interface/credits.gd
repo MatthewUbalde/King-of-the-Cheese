@@ -1,5 +1,6 @@
 extends Control
 
+@export var gui: Control
 
 @onready var message_credits_arr: Array = SecretMessage.message_credits
 @onready var hide_button: Button = %HideButton
@@ -53,4 +54,5 @@ func fill_credits_container(max_length_word: int = -1) -> void:
 
 
 func on_hide_button_pressed() -> void:
-	visible = false 
+	visible = false
+	gui.visible = !visible

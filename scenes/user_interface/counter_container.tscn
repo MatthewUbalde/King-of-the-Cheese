@@ -61,6 +61,7 @@ value = 1.0
 
 [node name="CheeseLabel" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 text = "Adjust the amount of cheese on area!"
 label_settings = SubResource("LabelSettings_f1skf")

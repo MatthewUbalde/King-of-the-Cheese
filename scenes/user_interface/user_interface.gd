@@ -7,14 +7,12 @@ class_name UserInterface
 @onready var day_label := %DayLabel
 @onready var current_date_label := %CurrentDateLabel
 
-# Cheese
-#@onready var cheese_counter_label := %CheeseCounterLabel
-@onready var eaten_counter_label := %EatenCounterLabel
-#@onready var cheese_slider := %CheeseSlider
-
-@onready var menu_button := %MenuButton
-@onready var credits_button := %CreditsButton
+@onready var gui_node := %GUI
 @onready var credits_node := %Credits
+
+@onready var eaten_counter_label := %EatenCounterLabel
+@onready var menu_button := %MenuButton
+@onready var credits_button := %CreditsButton 
 @onready var tab_container := %TabContainer
 
 func _ready() -> void:
@@ -23,6 +21,9 @@ func _ready() -> void:
 	
 	menu_button.toggled.connect(on_menu_button_toggled)
 	credits_button.pressed.connect(on_credits_button_pressed)
+	
+	# Make sure that the tab is visiibility is updated
+	tab_container.visible = menu_button.button_pressed
 
 
 func update_day_label(day: int = GameEvents.current_day, date: Dictionary = GameEvents.current_date) -> void:
@@ -44,3 +45,4 @@ func on_menu_button_toggled(button_pressed: bool) -> void:
 
 func on_credits_button_pressed() -> void:
 	credits_node.visible = !credits_node.visible
+	gui_node.visible = !credits_node.visible

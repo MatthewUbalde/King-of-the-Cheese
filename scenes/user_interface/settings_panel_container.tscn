@@ -77,6 +77,7 @@ text = "Screenshot"
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Gives out Hints"
+focus_mode = 0
 text = "Hints"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/VBoxContainer"]
