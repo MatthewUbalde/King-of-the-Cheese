@@ -54,7 +54,7 @@ func get_spawn_position() -> Vector2:
 
 func update_cheese(amount: int) -> void:
 	cheese_amount_max = amount
-	spawn_timer.start() 
+	start_time_log(cheese_amount)
 
 
 func spawn_cheese(quantity: int = 1) -> void:
@@ -86,8 +86,8 @@ func start_time_log(amount: int) -> void:
 
 
 func cheese_manage() -> void:
-	if cheese_amount == 0:
-		despawn_cheese()
+	if cheese_amount_max == 0:
+		despawn_cheese(cheese_amount)
 		return
 	
 	#TODO: Unable to update the Current Cheese counter when queue_free-ing cheeses
