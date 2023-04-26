@@ -99,65 +99,6 @@ const status_message_rng: Array = [
 
 var total_message_chance: int = 0
 
-#const secret_messages: Array = [
-#	"I'm always watching...",
-#	"happpyyy biirthdaayyyyyy...",
-#	"biirrrrttthhhhdaaaaayyy...",
-#	"iss ittt myyy birttthdaaayyy?",
-#	"kiiaarraa? wheeerree aarreee yoouu...",
-#	]
-#
-#const personal_messages: Array = [
-#	"Onward and upward!",
-#	"\"Hold on a minute, we're missing something...\"",
-#	"Thank you Hat Games for making the game! Good job Hat Team!",
-#	"Imagine writing a story about your escapism... Can't be me!",
-#	"\"No little faith is meaningless, but without action is.\" - C.",
-#	"Mustard Seed",
-#	"The game is pretty buggy, but I'm lazy to fix it!",
-#	"Oyasumi! Oyasumi! Close your eyes...",
-#	"mewo~",
-#	"nyan nyan nyan~!"]
-#
-#const koth_community_messages: Array = [
-#	"mad hatter, joxy'd", # Thanks Abook!
-#	"i'd hat to say no", # Thanks spudle
-#	"ok", # Thanks killer kirb!
-#	"I hat your IP hatdress", # Thanks Redino
-#	"bozo", # Thanks Salaso!
-#	"Splosh", # Thanks Tango!
-#	"Don't step the rock-alikes or something I guess?", # Thanks POOPATRON (Not really a direct quote. Just a hint...)
-#	"Something (said in funny voice)", # Thanks Hunter!
-#	"This game is way ahat of its time", # Thanks Pig master!
-#	"ITs cheesing time", #Thanks PoggerPenguin
-#	"Hat's on for cheese", #Thanks Sir Obisdian
-#	]
-#
-#const misc_community_messages: Array = [
-#	"goro majima from the hit game yakuza", # Thanks Tarot!
-#	"Stardew Valley Gaming", # Thanks Trianthania!
-#	"cat dreaming world on fireahhhhhhh", # Thanks Fi!
-#	"MANDKIND IS STONED. WEED IS FUEL. GAS STATION IS FULL.", # Thanks Minisuper!
-#	# These ones are fire, so I'm adding multiple ones LOL
-#	"WHAT DO YOU CALL A HAT THAT CAN CUT A TREE? A HAT-CHET", # Thanks Pig master's closest friend! (Gamershift)
-#	"SORRY, HAT PUNS ARE HARD. THEY'RE A REAL HEADSCRACTHER", # Thanks Pig master's closest friend! (Gamershift)
-#	"DO YOU KONW THE BOROUGH WITH THE BEST HAT STORES? IT'S MAN-HAT-TEN", # Thanks Pig master's closest friend! (Gamershift)
-#	"FEDORABLE. I DON'T EVEN HAVE A SETUP FOR THAT ONE", # Thanks Pig master's closest friend! (Gamershift)
-#	]
-#
-#const hint_messages: Array = [
-#	"This is status message!",
-#	"Hold 'Shift' to run!",
-#	"Hold 'X' to eat cheese while near them!",
-#	"Move around using arrow keys!",
-#	"Cheese adds on every day! Make sure you come back every now and then!",
-#	"Made by Fish with Headphones",
-#	"Made in Godot!",
-#	"You can zoom using Ctrl +/-. Even Ctrl and mouse scroll works!",
-#	"Ctrl and Spacebar resets the zoom!",
-#	"Play King of the Hat!",
-#	]
-
 const message_credits: Array = [
 	"Socrates",
 	"Jaruz",
