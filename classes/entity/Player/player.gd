@@ -1,11 +1,19 @@
 extends Entity
 class_name Player
 
+@export var anim_sprite: AnimatedSprite2D
+@export var cheese_sprite: Sprite2D
+
 @onready var hitbox: HitboxComponent = $HitboxComponent
 
 
 func _ready() -> void:
 	hitbox.hit.connect(on_hitbox_hit)
+	
+	# A 1 in a 1000 chance of becoming cheese
+	var rand_chance: bool = (absi(Ultilities.rng.randi_range(1, 1000))) == 1
+	cheese_sprite.visible = rand_chance
+	anim_sprite.visible = !rand_chance
 
 
 func _process(delta: float) -> void:
@@ -40,3 +48,4 @@ func get_movement_input() -> Vector2:
 #Signals
 func on_hitbox_hit() -> void: 
 	$YumSound.play()
+	ScoreManager.increase_by_score(ScoreManager.score_type.DEFAULT)

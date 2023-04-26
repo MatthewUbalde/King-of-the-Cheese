@@ -1,7 +1,7 @@
 extends PlayerState
 
 @export var idle_node: NodePath
-@export var sit_node: NodePath
+#@export var sit_node: NodePath
 @export var walk_node: NodePath
 @export var run_node: NodePath
 
@@ -10,9 +10,21 @@ extends PlayerState
 @onready var walk_state: BaseState = get_node(walk_node)
 @onready var run_state: BaseState = get_node(run_node)
  
+@export var idle_anim_timer: Timer
 
-#func _process_state(delta: float) -> BaseState: 
-#	return null
+func _ready_state() -> void:
+	super._ready_state()
+	idle_anim_timer.timeout.connect(on_idle_anim_timer_timeout)
+
+
+func _enter() -> void:
+	super._enter()
+	idle_anim_timer.start()
+
+
+func _exit() -> void:
+	super._exit()
+	idle_anim_timer.stop()
 
 
 func _physics_process_state(delta : float) -> BaseState:
@@ -24,6 +36,10 @@ func _physics_process_state(delta : float) -> BaseState:
 		return walk_state
 	
 	return null
+
+
+func on_idle_anim_timer_timeout() -> void:
+	player.animation_player.play(anim_enter_name)
 
 
 func _to_string() -> String:

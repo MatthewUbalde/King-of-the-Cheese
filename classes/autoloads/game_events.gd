@@ -2,7 +2,7 @@ extends Node
 
 signal update_day(current_day: int)
 
-const SECONDS_PER_DAY = 86_400
+const SECONDS_PER_DAY = 86_400.0
 
 var current_date: Dictionary
 var starting_date: Dictionary = { # Technically March 10, 2023, but it doesn't calculate the day right
@@ -17,6 +17,8 @@ var previous_day := 0
 
 
 func _ready() -> void:
+	Ultilities.create_data_folders()
+	
 	$Timer.timeout.connect(on_timer_timeout)
 	
 	current_date = Time.get_date_dict_from_system(false)
@@ -28,14 +30,14 @@ func _input(input: InputEvent) -> void:
 		return
 	
 	if input.is_action_pressed("ui_page_down"):
-		current_date.day -= 1
+		current_day -= 1
+		$Timer.stop()
+		emit_update_day()
 	
 	if input.is_action_pressed("ui_page_up"):
-		current_date.day += 1
-	
-	# Debugging purposes
-	$Timer.stop()
-	update_current_day()
+		current_day += 1
+		$Timer.stop()
+		emit_update_day()
 
 
 func update_current_day() -> void:
@@ -50,8 +52,8 @@ func update_current_day() -> void:
 		previous_day = current_day 
 
 
-func calculate_day_difference_with_unix_time(lhs: float, rhs: float) -> float:
-	return roundf((lhs - rhs) / SECONDS_PER_DAY)
+func calculate_day_difference_with_unix_time(lhs: float, rhs: float) -> int:
+	return roundi((lhs - rhs) / SECONDS_PER_DAY)
 
 
 func on_timer_timeout() -> void:

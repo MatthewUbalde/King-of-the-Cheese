@@ -1,6 +1,11 @@
 extends Node
 
-const INVALID_TEMP = "INVALID"
+# Game related data
+const CHEESE_AMOUNT_CAP: Array = [50, 75, 250, 500, 1000]
+
+# Other data
+const SCREENSHOT_DIR_PATH: String = "user://screenshots/"
+const INVALID_TEMP: String = "INVALID"
 
 const MONTH_LONG_FORM: Array[String] = [
 	INVALID_TEMP, # Unexpected value
@@ -34,6 +39,19 @@ const MONTH_SHORT_FORM: Array[String] = [
 	"DEC"
 ]
 
+enum SOUND_BUS_TYPE {
+	MASTER = 0,
+	MUSIC = 1,
+	EFFECTS = 2
+}
+
+@onready var music_sound_bus = AudioServer.get_bus_index("Music")
+@onready var sound_fx_sound_bus = AudioServer.get_bus_index("Effects")
+@onready var master_sound_bus = AudioServer.get_bus_index("Master")
+
+@onready var rng := RandomNumberGenerator.new()
+
+
 func get_month_string(month_num: int, short_form: bool = false) -> String:
 	if month_num < 1 && month_num > 12: 
 		return INVALID_TEMP # Invalid
@@ -55,3 +73,91 @@ func get_date_string_from_dict(date: Dictionary) -> String:
 		date_string += ", " + str(date.year)
 	
 	return date_string
+
+
+func create_data_folders() -> void:
+	# Create empty folder
+	var directories = DirAccess.open("user://") 
+	directories.make_dir("screenshots") 
+
+
+func take_screenshot(file_name: String) -> Error:
+	var image = get_viewport().get_texture().get_image()
+	#image.flip_y() as Godot 4.0 does not use OpenGL
+	var error: Error = image.save_png(SCREENSHOT_DIR_PATH + file_name + ".png")
+	
+	if error != OK:
+		print("Unable to create screenshot at " + SCREENSHOT_DIR_PATH + file_name + ".png") 
+	
+	return error
+
+
+func create_screenshot() -> String:
+	var date = Time.get_datetime_dict_from_system()
+	var screenshot_name = "cheese_%s%s%s.%s%s%s" % [date.month, date.day, date.year, date.hour, date.minute, date.second]
+	
+	var test_path = SCREENSHOT_DIR_PATH + screenshot_name + ".png"
+	if FileAccess.file_exists(test_path):
+		var increment = 0
+		
+		while FileAccess.file_exists(SCREENSHOT_DIR_PATH + screenshot_name + "_" + str(increment) + ".png"):
+			increment += 1
+		
+		screenshot_name += "_" + str(increment)
+	print_debug(test_path)
+	
+	var error = take_screenshot(screenshot_name)
+	
+	if error != OK:
+		return "Unable to save screenshot"
+	
+	return "Cheese~! '" + screenshot_name + "' Screenshot is taken."
+
+
+func set_fullscreen(is_fullscreen: bool) -> String:
+	if is_fullscreen:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		return "Set to fullscreen"
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		return "Set to windowed" 
+
+
+ 
+func set_master_sound_bus_mute(is_mute: bool) -> String:
+	if is_mute:
+		AudioServer.set_bus_mute(master_sound_bus, true)
+		return "All sound mute"
+	else:
+		AudioServer.set_bus_mute(master_sound_bus, false)
+		return "All sound unmute"
+
+
+func set_sound_bus_volume(value: float, type: SOUND_BUS_TYPE = SOUND_BUS_TYPE.MASTER) -> String:
+	const message = "Adjust %s to %%%s"
+	#TODO: Make it not hardcoded
+	# The 30 and 40 values is found in the sliders
+	var readable_value = roundf(((value + 30) / 40) * 100) #30 is the min and the 40 is (abs(-30) + 10) with 10 the maximum
+	
+	#print_debug("V: " + str(value) + "MV: " + str(AudioServer.get_bus_volume_db(music_sound_bus)))
+	match type:
+		SOUND_BUS_TYPE.MUSIC:
+			AudioServer.set_bus_volume_db(music_sound_bus, value)
+			AudioServer.set_bus_mute(music_sound_bus, value <= -30)
+			
+			return message % ["Music", readable_value]
+		SOUND_BUS_TYPE.EFFECTS:
+			AudioServer.set_bus_volume_db(sound_fx_sound_bus, value)
+			AudioServer.set_bus_mute(sound_fx_sound_bus, value <= -30)
+			
+			return message % ["Effects", readable_value]
+	return "Invalid bus"
+
+
+func get_sound_bus_volume_in_db(type: SOUND_BUS_TYPE = SOUND_BUS_TYPE.MASTER) -> float:
+	match type:
+		SOUND_BUS_TYPE.MUSIC:
+			return AudioServer.get_bus_volume_db(music_sound_bus)
+		SOUND_BUS_TYPE.EFFECTS:
+			return AudioServer.get_bus_volume_db(sound_fx_sound_bus)
+	return 0.0

@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjvbrk7l5g3we"]
+
+[ext_resource type="Script" path="res://scenes/background/fade_parallax_background.gd" id="1_0mhcv"]
+[ext_resource type="Texture2D" uid="uid://bld4246a8uoig" path="res://assets/backgrounds/Background Fade.png" id="1_i7nkl"]
+
+[node name="FadeParallaxBackground" type="ParallaxBackground"]
+scroll_ignore_camera_zoom = true
+script = ExtResource("1_0mhcv")
+
+[node name="FadeLayer" type="ParallaxLayer" parent="."]
+unique_name_in_owner = true
+motion_scale = Vector2(0.8, 0.05)
+motion_mirroring = Vector2(704, 0)
+
+[node name="TopFade" type="Sprite2D" parent="FadeLayer"]
+modulate = Color(0.992157, 0.858824, 0.619608, 1)
+texture = ExtResource("1_i7nkl")
+centered = false
+offset = Vector2(0, -275)
+
+[node name="BottomFade" type="Sprite2D" parent="FadeLayer"]
+self_modulate = Color(0.905882, 0.666667, 0.211765, 1)
+position = Vector2(0, 360)
+texture = ExtResource("1_i7nkl")
+centered = false
+flip_v = true

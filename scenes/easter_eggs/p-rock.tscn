@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://deb2dx77n5hoc"]
+
+[ext_resource type="Script" path="res://scenes/easter_eggs/p-rock.gd" id="1_xugyo"]
+[ext_resource type="Texture2D" uid="uid://cuvcf184xqjml" path="res://resources/rock.png" id="2_nrg0g"]
+[ext_resource type="AudioStream" uid="uid://b2ugoiuejhh4u" path="res://assets/sounds/Hattin.mp3" id="3_yr53f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oswop"]
+radius = 26.0192
+
+[node name="P-rock" type="Node2D"]
+script = ExtResource("1_xugyo")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_oswop")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.945098, 0.847059, 0.839216, 1)
+texture = ExtResource("2_nrg0g")
+offset = Vector2(0, -16)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_yr53f")
+volume_db = -4.0
+max_distance = 500.0
+bus = &"Effects"
