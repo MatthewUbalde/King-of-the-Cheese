@@ -61,6 +61,7 @@ const status_messages: Dictionary = {
 		"if you cant beat em, cheese em", # Thanks Jaruz!
 		"champagne for my real friends, real pain for my sham friends", # Thanks nu11!
 		"King of the Hat's imaginary future sequel is called Queen of the Shoe", # Thanks melbatoast!
+		"Say cheeeeeeeeese, and then you die", # Thanks alexis!
 		"Secretly cheese cake is still the best, but KotH Players don't like that so I won't tell you.", # Thanks Plunzi!
 		"The other Hat Team didn't respond... D:",
 		],
@@ -162,7 +163,7 @@ const message_credits: Array = [
 	"Jaruz",
 	"nu11",
 	"Melbatoast",
-	#"Alexis",
+	"alexis",
 	#"Alexis",
 	"Abook",
 	"spudle",
