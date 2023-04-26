@@ -12,14 +12,14 @@ config_version=5
 
 config/name="King of the Cheese"
 config/description="Watch as many cheeses grow around Dark Birthday each day in this fan-game of King of the Hat! RUN, EAT, and take PICTURES! As you go around in this very small and limited confined space eating cheese."
-run/main_scene="res://scenes/main/main.tscn"
+run/main_scene="res://scenes/user_interface/splash_screen_transition.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
-boot_splash/bg_color=Color(0.945098, 0.776471, 0.45098, 1)
+boot_splash/bg_color=Color(0.905882, 0.666667, 0.211765, 1)
+boot_splash/show_image=false
 boot_splash/image="res://resources/Made in Godot Splash Screen.png"
 boot_splash/fullsize=false
 config/icon="res://Cheese_logo.png"
 config/windows_native_icon="res://Cheese_logo.ico"
-boot_splash/minimum_display_time=2500
 
 [audio]
 
