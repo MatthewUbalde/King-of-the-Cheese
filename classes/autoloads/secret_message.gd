@@ -4,10 +4,13 @@ extends Node
 const status_messages: Dictionary = {
 	"hidden": [
 		"I'm always watching...",
+		"heellppp meeee...",
 		"happpyyy biirthdaayyyyyy...",
 		"biirrrrttthhhhdaaaaayyy...",
 		"iss ittt myyy birttthdaaayyy?",
 		"kiiaarraa? wheeerree aarreee yoouu...",
+		"faattccaaattt... whhyyy doo yoouu waanntt uss too sufffeerrr?",
+		"faattccaaattt... thheee kiidddd dooeesssnn'ttt neeeddd tooo suuffeerr",
 		"wheereee aaammm I?...",
 		"sooo maannyyyy cheeesseeee...",
 		"i waaanttt tooo gooo hoomeeeeee...",
@@ -78,7 +81,10 @@ const status_messages: Dictionary = {
 		"Hold \"X\" to eat cheese while near them!",
 		"Hold \"E\" to eat cheese while near them!",
 		"Hold \"Space Bar\" to eat cheese while near them!",
+		"\"F11\" now does fullscreen as of April 26, 2023.",
+		"\"Alt + Enter\" now does fullscreen as of April 26, 2023.",
 		"Move around using arrow keys!",
+		"Move around using AWSD! Or is it WASD?",
 		"Cheese adds on every day!",
 		"You can zoom using \"Ctrl +/-\".",
 		"Use your mouse wheel with \"Ctrl and Shift\" to zoom as well.",
@@ -89,8 +95,8 @@ const status_messages: Dictionary = {
 }
 
 const status_message_rng: Array = [
-	[150, status_messages.hints],
-	[35, status_messages.gamershift_jokes],
+	[175, status_messages.hints],
+	[33, status_messages.gamershift_jokes],
 	[32, status_messages.koth_community],
 	[27, status_messages.misc_community],
 	[5, status_messages.personal],
