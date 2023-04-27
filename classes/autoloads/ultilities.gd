@@ -53,7 +53,7 @@ enum SOUND_BUS_TYPE {
 
 
 func get_month_string(month_num: int, short_form: bool = false) -> String:
-	if month_num < 1 && month_num > 12: 
+	if month_num < 1 || month_num > 12: 
 		return INVALID_TEMP # Invalid
 	
 	if short_form:
