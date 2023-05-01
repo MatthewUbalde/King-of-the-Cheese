@@ -2,7 +2,7 @@ extends Node
 class_name CheeseManager
 
 const SPAWN_MAX_RADIUS := 500.0
-const SPAWN_MIN_RADIUS := 100.0
+const SPAWN_MIN_RADIUS := 75.0
 const SPAWN_TIMER_MIN := 0.15
 
 @export var basic_cheese_scene: PackedScene
