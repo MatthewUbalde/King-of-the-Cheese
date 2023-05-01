@@ -96,7 +96,7 @@ const status_messages: Dictionary = {
 
 const status_message_rng: Array = [
 	[175, status_messages.hints],
-	[33, status_messages.gamershift_jokes],
+	[35, status_messages.gamershift_jokes],
 	[32, status_messages.koth_community],
 	[27, status_messages.misc_community],
 	[5, status_messages.personal],
@@ -111,7 +111,7 @@ const message_credits: Array = [
 	"nu11",
 	"Melbatoast",
 	"alexis",
-	#"Alexis",
+	#"Petravita", #You didn't accept my friend rquest
 	"Abook",
 	"spudle",
 	"killer kirb",
@@ -150,29 +150,6 @@ func _ready():
 	# Get the total chance from the hint's rng chance
 	total_message_chance = calculate_total_chance()#status_message_rng[0][0]
 	print_debug("Total message chance: " + str(total_message_chance))
-	
-#	Used for testing
-#	print(get_random_message())
-
-
-## TODO: Potiential bug, runs the method twice somehow
-#func get_random_message_set() -> Array:
-#	var select_set_message: int = randi_range(1, status_messages.size()) 
-#	#print_debug("what")
-#	match select_set_message:
-#		1:
-#			return status_messages.hidden
-#		2:
-#			return status_messages.personal
-#		3:
-#			return status_messages.koth_community
-#		4:
-#			return status_messages.misc_community
-#		5:
-#			return status_messages.hints
-#		_:
-#			return []
-
 
 
 func get_random_message_set() -> Array:
@@ -208,7 +185,6 @@ func get_random_message_set() -> Array:
 
 func get_random_message() -> String:
 	var message_set_arr = get_random_message_set()
-	#print_debug(message_set_arr)
 	return message_set_arr[Ultilities.rng.randi_range(0, message_set_arr.size() - 1)]
 
 
