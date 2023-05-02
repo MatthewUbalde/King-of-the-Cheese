@@ -3,8 +3,11 @@ extends Node
 # Game related data
 const CHEESE_AMOUNT_CAP: Array = [50, 75, 250, 500, 1000]
 
-# Other data
-const SCREENSHOT_DIR_PATH: String = "user://screenshots/"
+# Directories
+const USER_BASE_PATH: String = "user://"
+const SCREENSHOT_DIR_NAME: String = "screenshots/"
+const SCREENSHOT_NAME_FORMAT: String = "cheese_%s%s%s.%s%s%s"
+
 const INVALID_TEMP: String = "INVALID"
 
 const MONTH_LONG_FORM: Array[String] = [
@@ -84,32 +87,44 @@ func create_data_folders() -> void:
 func take_screenshot(file_name: String) -> Error:
 	var image = get_viewport().get_texture().get_image()
 	#image.flip_y() as Godot 4.0 does not use OpenGL
-	var error: Error = image.save_png(SCREENSHOT_DIR_PATH + file_name + ".png")
+	var error: Error = image.save_png(USER_BASE_PATH + SCREENSHOT_DIR_NAME + file_name)
 	
 	if error != OK:
-		print("Unable to create screenshot at " + SCREENSHOT_DIR_PATH + file_name + ".png") 
+		print_debug("Unable to take screenshot at " + USER_BASE_PATH + SCREENSHOT_DIR_NAME + file_name) 
 	
 	return error
 
 
-func create_screenshot() -> String:
+func create_screenshot(file_type: String = ".png") -> String:
 	var date = Time.get_datetime_dict_from_system()
-	var screenshot_name = "cheese_%s%s%s.%s%s%s" % [date.month, date.day, date.year, date.hour, date.minute, date.second]
+	var screenshot_name =  SCREENSHOT_NAME_FORMAT % [date.month, date.day, date.year, date.hour, date.minute, date.second]
 	
-	var test_path = SCREENSHOT_DIR_PATH + screenshot_name + ".png"
-	if FileAccess.file_exists(test_path):
-		var increment = 0
-		
-		while FileAccess.file_exists(SCREENSHOT_DIR_PATH + screenshot_name + "_" + str(increment) + ".png"):
-			increment += 1
-		
-		screenshot_name += "_" + str(increment)
-	print_debug(test_path)
+	var error: Error = take_screenshot(screenshot_name + file_type)
+	if error != ERR_CANT_CREATE:
+		print_debug("CANT CREATE! " + screenshot_name + file_type)
+		return "CANT CREATE!"
 	
-	var error = take_screenshot(screenshot_name)
 	
 	if error != OK:
-		return "Unable to save screenshot"
+		print_debug("NOT OK!"  + screenshot_name + file_type)
+		return "NOT OK"
+	
+	
+	
+#	var test_path = USER_BASE_PATH + SCREENSHOT_DIR_NAME + screenshot_name + file_type
+#	if FileAccess.file_exists(test_path):
+#		var increment = 0
+#
+#		# Check for any duplicates 
+#		while FileAccess.file_exists(USER_BASE_PATH + SCREENSHOT_DIR_NAME + screenshot_name + "_" + str(increment) + file_type):
+#			increment += 1
+#
+#		screenshot_name += "_" + str(increment)
+#	#print_debug(test_path)
+#
+#	var error: Error = take_screenshot(screenshot_name + file_type)
+#	if error != OK:
+#		return "Unable to create screenshot"
 	
 	return "Cheese~! '" + screenshot_name + "' Screenshot is taken."
 
@@ -133,22 +148,20 @@ func set_master_sound_bus_mute(is_mute: bool) -> String:
 		return "All sound unmute"
 
 
-func set_sound_bus_volume(value: float, type: SOUND_BUS_TYPE = SOUND_BUS_TYPE.MASTER) -> String:
+func set_sound_bus_volume(value: float, type: SOUND_BUS_TYPE = SOUND_BUS_TYPE.MASTER, min: float = 30.0, max: float = 10.0) -> String:
 	const message = "Adjust %s to %%%s"
-	#TODO: Make it not hardcoded
-	# The 30 and 40 values is found in the sliders
-	var readable_value = roundf(((value + 30) / 40) * 100) #30 is the min and the 40 is (abs(-30) + 10) with 10 the maximum
 	
-	#print_debug("V: " + str(value) + "MV: " + str(AudioServer.get_bus_volume_db(music_sound_bus)))
+	var readable_value = roundf(((value + min) / (min + max)) * 100) #30 is the min and the 40 is (abs(-30) + 10) with 10 the maximum
+	
 	match type:
 		SOUND_BUS_TYPE.MUSIC:
 			AudioServer.set_bus_volume_db(music_sound_bus, value)
-			AudioServer.set_bus_mute(music_sound_bus, value <= -30)
+			AudioServer.set_bus_mute(music_sound_bus, value <= -min)
 			
 			return message % ["Music", readable_value]
 		SOUND_BUS_TYPE.EFFECTS:
 			AudioServer.set_bus_volume_db(sound_fx_sound_bus, value)
-			AudioServer.set_bus_mute(sound_fx_sound_bus, value <= -30)
+			AudioServer.set_bus_mute(sound_fx_sound_bus, value <= -min)
 			
 			return message % ["Effects", readable_value]
 	return "Invalid bus"
