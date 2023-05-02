@@ -22,6 +22,14 @@ func _ready() -> void:
 func on_game_events_update_day(current_day: int) -> void:
 	cheese_slider.max_value = current_day
 	
+	# This will be available when the limit comes...
+	var disable_limit_btn: bool = current_day < Ultilities.CHEESE_AMOUNT_CAP[4]
+	bypass_limit_button.disabled = disable_limit_btn
+	if disable_limit_btn:
+		bypass_limit_button.text = "Wait til' day " + str(Ultilities.CHEESE_AMOUNT_CAP[4])
+	else:
+		bypass_limit_button.text = "Bypass limit " + str(Ultilities.CHEESE_AMOUNT_CAP[4])
+	
 	# If none of the range hits, just stay here
 	if !bypass_limit:
 		cheese_slider.value = cheese_manager.check_cheese_amount()
