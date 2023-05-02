@@ -37,4 +37,4 @@ func change_to_main_scene() -> void:
 
 
 func on_self_speed_up(speed_factor: float):
-	cloud_parallax_bg.speed_factor = speed_factor 
+	cloud_parallax_bg.speed_factor = speed_factor * cloud_parallax_bg.SPEED_UP
