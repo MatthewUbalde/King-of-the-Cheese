@@ -1,29 +1,32 @@
 extends PlayerState
 class_name MoveState
 
-@export var idle_node: NodePath
-#@export var sit_node: NodePath
-@export var walk_node: NodePath
-@export var run_node: NodePath
+@export var idle_state: BaseState
 
-@onready var idle_state: BaseState = get_node(idle_node)
-#@onready var sit_state: BaseState = get_node(sit_node)
-@onready var walk_state: BaseState = get_node(walk_node)
-@onready var run_state: BaseState = get_node(run_node)
+#func _enter() -> void:
+#	super._enter()
+#
+
+func _input_state(event : InputEvent) -> BaseState:
+	if event.is_action_pressed("move_cancel"):
+		return idle_state
+	return null
 
 
 func _physics_process_state(delta: float) -> BaseState:
-	player.move_direction = player.get_movement_input()
+	# If it's not using mouse input, then do keyboard!
+	if !Input.is_action_pressed("move_here"):
+		player.move_direction = player.get_movement_input()
 	player.face_movement()
 	
 	if player.move_direction == Vector2.ZERO:
 		return idle_state
 	
-	if player.move_direction.y == 0 || player.move_direction.x != 0:
-		player.prev_direction = player.move_direction
-	
 	player.apply_speed(player.current_speed)
-	player.move_and_slide()
+	player.apply_velocity(delta)
+	
+	if player.check_out_of_boundary():
+		player.clamp_global_position()
 	
 	return null
 

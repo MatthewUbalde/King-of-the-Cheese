@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://bq83k8elmv5db"]
+
+[ext_resource type="Script" path="res://scenes/insanity/insanity_canvas_layer.gd" id="1_0d6ue"]
+[ext_resource type="Theme" uid="uid://bx3rgbhg0k4eg" path="res://assets/gui/main_gui.tres" id="2_tor2d"]
+[ext_resource type="FontFile" uid="uid://bnvocv0hn86u2" path="res://assets/fonts/CursedTimerUlil-Aznm.ttf" id="3_x2icw"]
+[ext_resource type="FontFile" uid="uid://ct2ikkigupgvp" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="4_xnmhr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qmiw2"]
+line_spacing = 0.0
+font = ExtResource("3_x2icw")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_5jcdv"]
+line_spacing = 0.0
+font = ExtResource("4_xnmhr")
+font_size = 20
+
+[node name="InsanityCanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_0d6ue")
+
+[node name="ColorEnding" type="ColorRect" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorMadnessRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.262745, 0, 0, 0.784314)
+
+[node name="CoundownLabel" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -33.0
+offset_right = 60.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(59, 34)
+size_flags_horizontal = 4
+theme = ExtResource("2_tor2d")
+text = "000"
+label_settings = SubResource("LabelSettings_qmiw2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MessageLabel" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -295.5
+offset_top = -64.0
+offset_right = 295.5
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(295.5, 64)
+text = "I missed 
+you..."
+label_settings = SubResource("LabelSettings_5jcdv")
+horizontal_alignment = 1
+vertical_alignment = 1

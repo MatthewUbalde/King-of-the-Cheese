@@ -4,9 +4,3 @@
 
 [node name="WalkState" type="Node"]
 script = ExtResource("1_hhdlp")
-idle_node = null
-sit_node = null
-walk_node = null
-run_node = null
-anim_enter_name = null
-anim_exit_name = null

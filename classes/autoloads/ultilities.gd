@@ -1,7 +1,10 @@
 extends Node
 
 # Game related data
-const CHEESE_AMOUNT_CAP: Array = [50, 75, 250, 500, 1000]
+const CHEESE_AMOUNT_CAP: Array = [35, 75, 250, 500, 1000]
+#const ARENA_SIZE: Array[Vector2] = [Vector2(-1250, -1250), Vector2(1250, 1250)]
+const ARENA_SIZE: Array = [-1250, 1250]
+const ARENA_POINTS: Array[Vector2] = [Vector2(ARENA_SIZE[0],ARENA_SIZE[0]), Vector2(ARENA_SIZE[1],ARENA_SIZE[1])]
 
 # Directories
 const USER_BASE_PATH: String = "user://"
@@ -47,6 +50,8 @@ enum SOUND_BUS_TYPE {
 	MUSIC = 1,
 	EFFECTS = 2
 }
+
+const SOUND_MESSAGE = "Adjust %s to %%%s"
 
 @onready var music_sound_bus = AudioServer.get_bus_index("Music")
 @onready var sound_fx_sound_bus = AudioServer.get_bus_index("Effects")
@@ -100,7 +105,7 @@ func create_screenshot(file_type: String = ".png") -> String:
 	var screenshot_name =  SCREENSHOT_NAME_FORMAT % [date.month, date.day, date.year, date.hour, date.minute, date.second]
 	
 	var error: Error = take_screenshot(screenshot_name + file_type)
-	if error != ERR_CANT_CREATE:
+	if error == ERR_CANT_CREATE:
 		print_debug("CANT CREATE! " + screenshot_name + file_type)
 		return "CANT CREATE!"
 	
@@ -110,35 +115,22 @@ func create_screenshot(file_type: String = ".png") -> String:
 		return "NOT OK"
 	
 	
-	
-#	var test_path = USER_BASE_PATH + SCREENSHOT_DIR_NAME + screenshot_name + file_type
-#	if FileAccess.file_exists(test_path):
-#		var increment = 0
-#
-#		# Check for any duplicates 
-#		while FileAccess.file_exists(USER_BASE_PATH + SCREENSHOT_DIR_NAME + screenshot_name + "_" + str(increment) + file_type):
-#			increment += 1
-#
-#		screenshot_name += "_" + str(increment)
-#	#print_debug(test_path)
-#
-#	var error: Error = take_screenshot(screenshot_name + file_type)
-#	if error != OK:
-#		return "Unable to create screenshot"
-	
 	return "Cheese~! '" + screenshot_name + "' Screenshot is taken."
 
 
 func set_fullscreen(is_fullscreen: bool) -> String:
-	if is_fullscreen:
+	if is_fullscreen || DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_FULLSCREEN:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		return "Set to fullscreen"
 	else:
+		if InsanityEvents.in_madness:
+			return "Stop hiding from me..."
+		
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		return "Set to windowed" 
+		
 
 
- 
 func set_master_sound_bus_mute(is_mute: bool) -> String:
 	if is_mute:
 		AudioServer.set_bus_mute(master_sound_bus, true)
@@ -148,23 +140,33 @@ func set_master_sound_bus_mute(is_mute: bool) -> String:
 		return "All sound unmute"
 
 
-func set_sound_bus_volume(value: float, type: SOUND_BUS_TYPE = SOUND_BUS_TYPE.MASTER, min: float = 30.0, max: float = 10.0) -> String:
-	const message = "Adjust %s to %%%s"
-	
-	var readable_value = roundf(((value + min) / (min + max)) * 100) #30 is the min and the 40 is (abs(-30) + 10) with 10 the maximum
+func set_sound_bus_volume(value: float, type: SOUND_BUS_TYPE = SOUND_BUS_TYPE.MASTER, min_vol: float = 30.0, max_vol: float = 10.0) -> String:
+	var readable_value = roundf(((value + min_vol) / (min_vol + max_vol)) * 100) #30 is the min and the 40 is (abs(-30) + 10) with 10 the maximum
 	
 	match type:
 		SOUND_BUS_TYPE.MUSIC:
 			AudioServer.set_bus_volume_db(music_sound_bus, value)
-			AudioServer.set_bus_mute(music_sound_bus, value <= -min)
+			AudioServer.set_bus_mute(music_sound_bus, value <= -min_vol)
 			
-			return message % ["Music", readable_value]
+			return SOUND_MESSAGE % ["Music", readable_value]
 		SOUND_BUS_TYPE.EFFECTS:
 			AudioServer.set_bus_volume_db(sound_fx_sound_bus, value)
-			AudioServer.set_bus_mute(sound_fx_sound_bus, value <= -min)
+			AudioServer.set_bus_mute(sound_fx_sound_bus, value <= -min_vol)
 			
-			return message % ["Effects", readable_value]
+			return SOUND_MESSAGE % ["Effects", readable_value]
 	return "Invalid bus"
+
+
+func set_music_reverb(enable: bool):
+	AudioServer.set_bus_effect_enabled(1, 0, enable)
+
+
+func set_music_distortion(enable: bool):
+	AudioServer.set_bus_effect_enabled(1, 1, enable)
+
+
+func set_sound_effects_reverb(enable: bool):
+	AudioServer.set_bus_effect_enabled(2, 0, enable)
 
 
 func get_sound_bus_volume_in_db(type: SOUND_BUS_TYPE = SOUND_BUS_TYPE.MASTER) -> float:

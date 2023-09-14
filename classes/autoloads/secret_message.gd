@@ -1,7 +1,7 @@
 extends Node
 
 
-const status_messages: Dictionary = {
+var status_messages: Dictionary = {
 	"hidden": [
 		"I'm always watching...",
 		"heellppp meeee...",
@@ -20,25 +20,12 @@ const status_messages: Dictionary = {
 	"personal": [ # I made these ha.
 		"Onward and upward!",
 		"\"Hold on a minute, we're missing something...\"",
-		"Thank you Hat Games for making the game! Good job Hat Team!",
 		"Imagine writing a story about your escapism... Can't be me!",
-		"\"No little faith is meaningless, but without action is.\" - C.",
-		"Mustard mustard mustard mustard mustard mustard mustard",
-		"The game is pretty buggy, but I'm lazy to fix it!",
-		"Oyasumi! Oyasumi! Close your eyes...",
-		"mewo~",
-		"nyan nyan nyan~!",
-		"Let's ride into the sunset together...",
-		"Big gun on his hip. Big gun on hiss hiippp...",
-		"The dev is a fish and loves eating fish",
-		"Hotdog",
-		"Do an Kickflip!",
-		"The birds are singing and the flowers are blooming...",
-		"Pata pata pata pon!",
-		"FEVER!!",
-		"Booyah!",
-		"Why did the bike fell over? Because it was two-tired. Hahahah...",
-		"The Hat Team are cool people",
+		"The dev is a fish and loves eating fish.",
+		# Don't cancel Hat Games for these verses. I put them there because I want to.
+		#They're also really hard to see anyway. :P
+		"...if you have faith as small as a mustard seed...",
+		"And now these three remain: faith, hope and love. But the greatest of these is love.",
 		],
 	"gamershift_jokes": [ # These ones are fire, so I'm adding multiple ones LOL
 		"WHAT DO YOU CALL A HAT THAT CAN CUT A TREE? A HAT-CHET", # Thanks Pig master's closest friend! (Gamershift)
@@ -53,7 +40,7 @@ const status_messages: Dictionary = {
 		"I hat your IP hatdress", # Thanks Redino!
 		"bozo", # Thanks Salaso!
 		"Splosh", # Thanks Tango!
-		"Don't step the rock-alikes or something I guess?", # Thanks POOPATRON (Not really a direct quote. Just a hint...)
+		"Don't step the rock-alikes or something I guess?", # Thanks POOPATRON (Not really a direct quote. Just a hint...) #ps. I hate this message
 		"Something (said in funny voice)", # Thanks Hunter!
 		"This game is way ahat of its time", # Thanks Pig master!
 		"ITs cheesing time", #Thanks PoggerPenguin!
@@ -76,31 +63,40 @@ const status_messages: Dictionary = {
 		"I AM SEARCHING FOR THE STRONGHOLD!!", # Thanks decendium!
 		],
 	"hints": [
-		"This is a hint!",
 		"Hold \"Shift\" to run!",
 		"Hold \"X\" to eat cheese while near them!",
 		"Hold \"E\" to eat cheese while near them!",
 		"Hold \"Space Bar\" to eat cheese while near them!",
-		"\"F11\" now does fullscreen as of April 26, 2023.",
-		"\"Alt + Enter\" now does fullscreen as of April 26, 2023.",
-		"Move around using arrow keys!",
-		"Move around using AWSD! Or is it WASD?",
-		"Cheese adds on every day!",
+		"\"F11\" does fullscreen as of April 26, 2023.",
+		"\"Alt + Enter\" does fullscreen as of April 26, 2023.",
+		"Move around using arrow keys or WASD!",
 		"You can zoom using \"Ctrl +/-\".",
 		"Use your mouse wheel with \"Ctrl and Shift\" to zoom as well.",
 		"\"Ctrl and Spacebar\" resets the zoom!",
-		"Play King of the Hat!",
 		"Screenshots are in \"AppData/Roaming/Godot/app_userdata/King of The Hat Cheese\"",
-		]
+		"\"Ctrl + H\" will hide the GUI for you!",
+		"Spawning instantly might slow down your device!"
+		],
+	"facts": [
+		"Cheese used to add on every day... Until the 24th.",
+		"August 24, 2023 is the King of the Hat console release!",
+		"Play King of the Hat!",
+		"Thank you Hat Games for making the game! Good job Hat Team!",
+		"The Hat Team are cool people",
+		"Dark Birthday straights up chomps these little cheeses",
+		"Please play in Ranked. There are players that need you!",
+		"Redino has missed... " + str(GameEvents.day_reduction) + " days!"
+	]
 }
 
-const status_message_rng: Array = [
-	[175, status_messages.hints],
-	[35, status_messages.gamershift_jokes],
-	[32, status_messages.koth_community],
-	[27, status_messages.misc_community],
+var status_message_rng: Array = [
 	[5, status_messages.personal],
-	[1, status_messages.hidden]
+	[10, status_messages.hidden],
+	[25, status_messages.misc_community],
+	[35, status_messages.gamershift_jokes],
+	[40, status_messages.koth_community],
+	[60, status_messages.facts],
+	[175, status_messages.hints]
 ]
 
 var total_message_chance: int = 0
@@ -111,7 +107,7 @@ const message_credits: Array = [
 	"nu11",
 	"Melbatoast",
 	"alexis",
-	#"Petravita", #You didn't accept my friend rquest
+	#"Petravita", # You didn't accept my friend rquest. :c
 	"Abook",
 	"spudle",
 	"killer kirb",
@@ -142,28 +138,34 @@ func calculate_total_chance() -> int:
 	return total_chance
 
 
-func _ready(): 
+func _ready() -> void: 
 	# Make the status messages read only
 	status_messages.make_read_only()
+	message_credits.make_read_only()
+	status_message_rng.make_read_only()
 	
 	# Get the total chance to be used later in get_random_message_set()
 	# Get the total chance from the hint's rng chance
-	total_message_chance = calculate_total_chance()#status_message_rng[0][0]
+	total_message_chance = calculate_total_chance()
 	print_debug("Total message chance: " + str(total_message_chance))
 
 
 func get_random_message_set() -> Array:
 	# Uses the Hint's rng chance as the base
-	var rand_chance: int = absi(Ultilities.rng.randi_range(0, total_message_chance)) 
+	var rand_chance: int = Ultilities.rng.randi_range(0, total_message_chance)
 	
 	#print_debug(rand_chance)
+	# What it'll do is that it'll add on to rand_min_chance and will check if it's greater or less
+	#than the rand_chance
+	var rand_min_chance: int = 0 
 	for message_set in status_message_rng:
-		if message_set[0] < rand_chance:
+		rand_min_chance += message_set[0]
+		if rand_min_chance >= rand_chance:
 			return message_set[1]
 	
 	return status_message_rng[0][1]
 	
-#	Decided to go against this as it's biased at the beginning and the end of the set.
+#	Decided to go against miV's solution as it's biased at the beginning and the end of the set.
 #	miV's fixed solution
 #	var rand_chance: int = absi(Ultilities.rng.randi_range(0, total_message_chance)) 
 #
@@ -184,7 +186,7 @@ func get_random_message_set() -> Array:
 
 
 func get_random_message() -> String:
-	var message_set_arr = get_random_message_set()
+	var message_set_arr: Array = get_random_message_set()
 	return message_set_arr[Ultilities.rng.randi_range(0, message_set_arr.size() - 1)]
 
 

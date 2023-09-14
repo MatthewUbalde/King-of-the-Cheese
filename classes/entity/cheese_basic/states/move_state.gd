@@ -1,17 +1,8 @@
 extends CheeseState
 
-@export var idle_node: NodePath
-#@export var panic_node: NodePath
-#@export var relax_node: NodePath
+@export var idle_state: BaseState
 
-@onready var idle_state: BaseState = get_node(idle_node) 
-#@onready var panic_state: BaseState = get_node(panic_node)
-#@onready var relax_state: BaseState = get_node(relax_node)
-
-@export var move_wait_time_range: float = 2.0
-@export var move_timer: Timer
-@onready var move_wait_time_base: float = move_timer.wait_time
-
+@onready var move_timer: Timer = %MoveTimer
 
 func _ready_state() -> void:
 	super._ready_state()
@@ -22,24 +13,30 @@ func _ready_state() -> void:
 func _enter() -> void:
 	super._enter()
 	
-	move_timer.start(cheese.range_rand_value(move_wait_time_base, move_wait_time_range))
+	move_timer.start(cheese.move_wait_time + Ultilities.rng.randf() * cheese.WAIT_TIME_RANGE)
+	cheese.update_speed_insanity()
+	
+	cheese.current_speed += Ultilities.rng.randf_range(-cheese.SPEED_RAND_RANGE, cheese.SPEED_RAND_RANGE)
+	
+	if cheese.check_out_of_boundary():
+		cheese.move_direction = Vector2.from_angle(cheese.global_position.angle_to_point(Vector2.ZERO))
+		cheese.current_speed *= 1.5
+	else:
+		cheese.randomize_move_direction()
+	
+	cheese.face_movement()
 
 
 func _physics_process_state(delta: float) -> BaseState:
-	cheese.face_movement()
-	
-	if cheese.move_direction.y == 0 || cheese.move_direction.x != 0:
-		cheese.prev_direction = cheese.move_direction
-	
 	cheese.apply_speed(cheese.current_speed)
-	cheese.move_and_slide()
+	cheese.apply_velocity(delta)
+#	print("running??")
 	
 	return null
 
 
 func on_move_timer_timeout() -> void:
-	force_change_state.emit(idle_state)
-
+	cheese.state_machine.change_state(idle_state)
 
 
 func _to_string() -> String:

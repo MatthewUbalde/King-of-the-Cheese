@@ -1,11 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjvbrk7l5g3we"]
+[gd_scene load_steps=2 format=3 uid="uid://bjvbrk7l5g3we"]
 
-[ext_resource type="Script" path="res://scenes/background/fade_parallax_background.gd" id="1_0mhcv"]
 [ext_resource type="Texture2D" uid="uid://bld4246a8uoig" path="res://assets/backgrounds/Background Fade.png" id="1_i7nkl"]
 
 [node name="FadeParallaxBackground" type="ParallaxBackground"]
 scroll_ignore_camera_zoom = true
-script = ExtResource("1_0mhcv")
 
 [node name="FadeLayer" type="ParallaxLayer" parent="."]
 unique_name_in_owner = true

@@ -3,19 +3,29 @@ extends Control
 @export var gui: Control
 
 @onready var message_credits_arr: Array = SecretMessage.message_credits
-@onready var hide_button: Button = %HideButton
 @onready var message_credits_container: VBoxContainer = %MessageCreditsContainer
 
-@onready var label_settings_credits: LabelSettings = LabelSettings.new()
+#@onready var label_settings_credits: LabelSettings = LabelSettings.new()
+@export var label_settings_credits: LabelSettings
 
 func _ready():
-	# Creating unique label settings for the credits for the easter eggs
-	label_settings_credits.font_size = 20
-	label_settings_credits.line_spacing = 0
+	fill_credits_container(6)
+
+
+#func _gui_input(event: InputEvent) -> void:
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouse && Input.is_action_pressed("disable_mouse"):
+		return
 	
-	fill_credits_container(5)
+	if !event.is_pressed() || Input.is_action_pressed("disable_mouse"):
+		return
 	
-	hide_button.pressed.connect(on_hide_button_pressed)
+	# Hide the credits and bring back the GUI
+	if visible:
+		visible = false
+		gui.visible = !visible
 
 
 func create_label(text: String, label_settings: LabelSettings = null) -> Label:
@@ -23,7 +33,6 @@ func create_label(text: String, label_settings: LabelSettings = null) -> Label:
 	label.text = text
 	
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	#label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	if label_settings:
 		label.label_settings = label_settings 
 	
@@ -48,10 +57,4 @@ func fill_credits_container(max_length_word: int = -1) -> void:
 				message += ", "
 		
 		# Inserts the text after looping for max_length_words in here
-		#print(message)
 		message_credits_container.add_child(create_label(message, label_settings_credits))
-
-
-func on_hide_button_pressed() -> void:
-	visible = false
-	gui.visible = !visible

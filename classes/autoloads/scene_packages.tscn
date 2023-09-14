@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4b2xgrtlq6rd"]
+
+[ext_resource type="Script" path="res://classes/autoloads/scene_packages.gd" id="1_u5ucd"]
+[ext_resource type="PackedScene" uid="uid://wjnxjxv6pbv5" path="res://scenes/particles/eat_particles.tscn" id="2_pko5y"]
+[ext_resource type="PackedScene" uid="uid://x04ytis208ae" path="res://scenes/cheese_basic/sound_player.tscn" id="3_feyhk"]
+
+[node name="ScenePackages" type="Node"]
+script = ExtResource("1_u5ucd")
+eat_particle_scene = ExtResource("2_pko5y")
+cheese_sounds_player = ExtResource("3_feyhk")

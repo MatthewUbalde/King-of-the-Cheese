@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://dm6ugeunwa0rx"]
+
+[ext_resource type="Script" path="res://scenes/insanity/insanity_events.gd" id="1_q3xdc"]
+
+[node name="InsanityEvents" type="Node"]
+script = ExtResource("1_q3xdc")
+insane_wait_time = 24.0
+madness_wait_time = 60.0
+madness_message = "You..."
+delusional_message = "Are you really
+him?"
+game_ending_wait_time = 24.0
+game_ending_message = "Wake up"
+complete_wait_time = 8.24
+ending_message = "iss itt my biirrtthhdaayy?
+"
+discord_state_insane = "whhatt'ss happenninggg"
+discord_state_madness = "mmeee??"
+discord_state_delusional = "mmyyy biirrtthddaayy?"
+discord_state_game_ending = "Kiara?"
+discord_state_end = "cheeesseee..."
+
+[node name="StateTimer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true

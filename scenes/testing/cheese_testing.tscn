@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bxfbief3m3wnn"]
 
-[ext_resource type="PackedScene" uid="uid://c0w5flbvwpgaf" path="res://scenes/manager/cheese_manager.tscn" id="1_lb4qh"]
+[ext_resource type="PackedScene" uid="uid://c0w5flbvwpgaf" path="res://assets/manager/cheese_manager.tscn" id="1_lb4qh"]
 [ext_resource type="PackedScene" uid="uid://bj86jnd573use" path="res://scenes/dark_birthday/dark_birthday.tscn" id="2_emk3r"]
 [ext_resource type="PackedScene" uid="uid://2c4qhtk3qneh" path="res://scenes/camera/player_camera_2d.tscn" id="3_e4j40"]
 

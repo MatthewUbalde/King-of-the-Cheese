@@ -1,16 +1,20 @@
-[gd_scene load_steps=15 format=3 uid="uid://bcwoa043elpcp"]
+[gd_scene load_steps=19 format=3 uid="uid://bcwoa043elpcp"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_4wnnl"]
-[ext_resource type="PackedScene" uid="uid://c0w5flbvwpgaf" path="res://scenes/manager/cheese_manager.tscn" id="1_4803e"]
+[ext_resource type="PackedScene" uid="uid://c0w5flbvwpgaf" path="res://assets/manager/cheese_manager.tscn" id="1_4803e"]
 [ext_resource type="PackedScene" uid="uid://bj86jnd573use" path="res://scenes/dark_birthday/dark_birthday.tscn" id="2_2wfpe"]
-[ext_resource type="AudioStream" uid="uid://bfs1u5ad7fogo" path="res://assets/music/Relaxing Cheese.wav" id="3_xif2m"]
+[ext_resource type="AudioStream" uid="uid://cbn1ea2hmyubx" path="res://assets/music/Relaxing Cheese (v2).wav" id="3_vw4os"]
 [ext_resource type="PackedScene" uid="uid://dss6ihk74bphr" path="res://scenes/user_interface/user_interface.tscn" id="4_463pj"]
+[ext_resource type="AudioStream" uid="uid://bogng3hikhyjb" path="res://assets/music/Relaxing Cheese (ending).wav" id="4_pjyrs"]
+[ext_resource type="AudioStream" uid="uid://sh7w1kg42ps6" path="res://assets/music/Static Noise.wav" id="4_va68r"]
 [ext_resource type="PackedScene" uid="uid://bjvbrk7l5g3we" path="res://scenes/background/fade_parallax_background.tscn" id="5_d0aw6"]
 [ext_resource type="PackedScene" uid="uid://2c4qhtk3qneh" path="res://scenes/camera/player_camera_2d.tscn" id="5_jd4r4"]
+[ext_resource type="PackedScene" uid="uid://bcvfe5rn86elo" path="res://scenes/user_interface/control_joystick.tscn" id="6_odyag"]
 [ext_resource type="PackedScene" uid="uid://deb2dx77n5hoc" path="res://scenes/easter_eggs/p-rock.tscn" id="7_75v7p"]
+[ext_resource type="Texture2D" uid="uid://cuvcf184xqjml" path="res://scenes/easter_eggs/rock.png" id="7_eafbp"]
 [ext_resource type="PackedScene" uid="uid://dnyikpa3hb7d" path="res://scenes/background/cloud_parallax_background.tscn" id="7_jofek"]
-[ext_resource type="Texture2D" uid="uid://cuvcf184xqjml" path="res://resources/rock.png" id="7_yc6w5"]
 [ext_resource type="Texture2D" uid="uid://d0n5mfh3mjn81" path="res://assets/fun_pictures/Screenshot 2023-04-24 212011.png" id="8_7of8a"]
+[ext_resource type="PackedScene" uid="uid://bq83k8elmv5db" path="res://scenes/insanity/insanity_canvas_layer.tscn" id="14_dkydp"]
 
 [sub_resource type="Animation" id="Animation_e5fue"]
 length = 0.001
@@ -79,220 +83,251 @@ script = ExtResource("1_4wnnl")
 center = NodePath("../Entities/DarkBirthday")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_xif2m")
+stream = ExtResource("3_vw4os")
 autoplay = true
 bus = &"Music"
+
+[node name="EndingMusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_pjyrs")
+bus = &"Music"
+
+[node name="StaticPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_va68r")
+volume_db = -20.0
 
 [node name="Entities" type="Node2D" parent="." groups=["entities_layer"]]
 y_sort_enabled = true
 metadata/_edit_lock_ = true
 
-[node name="DarkBirthday" parent="Entities" instance=ExtResource("2_2wfpe")]
-position = Vector2(303, 227)
+[node name="DarkBirthday" parent="Entities" node_paths=PackedStringArray("joystick") instance=ExtResource("2_2wfpe")]
+unique_name_in_owner = true
+joystick = NodePath("../../ControlsLayer/ControlJoystick")
 
-[node name="PlayerCamera2D" parent="Entities/DarkBirthday" instance=ExtResource("5_jd4r4")]
+[node name="PlayerCamera2D" parent="Entities/DarkBirthday" node_paths=PackedStringArray("player") instance=ExtResource("5_jd4r4")]
+limit_left = -2500
+limit_top = -2500
+limit_right = 2500
+limit_bottom = 2500
+position_smoothing_speed = 6.0
+editor_draw_drag_margin = false
+player = NodePath("..")
 
 [node name="Rocks" type="Node2D" parent="Entities"]
 y_sort_enabled = true
 
 [node name="Rock" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(106, 232)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock2" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(1119, 220)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock3" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(726, 646)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock4" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-287, 880)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock5" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-536, 383)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock6" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-167, -69)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock7" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(501, -318)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock8" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(744, 111)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock9" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(327, 707)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock10" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(390, 258)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock11" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(995, 935)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock12" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-15, 575)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock13" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-701, 968)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock14" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-803, 120)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock15" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-605, -368)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock16" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(1103, -293)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock17" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-915, 621)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock18" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-240, 1278)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock20" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-1223, 1260)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock21" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(1114, 1231)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock22" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(499, 1258)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock23" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-1102, 328)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock24" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-1077, -415)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock25" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-702, -615)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock26" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(75, -575)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock27" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(1123, -716)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock28" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(762, -588)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock29" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(432, -940)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock30" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-273, -859)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock31" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-931, -1061)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock32" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-931, -1061)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock33" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-1092, -827)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock34" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-1074, -1207)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock35" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-542, -1242)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock36" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-539, -1053)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rocks37" parent="Entities/Rocks" instance=ExtResource("7_75v7p")]
+editor_description = "I regret putting this rock here..."
 position = Vector2(1039, -873)
 
 [node name="Rock37" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(202, -1053)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock38" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(1031, -1212)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock39" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(1177, -1015)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock40" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(854, -851)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock41" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(670, -1179)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock42" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-146, -1098)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock43" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-136, -360)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock44" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(-196, 243)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock45" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(1217, 513)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Rock19" type="Sprite2D" parent="Entities/Rocks"]
 position = Vector2(400, 997)
-texture = ExtResource("7_yc6w5")
+texture = ExtResource("7_eafbp")
 
 [node name="Screenshot2023-04-24212011" type="Sprite2D" parent="Entities/Rocks"]
-position = Vector2(2342, 1640)
+position = Vector2(2126, 1526)
 texture = ExtResource("8_7of8a")
 
+[node name="ControlsLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="ControlJoystick" parent="ControlsLayer" instance=ExtResource("6_odyag")]
+z_index = -1
+
 [node name="UserInterface" parent="." node_paths=PackedStringArray("cheese_manager") instance=ExtResource("4_463pj")]
+layer = 2
 cheese_manager = NodePath("../CheeseManager")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
 
-[node name="CloudParallaxBackground" parent="CanvasLayer" instance=ExtResource("7_jofek")]
+[node name="CloudParallaxBackground" parent="BackgroundLayer" instance=ExtResource("7_jofek")]
 layer = -100
 
-[node name="FadeParallaxBackground" parent="CanvasLayer" instance=ExtResource("5_d0aw6")]
+[node name="FadeParallaxBackground" parent="BackgroundLayer" instance=ExtResource("5_d0aw6")]
+
+[node name="InsanityCanvasLayer" parent="." node_paths=PackedStringArray("music_main_player", "static_player", "music_ending_player") instance=ExtResource("14_dkydp")]
+layer = 3
+music_main_player = NodePath("../MusicPlayer")
+static_player = NodePath("../StaticPlayer")
+music_ending_player = NodePath("../EndingMusicPlayer")
 
 [node name="Transition" type="CanvasLayer" parent="."]
+layer = 3
 
 [node name="ColorRect" type="ColorRect" parent="Transition"]
 anchors_preset = 15
@@ -308,3 +343,6 @@ autoplay = "enter"
 libraries = {
 "": SubResource("AnimationLibrary_n1v6b")
 }
+
+[node name="DiscordUpdateTimer" type="Timer" parent="."]
+wait_time = 10.0

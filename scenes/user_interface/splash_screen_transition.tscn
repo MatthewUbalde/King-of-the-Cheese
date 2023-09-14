@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://vl7krib4go7p"]
+[gd_scene load_steps=15 format=3 uid="uid://vl7krib4go7p"]
 
 [ext_resource type="PackedScene" uid="uid://dnyikpa3hb7d" path="res://scenes/background/cloud_parallax_background.tscn" id="1_6lpeo"]
 [ext_resource type="Texture2D" uid="uid://bsb872vi6nbvk" path="res://resources/Made in Godot Splash Screen.png" id="1_730pv"]
 [ext_resource type="Script" path="res://scenes/user_interface/splash_screen_transition.gd" id="1_sa8no"]
 [ext_resource type="PackedScene" uid="uid://bcwoa043elpcp" path="res://scenes/main/main.tscn" id="2_lsenh"]
 [ext_resource type="Texture2D" uid="uid://diycacgra03un" path="res://resources/Fish wtih Headphones!.png" id="5_kwgql"]
+[ext_resource type="LabelSettings" uid="uid://dqkmtytrdx3j8" path="res://scenes/user_interface/credits_body_label_settings.tres" id="6_gvvpr"]
 
 [sub_resource type="Animation" id="Animation_5s8ig"]
 length = 0.001
@@ -529,6 +530,25 @@ texture = ExtResource("1_730pv")
 visible = false
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_kwgql")
+
+[node name="MarginContainer" type="MarginContainer" parent="Logo/Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="Logo/Control/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Hold to Skip! >>"
+label_settings = ExtResource("6_gvvpr")
 
 [node name="TransitionBG" type="CanvasLayer" parent="."]
 layer = 2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://sh7w1kg42ps6"
+path="res://.godot/imported/Static Noise.wav-7d1a7d17fc20327ad0b1eca088f419d5.sample"
+
+[deps]
+
+source_file="res://assets/music/Static Noise.wav"
+dest_files=["res://.godot/imported/Static Noise.wav-7d1a7d17fc20327ad0b1eca088f419d5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,12 +1,6 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://c0om75eoubjal"]
 
 [ext_resource type="Script" path="res://classes/entity/player/states/run_state.gd" id="1_4dkey"]
 
 [node name="RunState" type="Node"]
 script = ExtResource("1_4dkey")
-idle_node = null
-sit_node = null
-walk_node = null
-run_node = null
-anim_enter_name = null
-anim_exit_name = null

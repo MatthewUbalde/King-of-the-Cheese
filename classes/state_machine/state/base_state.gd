@@ -1,10 +1,7 @@
 extends Node
 class_name BaseState
 
-signal force_change_state(new_state: BaseState)
-
 @export var anim_enter_name: StringName
-@export var anim_exit_name: StringName
 
 var entity: Entity
 
@@ -20,20 +17,16 @@ func _exit() -> void:
 	pass
 
 
-func _input_state(event: InputEvent) -> BaseState:
+func _input_state(_event: InputEvent) -> BaseState:
 	return null
 
 
-func _process_state(delta: float) -> BaseState:
+#func _process_state(delta: float) -> BaseState:
+#	return null
+
+
+func _physics_process_state(_delta: float) -> BaseState:
 	return null
-
-
-func _physics_process_state(delta: float) -> BaseState:
-	return null
-
-
-func emit_force_change_state(new_state: BaseState) -> void:
-	force_change_state.emit(new_state)
 
 
 func _to_string() -> String:

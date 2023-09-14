@@ -3,4 +3,4 @@ class_name HitboxComponent
 
 signal hit
 
-var active: bool 
+var active: bool = false

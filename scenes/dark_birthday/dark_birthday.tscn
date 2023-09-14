@@ -1,20 +1,21 @@
-[gd_scene load_steps=26 format=3 uid="uid://bj86jnd573use"]
+[gd_scene load_steps=28 format=3 uid="uid://bj86jnd573use"]
 
 [ext_resource type="Script" path="res://classes/entity/player/player.gd" id="1_2lgcm"]
 [ext_resource type="AudioStream" uid="uid://kovts8ayepfw" path="res://assets/sounds/Oh_Yeah.wav" id="2_1y3xu"]
 [ext_resource type="PackedScene" uid="uid://bxlxyg4quvlp2" path="res://scenes/component/hitbox_component.tscn" id="2_3b13j"]
-[ext_resource type="Texture2D" uid="uid://cyohj6reheq47" path="res://scenes/dark_birthday/sprites/dark_birthday_stand.png" id="2_bd23l"]
-[ext_resource type="Texture2D" uid="uid://bqt2m766cu6gv" path="res://scenes/dark_birthday/sprites/dark_birthday_move0006.png" id="3_rrfst"]
+[ext_resource type="SpriteFrames" uid="uid://dl1xblwvqakwa" path="res://scenes/dark_birthday/sprites/birthday/birthday_anim_sprite.tres" id="3_qfoeu"]
 [ext_resource type="PackedScene" uid="uid://cxr1pafncenof" path="res://classes/entity/player/states/walk_state.tscn" id="4_0fdwq"]
 [ext_resource type="PackedScene" uid="uid://dsg0vorolhkfa" path="res://classes/state_machine/state_machine.tscn" id="4_2pt17"]
 [ext_resource type="PackedScene" uid="uid://1k58c3eo4bgt" path="res://classes/entity/player/states/idle_state.tscn" id="4_6cujp"]
-[ext_resource type="Texture2D" uid="uid://d14iccqv8u2uy" path="res://scenes/dark_birthday/sprites/dark_birthday_move0009.png" id="4_jup6u"]
-[ext_resource type="PackedScene" path="res://classes/entity/player/states/run_state.tscn" id="5_dew41"]
-[ext_resource type="Texture2D" uid="uid://ydwgpw48ur8w" path="res://scenes/dark_birthday/sprites/dark_birthday_move0012.png" id="5_pi1fk"]
-[ext_resource type="Texture2D" uid="uid://c83r0wc8q36dv" path="res://scenes/dark_birthday/sprites/dark_birthday_move0015.png" id="6_sid3e"]
-[ext_resource type="Texture2D" uid="uid://hec2c6k1irp" path="res://scenes/dark_birthday/sprites/dark_birthday_sit.png" id="7_wqeb4"]
-[ext_resource type="PackedScene" uid="uid://cbm611bfhf7h" path="res://scenes/dark_birthday_hat/dark_birthday_hat.tscn" id="12_fbio6"]
-[ext_resource type="Texture2D" uid="uid://cwg0xarye4pv3" path="res://scenes/cheese_basic/Cheese.png" id="12_sg7py"]
+[ext_resource type="PackedScene" uid="uid://dp30d7jeyruhm" path="res://scenes/component/hearable_area_component.tscn" id="4_7bccm"]
+[ext_resource type="Texture2D" uid="uid://ba5afbopt6sod" path="res://scenes/dark_birthday/sprites/Cheese Hat.png" id="4_o0i8c"]
+[ext_resource type="Texture2D" uid="uid://br78cheawmfk8" path="res://scenes/dark_birthday/sprites/birthday/Birthday Hat.png" id="5_1cqq6"]
+[ext_resource type="PackedScene" uid="uid://bluq8yqspeoi6" path="res://scenes/particles/running_particles.tscn" id="5_12y4c"]
+[ext_resource type="PackedScene" uid="uid://c0om75eoubjal" path="res://classes/entity/player/states/run_state.tscn" id="5_dew41"]
+[ext_resource type="PackedScene" uid="uid://ck012k13insv8" path="res://scenes/etc/shadow_sprite.tscn" id="5_rbbfs"]
+[ext_resource type="PackedScene" uid="uid://cbpdyywvhe4u3" path="res://scenes/particles/cheese_particles.tscn" id="6_bofv7"]
+[ext_resource type="SpriteFrames" uid="uid://b0f0vnt0j24vw" path="res://scenes/dark_birthday/sprites/dark_birthday_anim_sprite.tres" id="8_nqksy"]
+[ext_resource type="Texture2D" uid="uid://dlrrkhaeyjf7w" path="res://scenes/dark_birthday/sprites/Dark Birthday Hat.png" id="9_6r21l"]
 [ext_resource type="AudioStream" uid="uid://bx6hh0lje3bas" path="res://assets/sounds/Yum.wav" id="14_mru1n"]
 [ext_resource type="AudioStream" uid="uid://n4ftg3jw7b32" path="res://assets/sounds/CheeseStep.wav" id="16_4uhv3"]
 
@@ -83,19 +84,19 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Visual/CharacterHat:position")
+tracks/5/path = NodePath("Visual/HatSprite:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -60)]
+"values": [Vector2(0, -59)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Visual/CharacterHat:rotation")
+tracks/6/path = NodePath("Visual/HatSprite:rotation")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -104,16 +105,29 @@ tracks/6/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Visual/HatSprite:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_el8hk"]
 resource_name = "idle"
-length = 0.833338
+length = 2.66667
+loop_mode = 1
 step = 0.0416667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Visual/AnimatedSprite2D:position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.834),
@@ -125,13 +139,13 @@ tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("Visual/AnimatedSprite2D:rotation")
-tracks/1/interp = 1
+tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2502, 0.5004, 0.7089, 0.834),
+"times": PackedFloat32Array(0, 0.3125, 0.625001, 0.886125, 1.0425),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -0.135205, 0.118981, 0.0, 0.0]
+"values": [0.0, -0.0832069, 0.068417, 0.0, 0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -140,10 +154,10 @@ tracks/2/path = NodePath("Visual/AnimatedSprite2D:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1251, 0.2502, 0.417, 0.5004, 0.7089, 0.834),
+"times": PackedFloat32Array(0, 0.15625, 0.3125, 0.520834, 0.625001, 0.886125, 1.0425),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(0.84, 1.15001), Vector2(0.84, 1.15001), Vector2(1.08007, 0.839906), Vector2(1.08007, 0.839906), Vector2(1, 1), Vector2(1, 1)]
+"values": [Vector2(1, 1), Vector2(0.840128, 1.07677), Vector2(0.840128, 1.07677), Vector2(0.988498, 1.01205), Vector2(0.988498, 1.01205), Vector2(1, 1), Vector2(1, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -172,42 +186,51 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Visual/CharacterHat:position")
-tracks/5/interp = 2
+tracks/5/path = NodePath("Visual/AnimatedSprite2D:visible")
+tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.416667, 0.5, 0.708334, 0.833334),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, -60), Vector2(3, -54), Vector2(-11, -66), Vector2(-9, -58), Vector2(14, -42), Vector2(-2, -59), Vector2(0, -60)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Visual/CharacterHat:rotation")
+tracks/6/path = NodePath("Visual/HatSprite:position")
 tracks/6/interp = 2
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.416667, 0.5, 0.708334, 0.833334),
+"times": PackedFloat32Array(0, 0.15625, 0.3125, 0.520834, 0.625001, 0.885417, 1.04167),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.258687, -0.361509, -0.0236119, 0.444431, -0.167291, 0.0]
+"values": [Vector2(0, -59), Vector2(-8, -66), Vector2(-14, -61), Vector2(4, -46), Vector2(11, -51), Vector2(-3, -58), Vector2(0, -59)]
 }
-tracks/7/type = "audio"
+tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("OhYeahSound")
+tracks/7/path = NodePath("Visual/HatSprite:scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"clips": [{
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource("2_1y3xu")
-}],
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0, 0.15625, 0.364583, 0.625001, 0.885417, 1.0425),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.06596, 0.852771), Vector2(1.1571, 1.12571), Vector2(1, 1), Vector2(1, 1)]
 }
-tracks/7/use_blend = true
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Visual/HatSprite:rotation")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.15625, 0.364584, 0.520834, 0.625001, 0.677084, 0.885417, 1.0425),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.261799, -0.132395, 0.0436388, 0.390938, 0.12311, 0.0, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_0tbl3"]
 resource_name = "run"
@@ -277,31 +300,31 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Visual/CharacterHat:position")
-tracks/5/interp = 2
+tracks/5/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/5/interp = 0
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.0833334, 0.125, 0.208334, 0.25, 0.291667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2085),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, -60), Vector2(-3, -52), Vector2(3, -47), Vector2(3, -50), Vector2(-4, -60), Vector2(0, -60)]
+"values": [-3.0, -5.0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Visual/CharacterHat:rotation")
-tracks/6/interp = 2
+tracks/6/path = NodePath("Visual/AnimatedSprite2D:visible")
+tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.0833333, 0.125, 0.208334, 0.25, 0.291667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, -0.218166, 0.0, 0.1309, -0.174533, 0.0]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 tracks/7/type = "audio"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("StepSound")
+tracks/7/path = NodePath("AudioStreamPlayer2D")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -314,9 +337,239 @@ tracks/7/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("16_4uhv3")
 }],
-"times": PackedFloat32Array(0, 0.208333)
+"times": PackedFloat32Array(0, 0.2085)
 }
 tracks/7/use_blend = true
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Visual/HatSprite:position")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.0833334, 0.208334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -59), Vector2(4, -46), Vector2(-2, -61)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Visual/HatSprite:scale")
+tracks/9/interp = 0
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Visual/HatSprite:rotation")
+tracks/10/interp = 2
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.0833334, 0.208334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.135305, -0.15159]
+}
+
+[sub_resource type="Animation" id="Animation_bq716"]
+resource_name = "sit"
+length = 0.750005
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/AnimatedSprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0416667, 0.208333, 0.291667, 0.583333, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(7.91624e-09, 2), Vector2(6, 2), Vector2(-3, 11), Vector2(0, 9), Vector2(0, 9)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visual/AnimatedSprite2D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0416667, 0.208333, 0.291667, 0.416667, 0.583333, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0410616, 0.0360657, 0.223023, -0.0680895, 0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visual/AnimatedSprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0416667, 0.208333, 0.291667, 0.583333, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(0.88, 1.24), Vector2(0.88, 1.24), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visual/AnimatedSprite2D:animation")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.291667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"default", &"sit"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visual/AnimatedSprite2D:frame")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.208333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Visual/HatSprite:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.0416667, 0.208333, 0.291667, 0.333333, 0.416667, 0.583333, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -59), Vector2(1, -56), Vector2(20, -66), Vector2(18, -56), Vector2(18, -56), Vector2(-16, -49), Vector2(-2, -48), Vector2(-2, -48)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Visual/HatSprite:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.0416667, 0.208333, 0.291667, 0.333333, 0.416667, 0.583333, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.05678, 0.779756), Vector2(1.36691, 0.797846), Vector2(0.713, 1.42938), Vector2(0.713, 1.42938), Vector2(1.03753, 0.88345), Vector2(1, 1), Vector2(1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Visual/HatSprite:rotation")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.0416667, 0.208333, 0.291667, 0.333333, 0.416667, 0.583333, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0781977, 0.319462, 0.38187, 0.38187, -0.352965, 0.0, 0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/8/interp = 0
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-6.0]
+}
+tracks/9/type = "audio"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("AudioStreamPlayer2D")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_1y3xu")
+}],
+"times": PackedFloat32Array(0.208333)
+}
+tracks/9/use_blend = true
+
+[sub_resource type="Animation" id="Animation_lnybu"]
+resource_name = "sit_idling"
+length = 1.50001
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/AnimatedSprite2D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0218389, 0.0254064, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visual/AnimatedSprite2D:animation")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"sit"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visual/AnimatedSprite2D:frame")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Visual/HatSprite:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-2, -48), Vector2(-4, -48), Vector2(-4.76837e-07, -48)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visual/HatSprite:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.028176, 0.0113117, -0.00745049]
+}
 
 [sub_resource type="Animation" id="Animation_mjcqn"]
 resource_name = "walk"
@@ -386,31 +639,31 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Visual/CharacterHat:position")
-tracks/5/interp = 2
+tracks/5/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/5/interp = 0
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.0833333, 0.125, 0.25, 0.333334, 0.375),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2502),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, -60), Vector2(-4, -55), Vector2(5, -50), Vector2(4.76837e-07, -60), Vector2(-2, -62), Vector2(0, -60)]
+"values": [-5.0, -8.0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Visual/CharacterHat:rotation")
-tracks/6/interp = 2
+tracks/6/path = NodePath("Visual/AnimatedSprite2D:visible")
+tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.0833334, 0.125, 0.25, 0.333334, 0.375),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, -0.130065, 0.108652, 0.150116, -0.178056, 0.0]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 tracks/7/type = "audio"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("StepSound")
+tracks/7/path = NodePath("AudioStreamPlayer2D")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -423,94 +676,88 @@ tracks/7/keys = {
 "start_offset": 0.0,
 "stream": ExtResource("16_4uhv3")
 }],
-"times": PackedFloat32Array(0, 0.25)
+"times": PackedFloat32Array(0, 0.2502)
 }
 tracks/7/use_blend = true
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Visual/HatSprite:position")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -59), Vector2(9, -49), Vector2(-5, -60), Vector2(0, -62)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Visual/HatSprite:scale")
+tracks/9/interp = 0
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Visual/HatSprite:rotation")
+tracks/10/interp = 2
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0844801, -0.131474, 0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mil61"]
 _data = {
 "RESET": SubResource("Animation_083k2"),
 "idle": SubResource("Animation_el8hk"),
 "run": SubResource("Animation_0tbl3"),
+"sit": SubResource("Animation_bq716"),
+"sit_idling": SubResource("Animation_lnybu"),
 "walk": SubResource("Animation_mjcqn")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8kd18"]
+size = Vector2(650, 450)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_by04p"]
 radius = 52.0384
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ct177"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_bd23l")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_rrfst")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_jup6u")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_pi1fk")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_sid3e")
-}],
-"loop": true,
-"name": &"move",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7_wqeb4")
-}],
-"loop": true,
-"name": &"sit",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_bd23l")
-}],
-"loop": true,
-"name": &"stand",
-"speed": 5.0
-}]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sa0ia"]
-radius = 19.0
-height = 60.0
-
-[node name="DarkBirthday" type="CharacterBody2D" node_paths=PackedStringArray("anim_sprite", "cheese_sprite", "state_machine", "visual", "animation_player")]
-collision_mask = 4
-motion_mode = 1
+[node name="DarkBirthday" type="Node2D" node_paths=PackedStringArray("visual", "animation_player")]
 script = ExtResource("1_2lgcm")
-anim_sprite = NodePath("Visual/AnimatedSprite2D")
-cheese_sprite = NodePath("Visual/CheeseSprite")
-state_machine = NodePath("StateMachine")
+dark_birthday_anim_spite = ExtResource("8_nqksy")
+birthday_anim_spite = ExtResource("3_qfoeu")
+cheese_birthday_hat = ExtResource("4_o0i8c")
+dark_birthday_hat = ExtResource("9_6r21l")
+birthday_hat = ExtResource("5_1cqq6")
 visual = NodePath("Visual")
 animation_player = NodePath("AnimationPlayer")
-speed_base = 135.0
-speed_running = 255.0
-
-[node name="Label" type="Label" parent="."]
-visible = false
-offset_right = 40.0
-offset_bottom = 23.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
+audio_max_polyphony = 4
 libraries = {
 "": SubResource("AnimationLibrary_mil61")
 }
+next/idle = &"still"
+next/sit = &"sit_idling"
+
+[node name="HearableAreaComponent" parent="." instance=ExtResource("4_7bccm")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HearableAreaComponent"]
+shape = SubResource("RectangleShape2D_8kd18")
 
 [node name="HitboxComponent" parent="." instance=ExtResource("2_3b13j")]
-collision_layer = 2
+collision_layer = 10
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
@@ -519,62 +766,68 @@ shape = SubResource("CircleShape2D_by04p")
 
 [node name="Visual" type="Node2D" parent="."]
 
+[node name="ShadowSprite" parent="Visual" instance=ExtResource("5_rbbfs")]
+position = Vector2(0, 10)
+
+[node name="CheeseParticles" parent="Visual" instance=ExtResource("6_bofv7")]
+unique_name_in_owner = true
+
+[node name="RunningParticles" parent="Visual" instance=ExtResource("5_12y4c")]
+unique_name_in_owner = true
+position = Vector2(-10, 9)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visual"]
-sprite_frames = SubResource("SpriteFrames_ct177")
+unique_name_in_owner = true
+sprite_frames = ExtResource("8_nqksy")
 offset = Vector2(0, -21)
 
-[node name="CharacterHat" parent="Visual" instance=ExtResource("12_fbio6")]
-position = Vector2(0, -60)
+[node name="HatSprite" type="Sprite2D" parent="Visual"]
+unique_name_in_owner = true
+position = Vector2(0, -59)
+texture = ExtResource("9_6r21l")
+offset = Vector2(0, -17)
 
-[node name="CheeseSprite" type="Sprite2D" parent="Visual"]
-visible = false
-texture = ExtResource("12_sg7py")
-offset = Vector2(0, -14)
+[node name="EatenTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 4.2
+one_shot = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -22)
-shape = SubResource("CapsuleShape2D_sa0ia")
-
-[node name="StateMachine" parent="." node_paths=PackedStringArray("entity") instance=ExtResource("4_2pt17")]
+[node name="StateMachine" parent="." node_paths=PackedStringArray("entity", "starting_state") instance=ExtResource("4_2pt17")]
 entity = NodePath("..")
 starting_state = NodePath("IdleState")
 
-[node name="IdleState" parent="StateMachine" node_paths=PackedStringArray("idle_anim_timer") instance=ExtResource("4_6cujp")]
-idle_node = NodePath(".")
-walk_node = NodePath("../WalkState")
-run_node = NodePath("../RunState")
-idle_anim_timer = NodePath("IdleAnimTimer")
+[node name="IdleState" parent="StateMachine" node_paths=PackedStringArray("walk_state", "run_state") instance=ExtResource("4_6cujp")]
+walk_state = NodePath("../WalkState")
+run_state = NodePath("../RunState")
 anim_enter_name = &"idle"
 
 [node name="IdleAnimTimer" type="Timer" parent="StateMachine/IdleState"]
-wait_time = 6.0
+unique_name_in_owner = true
+wait_time = 24.0
+one_shot = true
 
-[node name="WalkState" parent="StateMachine" instance=ExtResource("4_0fdwq")]
-idle_node = NodePath("../IdleState")
-walk_node = NodePath(".")
-run_node = NodePath("../RunState")
+[node name="WalkState" parent="StateMachine" node_paths=PackedStringArray("run_state", "idle_state") instance=ExtResource("4_0fdwq")]
+run_state = NodePath("../RunState")
+idle_state = NodePath("../IdleState")
 anim_enter_name = &"walk"
 
-[node name="RunState" parent="StateMachine" instance=ExtResource("5_dew41")]
-idle_node = NodePath("../IdleState")
-walk_node = NodePath("../WalkState")
-run_node = NodePath(".")
+[node name="RunState" parent="StateMachine" node_paths=PackedStringArray("walk_state", "idle_state") instance=ExtResource("5_dew41")]
+walk_state = NodePath("../WalkState")
+idle_state = NodePath("../IdleState")
 anim_enter_name = &"run"
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 current = true
 
 [node name="YumSound" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("14_mru1n")
-volume_db = -8.914
+volume_db = -6.0
 max_distance = 100.0
+max_polyphony = 3
 bus = &"Effects"
 
-[node name="StepSound" type="AudioStreamPlayer2D" parent="."]
-max_distance = 100.0
-bus = &"Effects"
-
-[node name="OhYeahSound" type="AudioStreamPlayer2D" parent="."]
-volume_db = -2.0
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = -5.0
 max_distance = 100.0
 bus = &"Effects"

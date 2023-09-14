@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbpdyywvhe4u3"]
+
+[ext_resource type="Texture2D" uid="uid://dblh8y42qggbk" path="res://assets/particles/cheese_particle.png" id="1_xp8b8"]
+
+[sub_resource type="Curve" id="Curve_2fm2r"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0333333, 0.957895), 0.0, 0.0, 0, 0, Vector2(0.825, 0.747368), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[node name="CheeseParticles" type="CPUParticles2D"]
+position = Vector2(0, -35)
+emitting = false
+amount = 6
+lifetime = 0.6
+texture = ExtResource("1_xp8b8")
+emission_shape = 3
+emission_rect_extents = Vector2(4, 4)
+direction = Vector2(0, -1)
+gravity = Vector2(0, 98)
+initial_velocity_min = 80.0
+initial_velocity_max = 150.0
+angular_velocity_min = 25.0
+angular_velocity_max = 25.0
+radial_accel_min = -50.0
+radial_accel_max = 50.0
+angle_max = 360.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_2fm2r")

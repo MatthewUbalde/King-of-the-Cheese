@@ -4,71 +4,80 @@ extends Control
 
 var cheese_manager: CheeseManager
 
-@onready var cheese_counter_label = %CheeseCounterLabel
-@onready var cheese_label = %CheeseLabel
-@onready var cheese_slider = %CheeseSlider
-@onready var bypass_limit_button = %BypassLimitButton
+#@onready var counter_label = %CounterLabel
+@onready var status_label = %StatusLabel
+@onready var limit_button = %LimitButton
+@onready var spawn_instantly_button = %SpawnInstantlyButton
+
+@onready var spin_box = %SpinBox
 
 var bypass_limit: bool = false
+var value_int: int
 
 func _ready() -> void:
-	cheese_manager = gui.cheese_manager
+	if gui:
+		if gui.cheese_manager:
+			cheese_manager = gui.cheese_manager
+	else:
+		gui = UserInterface.new()
+		cheese_manager = CheeseManager.new()
 	
 	GameEvents.update_day.connect(on_game_events_update_day)
-	cheese_slider.value_changed.connect(on_cheese_slider_value_changed)
-	bypass_limit_button.toggled.connect(on_bypass_limit_button_toggled) 
+	spin_box.value_changed.connect(on_spin_box_value_changed)
+	limit_button.toggled.connect(on_limit_button_toggled)
+	
+	spawn_instantly_button.pressed.connect(cheese_manager.spawn_cheese_instantly)
+	
+	spin_box.value = cheese_manager.amount_max
 
 
-func on_game_events_update_day(current_day: int) -> void:
-	cheese_slider.max_value = current_day
-	
-	# This will be available when the limit comes...
-	var disable_limit_btn: bool = current_day < Ultilities.CHEESE_AMOUNT_CAP[4]
-	bypass_limit_button.disabled = disable_limit_btn
-	if disable_limit_btn:
-		bypass_limit_button.text = "Wait til' day " + str(Ultilities.CHEESE_AMOUNT_CAP[4])
-	else:
-		bypass_limit_button.text = "Bypass limit " + str(Ultilities.CHEESE_AMOUNT_CAP[4])
-	
-	# If none of the range hits, just stay here
-	if !bypass_limit:
-		cheese_slider.value = cheese_manager.check_cheese_amount()
-	else:
-		cheese_slider.value = cheese_manager.cheese_amount_max
+func on_game_events_update_day(current_day: int, _current_date: Dictionary) -> void:
+	spin_box.max_value = current_day
 
 
-func on_cheese_slider_value_changed(value: float) -> void:
-	cheese_manager.update_cheese(int(value))
+func on_spin_box_value_changed(value: float) -> void:
+	value_int = int(value)
+	cheese_manager.update_cheese(value_int)
 	
-	if bypass_limit:
-		cheese_counter_label.text = "Cheese!? " + str(value)
-		return
+	gui.insanity.emit(value_int == 24 && bypass_limit)
 	
-	if value < Ultilities.CHEESE_AMOUNT_CAP[0]:
-		cheese_counter_label.text = "Cheese: " + str(value)
-		cheese_label.text = "Adjust the amount of cheese on screen!"
-	elif value < Ultilities.CHEESE_AMOUNT_CAP[1]:
-		cheese_counter_label.text = "Cheese: " + str(value)
-		cheese_label.text = "Adjust the amount of cheese on screen."
-	elif value < Ultilities.CHEESE_AMOUNT_CAP[2]:
-		cheese_counter_label.text = "Cheese! " + str(value)
-		cheese_label.text = "This is impressive!"
-	elif value < Ultilities.CHEESE_AMOUNT_CAP[3]:
-		cheese_counter_label.text = "Cheese! " + str(value)
-		cheese_label.text = "It might be too much! Be careful!"
-	elif value < Ultilities.CHEESE_AMOUNT_CAP[4]:
-		cheese_counter_label.text = "Cheese!! " + str(value)
-		cheese_label.text = "Nice computer you got there!"
+	if value_int == 24:
+		if bypass_limit:
+			status_label.text = "There you are." 
+			
+			if DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_FULLSCREEN:
+				status_label.text = "I'm here now"
+		else:
+			status_label.text = "I can't find you..."
+			
+			if DisplayServer.window_get_mode() != DisplayServer.WINDOW_MODE_FULLSCREEN:
+				status_label.text = "Where are you?"
+			
+	elif value_int < Ultilities.CHEESE_AMOUNT_CAP[0]:
+		status_label.text = "Adjust the amount of cheese to spawn!"
+	elif value_int < Ultilities.CHEESE_AMOUNT_CAP[1]:
+		status_label.text = "Adjust the amount of cheese to spawn."
+	elif value_int < Ultilities.CHEESE_AMOUNT_CAP[2]:
+		status_label.text = "This is impressive!"
+	elif value_int < Ultilities.CHEESE_AMOUNT_CAP[3]:
+		status_label.text = "It might be too much! Be careful!"
+	elif value_int < Ultilities.CHEESE_AMOUNT_CAP[4]:
+		status_label.text = "Nice computer you got there!"
 	else: # At the very limit!
-		cheese_counter_label.text = "Too much!"
-		cheese_label.text = "May not handle this much " + str(value) + " cheese at this point!"
-		cheese_manager.update_cheese(Ultilities.CHEESE_AMOUNT_CAP[4])
+		status_label.text = "May not handle this much " + str(value) + " cheese at this point!"
 
 
-func on_bypass_limit_button_toggled(button_pressed: bool) -> void:
+func on_limit_button_toggled(button_pressed: bool) -> void:
 	bypass_limit = button_pressed
+	spin_box.allow_greater = bypass_limit
+	cheese_manager.bypass_limit = bypass_limit
+	
+	gui.insanity.emit(value_int == 24 && bypass_limit)
 	
 	if bypass_limit:
-		cheese_label.text = "The hard " + str(Ultilities.CHEESE_AMOUNT_CAP[4]) + " limit is gone!"
+		if cheese_manager.amount_max == 24:
+			status_label.text = "Don't worry I'm here..."
+		else:
+			status_label.text = "The limit is gone! BWAHAHAHA"
 	else:
-		cheese_label.text = "Well now it's gone..."
+		status_label.text = "Well now it's back..."

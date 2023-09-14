@@ -41,13 +41,21 @@ var penalty_value = {
 
 var score_current: int = 0
 
+func increase_score() -> void:
+	score_current += score_value.get(score_type.DEFAULT)
+	score_update.emit(score_current)
 
-func increase_by_score(type: score_type = score_type.DEFAULT):
+
+func increase_by_score(type: score_type = score_type.DEFAULT) -> void:
 	score_current += score_value.get(type)
 	score_update.emit(score_current)
 
 
-func decrease_by_penalty(type: penalty_type = penalty_type.DEFAULT):
-	score_current -= penalty_type.get(type)
+func decrease_score() -> void:
+	score_current -= score_value.get(penalty_type.DEFAULT)
 	score_update.emit(score_current)
 
+
+func decrease_by_penalty(type: penalty_type = penalty_type.DEFAULT) -> void:
+	score_current -= penalty_type.get(type)
+	score_update.emit(score_current)

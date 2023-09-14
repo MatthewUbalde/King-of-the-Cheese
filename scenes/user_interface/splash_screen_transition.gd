@@ -8,7 +8,7 @@ signal speed_up(speed_factor: float)
 @onready var cloud_parallax_bg: ParallaxBackground = $CloudParallaxBackground
 
 const SPEED_SCALE_NORMAL: float = 1.0
-const SPEED_SCALE_FAST: float = 6.0
+const SPEED_SCALE_FAST: float = 7.5
 
 func _ready() -> void:
 	# Hard coding in the queues due to an solution that I was trying to do

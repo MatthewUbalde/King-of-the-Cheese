@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c2lg2741coag5"]
 
-[ext_resource type="Theme" uid="uid://bx3rgbhg0k4eg" path="res://scenes/user_interface/main_gui.tres" id="1_li7q5"]
+[ext_resource type="Theme" uid="uid://bx3rgbhg0k4eg" path="res://assets/gui/main_gui.tres" id="1_wcxek"]
 [ext_resource type="Script" path="res://scenes/user_interface/counter_container.gd" id="2_vobkj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_f1skf"]
@@ -16,7 +16,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 mouse_filter = 2
-theme = ExtResource("1_li7q5")
+theme = ExtResource("1_wcxek")
 script = ExtResource("2_vobkj")
 
 [node name="Panel" type="Panel" parent="."]
@@ -43,34 +43,55 @@ grow_vertical = 2
 size_flags_vertical = 4
 mouse_filter = 2
 
-[node name="CheeseCounterLabel" type="Label" parent="VBoxContainer"]
-unique_name_in_owner = true
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-text = "Cheese: 0"
-horizontal_alignment = 1
-vertical_alignment = 2
-text_overrun_behavior = 3
+alignment = 1
 
-[node name="CheeseSlider" type="HSlider" parent="VBoxContainer"]
-unique_name_in_owner = true
+[node name="CheeseLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-focus_mode = 0
-max_value = 1.0
-value = 1.0
+size_flags_horizontal = 8
+text = "Cheese:"
+horizontal_alignment = 2
+vertical_alignment = 2
 
-[node name="CheeseLabel" type="Label" parent="VBoxContainer"]
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Adjusts the spawn cap"
+alignment = 1
+update_on_text_changed = true
+custom_arrow_step = 5.0
+select_all_on_focus = true
+
+[node name="StatusLabel" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
-text = "Adjust the amount of cheese on area!"
+text = "Adjust the amount of 
+cheese to spawn!"
 label_settings = SubResource("LabelSettings_f1skf")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="BypassLimitButton" type="CheckButton" parent="VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
+
+[node name="LimitButton" type="CheckButton" parent="VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "Allow you to spawn more cheese than the current day."
 focus_mode = 0
-text = "Bypass limit 1000"
+text = "Limit"
 alignment = 1
+
+[node name="SpawnInstantlyButton" type="Button" parent="VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "Instantly spawn all of the cheese at once!"
+theme_override_font_sizes/font_size = 16
+text = "Instant Spawn"

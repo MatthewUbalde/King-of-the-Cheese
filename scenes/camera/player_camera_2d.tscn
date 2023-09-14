@@ -14,3 +14,7 @@ drag_right_margin = 0.05
 drag_bottom_margin = 0.25
 editor_draw_drag_margin = true
 script = ExtResource("1_0yh6p")
+shake_amount = 5.0
+
+[node name="ShakeTimer" type="Timer" parent="."]
+wait_time = 0.2

@@ -1,0 +1,20 @@
+[gd_scene load_steps=9 format=3 uid="uid://b0pb7oc0rmfko"]
+
+[ext_resource type="Script" path="res://classes/autoloads/sound_resources.gd" id="1_1xknw"]
+[ext_resource type="AudioStream" uid="uid://n4ftg3jw7b32" path="res://assets/sounds/CheeseStep.wav" id="2_eaqba"]
+[ext_resource type="AudioStream" uid="uid://wqdqnmo3mdiu" path="res://assets/sounds/Is_That_Okay.wav" id="3_u2w5b"]
+[ext_resource type="AudioStream" uid="uid://b2ugoiuejhh4u" path="res://assets/sounds/Hattin.mp3" id="3_ws4ae"]
+[ext_resource type="AudioStream" uid="uid://7s6fom5qryua" path="res://assets/sounds/No.wav" id="4_mgmwv"]
+[ext_resource type="AudioStream" uid="uid://kovts8ayepfw" path="res://assets/sounds/Oh_Yeah.wav" id="5_0a7yy"]
+[ext_resource type="AudioStream" uid="uid://d2uy3gvemaqn0" path="res://assets/sounds/Okay.wav" id="6_g8klk"]
+[ext_resource type="AudioStream" uid="uid://bx6hh0lje3bas" path="res://assets/sounds/Yum.wav" id="7_4v8k6"]
+
+[node name="SoundResources" type="Node"]
+script = ExtResource("1_1xknw")
+CHEESE_STEP = ExtResource("2_eaqba")
+HATTIN = ExtResource("3_ws4ae")
+IS_THAT_OKAY = ExtResource("3_u2w5b")
+NO = ExtResource("4_mgmwv")
+OH_YEAH = ExtResource("5_0a7yy")
+OKAY = ExtResource("6_g8klk")
+YUM = ExtResource("7_4v8k6")

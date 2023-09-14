@@ -48,7 +48,7 @@ func on_screenshot_button_pressed() -> void:
 
 
 func on_hint_button_pressed() -> void:
-	help_label.text = SecretMessage.get_random_message()
+	help_label.text = SecretMessage.update_random_message()
 	idle_timer.start()
 
 

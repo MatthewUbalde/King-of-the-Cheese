@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bogng3hikhyjb"
+path="res://.godot/imported/Relaxing Cheese (ending).wav-3584186607d28cae86e268e8b035cc77.sample"
+
+[deps]
+
+source_file="res://assets/music/Relaxing Cheese (ending).wav"
+dest_files=["res://.godot/imported/Relaxing Cheese (ending).wav-3584186607d28cae86e268e8b035cc77.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

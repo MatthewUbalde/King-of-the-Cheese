@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bluq8yqspeoi6"]
+
+[ext_resource type="Texture2D" uid="uid://dlbthbv1fycbp" path="res://assets/particles/dust.png" id="1_8tr7v"]
+
+[sub_resource type="Curve" id="Curve_84fw6"]
+_data = [Vector2(0.0448549, 0.252632), 0.0, 0.0, 0, 0, Vector2(0.240106, 0.189474), 1.59579, 1.59579, 0, 0, Vector2(0.762533, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_locqm"]
+offsets = PackedFloat32Array(0.689655, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.639216)
+
+[node name="RunningParticles" type="CPUParticles2D"]
+emitting = false
+amount = 5
+lifetime = 0.35
+lifetime_randomness = 0.6
+fract_delta = false
+texture = ExtResource("1_8tr7v")
+direction = Vector2(0, 0)
+spread = 25.0
+gravity = Vector2(0, -980)
+angle_max = 360.0
+scale_amount_max = 1.5
+scale_amount_curve = SubResource("Curve_84fw6")
+color = Color(0.997073, 0.940977, 0.842562, 1)
+color_ramp = SubResource("Gradient_locqm")

@@ -1,0 +1,52 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://dl1xblwvqakwa"]
+
+[ext_resource type="Texture2D" uid="uid://bpa3j60gnfmyc" path="res://scenes/dark_birthday/sprites/birthday/birthday_move0003.png" id="1_d844b"]
+[ext_resource type="Texture2D" uid="uid://bg7d5esbr5vo3" path="res://scenes/dark_birthday/sprites/birthday/birthday_move0006.png" id="2_8jgpr"]
+[ext_resource type="Texture2D" uid="uid://b048ppks7vj3g" path="res://scenes/dark_birthday/sprites/birthday/birthday_move0009.png" id="3_x4nbu"]
+[ext_resource type="Texture2D" uid="uid://cdam3o7m67vlt" path="res://scenes/dark_birthday/sprites/birthday/birthday_move0012.png" id="4_58g2i"]
+[ext_resource type="Texture2D" uid="uid://bk2fis3t7ktre" path="res://scenes/dark_birthday/sprites/birthday/birthday_move0015.png" id="5_yncj2"]
+[ext_resource type="Texture2D" uid="uid://dldbaypweemxi" path="res://scenes/dark_birthday/sprites/birthday/birthday_move0000.png" id="6_3vq8l"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_d844b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8jgpr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_x4nbu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_58g2i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_yncj2")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_3vq8l")
+}],
+"loop": true,
+"name": &"sit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_d844b")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}]
